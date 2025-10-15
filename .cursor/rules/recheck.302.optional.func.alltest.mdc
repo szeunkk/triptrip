@@ -1,0 +1,5 @@
+---
+alwaysApply: false
+---
+
+프로젝트 전체테스트 npm run test 요청
