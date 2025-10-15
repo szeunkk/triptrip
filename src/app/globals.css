@@ -2,26 +2,254 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===================================
+   Color Token Variables
+   =================================== */
+
 :root {
+  /* Gray Scale */
+  --color-gray-white: #ffffff;
+  --color-gray-05: #f2f2f2;
+  --color-gray-10: #e4e4e4;
+  --color-gray-20: #d4d3d3;
+  --color-gray-30: #c7c7c7;
+  --color-gray-40: #ababab;
+  --color-gray-50: #919191;
+  --color-gray-60: #777777;
+  --color-gray-70: #5f5f5f;
+  --color-gray-80: #333333;
+  --color-gray-90: #1c1c1c;
+  --color-gray-black: #000000;
+
+  /* Brand Colors */
+  --color-brand-blue: #2974e5;
+  --color-brand-red: #f66a6a;
+
+  /* Semantic Colors - Light Mode */
+  --color-primary: #2974e5;
+  --color-error: #f66a6a;
+  --color-disabled: #d4d3d3;
+
+  /* Background */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f2f2f2;
+  --color-bg-tertiary: #e4e4e4;
+
+  /* Text */
+  --color-text-primary: #000000;
+  --color-text-secondary: #5f5f5f;
+  --color-text-tertiary: #777777;
+  --color-text-disabled: #ababab;
+  --color-text-inverse: #ffffff;
+
+  /* Border */
+  --color-border-primary: #e4e4e4;
+  --color-border-secondary: #c7c7c7;
+
+  /* Legacy Variables (for backward compatibility) */
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Semantic Colors - Dark Mode */
+    --color-primary: #2974e5;
+    --color-error: #f66a6a;
+    --color-disabled: #5f5f5f;
+
+    /* Background */
+    --color-bg-primary: #000000;
+    --color-bg-secondary: #1c1c1c;
+    --color-bg-tertiary: #333333;
+
+    /* Text */
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #c7c7c7;
+    --color-text-tertiary: #ababab;
+    --color-text-disabled: #777777;
+    --color-text-inverse: #000000;
+
+    /* Border */
+    --color-border-primary: #333333;
+    --color-border-secondary: #5f5f5f;
+
+    /* Legacy Variables */
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 }
 
+/* ===================================
+   Base Styles
+   =================================== */
+
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ===================================
+   Utility Classes
+   =================================== */
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* ===================================
+   Color Utility Classes
+   사용 예: <div class="bg-brand-blue text-gray-white">
+   =================================== */
+
+@layer utilities {
+  /* Gray Scale Backgrounds */
+  .bg-gray-white {
+    background-color: var(--color-gray-white);
+  }
+  .bg-gray-05 {
+    background-color: var(--color-gray-05);
+  }
+  .bg-gray-10 {
+    background-color: var(--color-gray-10);
+  }
+  .bg-gray-20 {
+    background-color: var(--color-gray-20);
+  }
+  .bg-gray-30 {
+    background-color: var(--color-gray-30);
+  }
+  .bg-gray-40 {
+    background-color: var(--color-gray-40);
+  }
+  .bg-gray-50 {
+    background-color: var(--color-gray-50);
+  }
+  .bg-gray-60 {
+    background-color: var(--color-gray-60);
+  }
+  .bg-gray-70 {
+    background-color: var(--color-gray-70);
+  }
+  .bg-gray-80 {
+    background-color: var(--color-gray-80);
+  }
+  .bg-gray-90 {
+    background-color: var(--color-gray-90);
+  }
+  .bg-gray-black {
+    background-color: var(--color-gray-black);
+  }
+
+  /* Gray Scale Text */
+  .text-gray-white {
+    color: var(--color-gray-white);
+  }
+  .text-gray-05 {
+    color: var(--color-gray-05);
+  }
+  .text-gray-10 {
+    color: var(--color-gray-10);
+  }
+  .text-gray-20 {
+    color: var(--color-gray-20);
+  }
+  .text-gray-30 {
+    color: var(--color-gray-30);
+  }
+  .text-gray-40 {
+    color: var(--color-gray-40);
+  }
+  .text-gray-50 {
+    color: var(--color-gray-50);
+  }
+  .text-gray-60 {
+    color: var(--color-gray-60);
+  }
+  .text-gray-70 {
+    color: var(--color-gray-70);
+  }
+  .text-gray-80 {
+    color: var(--color-gray-80);
+  }
+  .text-gray-90 {
+    color: var(--color-gray-90);
+  }
+  .text-gray-black {
+    color: var(--color-gray-black);
+  }
+
+  /* Brand Colors */
+  .bg-brand-blue {
+    background-color: var(--color-brand-blue);
+  }
+  .bg-brand-red {
+    background-color: var(--color-brand-red);
+  }
+  .text-brand-blue {
+    color: var(--color-brand-blue);
+  }
+  .text-brand-red {
+    color: var(--color-brand-red);
+  }
+
+  /* Semantic Backgrounds */
+  .bg-primary {
+    background-color: var(--color-bg-primary);
+  }
+  .bg-secondary {
+    background-color: var(--color-bg-secondary);
+  }
+  .bg-tertiary {
+    background-color: var(--color-bg-tertiary);
+  }
+
+  /* Semantic Text */
+  .text-primary {
+    color: var(--color-text-primary);
+  }
+  .text-secondary {
+    color: var(--color-text-secondary);
+  }
+  .text-tertiary {
+    color: var(--color-text-tertiary);
+  }
+  .text-disabled {
+    color: var(--color-text-disabled);
+  }
+  .text-inverse {
+    color: var(--color-text-inverse);
+  }
+
+  /* Semantic Colors */
+  .bg-color-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-color-error {
+    background-color: var(--color-error);
+  }
+  .bg-color-disabled {
+    background-color: var(--color-disabled);
+  }
+  .text-color-primary {
+    color: var(--color-primary);
+  }
+  .text-color-error {
+    color: var(--color-error);
+  }
+  .text-color-disabled {
+    color: var(--color-disabled);
+  }
+
+  /* Border Colors */
+  .border-primary {
+    border-color: var(--color-border-primary);
+  }
+  .border-secondary {
+    border-color: var(--color-border-secondary);
   }
 }
