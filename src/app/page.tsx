@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { Input } from "@/commons/components/input";
+import Button from "@/commons/components/button";
 
 interface FormValues {
   email: string;
@@ -35,7 +36,7 @@ export default function Home() {
         })}
       />
 
-      <button type="submit">제출</button>
+      <Button type="submit">제출</Button>
     </form>
   );
 }

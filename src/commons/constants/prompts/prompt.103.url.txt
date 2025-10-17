@@ -20,6 +20,7 @@
                   - 노출가능목록
                      - header X(로고 X, 로그인버튼 X)
                      - banner X
+                     - heroimage O
 
                2) 회원가입
                   - 경로명: /(auth)/signup
@@ -27,6 +28,7 @@
                   - 노출가능목록
                      - header X(로고 X, 로그인버튼 X)
                      - banner X
+                     - heroimage O
 
                3) 게시글 목록
                   - 경로명: /boards
@@ -34,6 +36,7 @@
                   - 노출가능목록
                      - header O(로고 O, 로그인버튼 X)
                      - banner O
+                     - heroimage X
 
                4) 게시글 등록
                   - 경로명: /boards/new
@@ -41,6 +44,7 @@
                   - 노출가능목록
                      - header O(로고 O, 로그인버튼 X)
                      - banner X
+                     - heroimage X
 
                4) 게시글 상세
                   - 경로명: /boards/[boardId]
@@ -48,6 +52,7 @@
                   - 노출가능목록
                      - header O(로고 O, 로그인버튼 X)
                      - banner O
+                     - heroimage X
 
                5) 게시글 수정
                   - 경로명: /boards/[boardId]/edit
@@ -55,6 +60,7 @@
                   - 노출가능목록
                      - header O(로고 O, 로그인버튼 X)
                      - banner X
+                     - heroimage X
 
                6) 숙박권 목록
                   - 경로명: /products
@@ -62,6 +68,7 @@
                   - 노출가능목록
                      - header O(로고 O, 로그인버튼 X)
                      - banner O
+                     - heroimage X
 
                7) 숙박권 등록
                   - 경로명: /products/new
@@ -69,6 +76,7 @@
                   - 노출가능목록
                      - header O(로고 O, 로그인버튼 X)
                      - banner X
+                     - heroimage X
 
                8) 숙박권 상세
                   - 경로명: /products/[productId]
@@ -76,6 +84,7 @@
                   - 노출가능목록
                      - header O(로고 O, 로그인버튼 X)
                      - banner X
+                     - heroimage X
 
                8) 숙박권 수정
                   - 경로명: /products/[productId]/edit
@@ -83,6 +92,7 @@
                   - 노출가능목록
                      - header O(로고 O, 로그인버튼 X)
                      - banner X
+                     - heroimage X
 
                9) 마이페이지
                   - 경로명: /mypage
@@ -90,3 +100,4 @@
                   - 노출가능목록
                      - header O(로고 O, 로그인버튼 X)
                      - banner X
+                     - heroimage X
