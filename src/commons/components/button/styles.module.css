@@ -1,0 +1,149 @@
+/* ===================================
+   Button Base Styles
+   =================================== */
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  box-sizing: border-box;
+  font-family: "Pretendard Variable", sans-serif;
+  text-align: center;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+
+/* ===================================
+   Size Variants
+   =================================== */
+
+/* Small: 14px semibold (typo-body14-semibold) */
+.size_small {
+  height: 40px;
+  padding: 10px 12px;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
+
+/* Medium: 18px semibold (typo-body18-semibold) */
+.size_medium {
+  height: 48px;
+  padding: 12px 16px;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+/* ===================================
+   Shape Variants
+   =================================== */
+.shape_rectangle {
+  border-radius: 8px;
+}
+
+.shape_pill {
+  border-radius: 100px;
+}
+
+/* ===================================
+   Variant: Primary
+   =================================== */
+.variant_primary {
+  background-color: var(--color-brand-blue);
+  color: var(--color-gray-white);
+}
+
+.variant_primary.disabled {
+  background-color: var(--color-gray-30);
+  color: var(--color-gray-10);
+}
+
+/* ===================================
+   Variant: Secondary
+   =================================== */
+.variant_secondary {
+  background-color: var(--color-gray-black);
+  color: var(--color-gray-white);
+}
+
+.variant_secondary.disabled {
+  background-color: var(--color-gray-30);
+  color: var(--color-gray-10);
+}
+
+/* ===================================
+   Variant: Tertiary
+   =================================== */
+.variant_tertiary {
+  background-color: var(--color-gray-white);
+  color: var(--color-gray-black);
+  border: 1px solid var(--color-gray-black);
+}
+
+.variant_tertiary.disabled {
+  background-color: var(--color-gray-05);
+  color: var(--color-gray-30);
+  border: 1px solid var(--color-gray-30);
+}
+
+/* ===================================
+   Variant: Ghost
+   13px medium (typo-caption13-medium)
+   =================================== */
+.variant_ghost {
+  background-color: transparent;
+  color: var(--color-gray-80);
+  border: none;
+  height: 24px;
+  padding: 2px 4px;
+  gap: 4px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+/* Ghost disabled: 12px regular (typo-caption12-regular) */
+.variant_ghost.disabled {
+  background-color: transparent;
+  color: var(--color-gray-10);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+/* Ghost variant ignores size prop */
+.variant_ghost.size_small,
+.variant_ghost.size_medium {
+  height: 24px;
+  padding: 2px 4px;
+  gap: 4px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.variant_ghost.disabled.size_small,
+.variant_ghost.disabled.size_medium {
+  height: 24px;
+  padding: 2px 4px;
+  gap: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+/* Ghost variant ignores shape prop */
+.variant_ghost.shape_rectangle,
+.variant_ghost.shape_pill {
+  border-radius: 4px;
+}
