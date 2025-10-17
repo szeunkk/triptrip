@@ -1,24 +1,41 @@
-import Input from "@/commons/components/input";
+"use client";
+
+import { useForm } from "react-hook-form";
+import { Input } from "@/commons/components/input";
+
+interface FormValues {
+  email: string;
+}
 
 export default function Home() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit = (data: FormValues) => {
+    console.log(data);
+  };
+
   return (
-    <>
-      {/* 기본 사용 */}
-      <Input label="이메일" placeholder="이메일을 입력하세요" />
-      {/* Medium + Required */}
-      <Input size="medium" label="비밀번호" required type="password" />
-      {/* Small + Error */}
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Input
-        size="small"
-        label="전화번호"
-        error="올바른 전화번호를 입력해주세요"
+        label="이메일"
+        variant="outlined"
+        placeholder="이메일을 입력하세요"
+        required
+        error={errors.email?.message}
+        {...register("email", {
+          required: "이메일은 필수 입력입니다.",
+          pattern: {
+            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            message: "유효한 이메일 형식이 아닙니다.",
+          },
+        })}
       />
-      {/* Filled Variant */}
-      <Input variant="filled" label="주소" />
-      {/* Read Only */}
-      <Input label="이름" value="홍길동" readOnly />
-      {/* Disabled */}
-      <Input label="닉네임" disabled />
-    </>
+
+      <button type="submit">제출</button>
+    </form>
   );
 }

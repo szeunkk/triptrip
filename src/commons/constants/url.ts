@@ -22,6 +22,8 @@ export interface LayoutConfig {
   };
   /** 배너 노출 여부 */
   banner: boolean;
+  /** 히어로이미지 노출 여부 */
+  heroimage: boolean;
 }
 
 /** 페이지 메타데이터 */
@@ -60,6 +62,7 @@ const LAYOUT_AUTH: LayoutConfig = {
     loginButton: false,
   },
   banner: false,
+  heroimage: true,
 };
 
 /** 헤더 노출, 배너 노출 (공개 목록 페이지) */
@@ -70,6 +73,7 @@ const LAYOUT_PUBLIC_LIST: LayoutConfig = {
     loginButton: false,
   },
   banner: true,
+  heroimage: false,
 };
 
 /** 헤더 노출, 배너 비노출 (등록/수정 페이지) */
@@ -80,6 +84,7 @@ const LAYOUT_FORM: LayoutConfig = {
     loginButton: false,
   },
   banner: false,
+  heroimage: false,
 };
 
 /** 헤더 노출, 배너 노출 (상세 페이지) */
@@ -90,6 +95,7 @@ const LAYOUT_DETAIL: LayoutConfig = {
     loginButton: false,
   },
   banner: true,
+  heroimage: false,
 };
 
 // URL Routes and Metadata
@@ -227,24 +233,51 @@ export const isAuthRequired = (pathname: string): boolean => {
       const page = obj[key];
 
       // 정적 페이지 확인
-      if (page && typeof page === "object" && "path" in page && typeof page.path === "string") {
-        if (pathname === page.path && "metadata" in page && typeof page.metadata === "object" && page.metadata && "access" in page.metadata) {
+      if (
+        page &&
+        typeof page === "object" &&
+        "path" in page &&
+        typeof page.path === "string"
+      ) {
+        if (
+          pathname === page.path &&
+          "metadata" in page &&
+          typeof page.metadata === "object" &&
+          page.metadata &&
+          "access" in page.metadata
+        ) {
           return page.metadata.access === "회원전용";
         }
       }
 
       // 다이나믹 페이지 확인
-      if (page && typeof page === "object" && "pattern" in page && typeof page.pattern === "string") {
+      if (
+        page &&
+        typeof page === "object" &&
+        "pattern" in page &&
+        typeof page.pattern === "string"
+      ) {
         const regex = new RegExp(
           "^" + page.pattern.replace(/\[.*?\]/g, "[^/]+") + "$"
         );
-        if (regex.test(pathname) && "metadata" in page && typeof page.metadata === "object" && page.metadata && "access" in page.metadata) {
+        if (
+          regex.test(pathname) &&
+          "metadata" in page &&
+          typeof page.metadata === "object" &&
+          page.metadata &&
+          "access" in page.metadata
+        ) {
           return page.metadata.access === "회원전용";
         }
       }
 
       // 중첩된 객체 재귀 검사
-      if (typeof page === "object" && page !== null && !("path" in page) && !("pattern" in page)) {
+      if (
+        typeof page === "object" &&
+        page !== null &&
+        !("path" in page) &&
+        !("pattern" in page)
+      ) {
         const result = checkPages(page as Record<string, unknown>);
         if (result !== null) return result;
       }
@@ -267,24 +300,51 @@ export const getLayoutConfig = (pathname: string): LayoutConfig => {
       const page = obj[key];
 
       // 정적 페이지 확인
-      if (page && typeof page === "object" && "path" in page && typeof page.path === "string") {
-        if (pathname === page.path && "metadata" in page && typeof page.metadata === "object" && page.metadata && "layout" in page.metadata) {
+      if (
+        page &&
+        typeof page === "object" &&
+        "path" in page &&
+        typeof page.path === "string"
+      ) {
+        if (
+          pathname === page.path &&
+          "metadata" in page &&
+          typeof page.metadata === "object" &&
+          page.metadata &&
+          "layout" in page.metadata
+        ) {
           return page.metadata.layout as LayoutConfig;
         }
       }
 
       // 다이나믹 페이지 확인
-      if (page && typeof page === "object" && "pattern" in page && typeof page.pattern === "string") {
+      if (
+        page &&
+        typeof page === "object" &&
+        "pattern" in page &&
+        typeof page.pattern === "string"
+      ) {
         const regex = new RegExp(
           "^" + page.pattern.replace(/\[.*?\]/g, "[^/]+") + "$"
         );
-        if (regex.test(pathname) && "metadata" in page && typeof page.metadata === "object" && page.metadata && "layout" in page.metadata) {
+        if (
+          regex.test(pathname) &&
+          "metadata" in page &&
+          typeof page.metadata === "object" &&
+          page.metadata &&
+          "layout" in page.metadata
+        ) {
           return page.metadata.layout as LayoutConfig;
         }
       }
 
       // 중첩된 객체 재귀 검사
-      if (typeof page === "object" && page !== null && !("path" in page) && !("pattern" in page)) {
+      if (
+        typeof page === "object" &&
+        page !== null &&
+        !("path" in page) &&
+        !("pattern" in page)
+      ) {
         const result = checkPages(page as Record<string, unknown>);
         if (result !== null) return result;
       }
@@ -300,6 +360,7 @@ export const getLayoutConfig = (pathname: string): LayoutConfig => {
       loginButton: true,
     },
     banner: true,
+    heroimage: false,
   };
 
   return checkPages(url) ?? defaultLayout;
@@ -316,15 +377,30 @@ export const getAllPaths = (): string[] => {
     for (const key in obj) {
       const page = obj[key];
 
-      if (page && typeof page === "object" && "path" in page && typeof page.path === "string") {
+      if (
+        page &&
+        typeof page === "object" &&
+        "path" in page &&
+        typeof page.path === "string"
+      ) {
         paths.push(page.path);
       }
 
-      if (page && typeof page === "object" && "pattern" in page && typeof page.pattern === "string") {
+      if (
+        page &&
+        typeof page === "object" &&
+        "pattern" in page &&
+        typeof page.pattern === "string"
+      ) {
         paths.push(page.pattern);
       }
 
-      if (typeof page === "object" && page !== null && !("path" in page) && !("pattern" in page)) {
+      if (
+        typeof page === "object" &&
+        page !== null &&
+        !("path" in page) &&
+        !("pattern" in page)
+      ) {
         extractPaths(page as Record<string, unknown>);
       }
     }
