@@ -1,0 +1,169 @@
+/* ===================================
+   SearchBar Base Styles
+   =================================== */
+.searchbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 640px;
+}
+
+/* ===================================
+   Icon Styles
+   =================================== */
+.icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+/* ===================================
+   Input Base Styles
+   =================================== */
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: "Pretendard Variable", sans-serif;
+  color: var(--color-gray-black);
+  padding: 0;
+  margin: 0;
+}
+
+.input::placeholder {
+  color: var(--color-gray-50);
+}
+
+/* Remove input autofill styles */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ===================================
+   Size Variants
+   =================================== */
+
+/* Small: 14px regular (typo-body14-regular) */
+.size_small {
+  height: 40px;
+}
+
+.size_small .input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+/* Medium: 16px regular (typo-body16-regular) */
+.size_medium {
+  height: 48px;
+}
+
+.size_medium .input {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+/* ===================================
+   Variant: Default
+   =================================== */
+.variant_default {
+  background-color: var(--color-gray-05);
+  border: none;
+}
+
+.variant_default .input::placeholder {
+  color: var(--color-gray-50);
+  font-weight: 400;
+}
+
+/* ===================================
+   Variant: Selected
+   =================================== */
+.variant_selected {
+  background-color: var(--color-gray-white);
+  border: 1px solid var(--color-gray-black);
+}
+
+.variant_selected .input::placeholder {
+  color: var(--color-gray-50);
+  font-weight: 400;
+}
+
+/* ===================================
+   Variant: Typing
+   =================================== */
+.variant_typing {
+  background-color: var(--color-gray-white);
+  border: 1px solid var(--color-gray-black);
+}
+
+.variant_typing .input {
+  font-weight: 500;
+  color: var(--color-gray-black);
+}
+
+.variant_typing .input::placeholder {
+  color: var(--color-gray-black);
+  font-weight: 500;
+}
+
+/* ===================================
+   Variant: Filled
+   =================================== */
+.variant_filled {
+  background-color: var(--color-gray-05);
+  border: none;
+}
+
+.variant_filled .input {
+  font-weight: 500;
+  color: var(--color-gray-black);
+}
+
+.variant_filled .input::placeholder {
+  color: var(--color-gray-black);
+  font-weight: 500;
+}
+
+/* ===================================
+   Size + Variant Combinations
+   =================================== */
+
+/* Medium size: 16px placeholder for default/selected */
+.size_medium.variant_default .input::placeholder,
+.size_medium.variant_selected .input::placeholder {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Small size typing/filled: 14px medium (typo-body14-medium) */
+.size_small.variant_typing .input,
+.size_small.variant_filled .input {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Medium size typing/filled: 14px medium (typo-body14-medium) */
+.size_medium.variant_typing .input,
+.size_medium.variant_filled .input {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ===================================
+   Focus States
+   =================================== */
+.searchbar:focus-within {
+  outline: none;
+}
