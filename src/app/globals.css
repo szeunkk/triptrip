@@ -3,6 +3,50 @@
 @tailwind utilities;
 
 /* ===================================
+   Typography Token Variables
+   =================================== */
+
+:root {
+  /* Heading Styles */
+  --typo-heading-h1: 700 28px/36px "Pretendard";
+  --typo-heading-h2: 700 24px/32px "Pretendard";
+  --typo-heading-h3: 700 20px/28px "Pretendard";
+
+  /* Body Styles - 20px */
+  --typo-body20-medium: 500 20px/24px "Pretendard Variable";
+  --typo-body20-regular: 400 20px/24px "Pretendard Variable";
+
+  /* Body Styles - 18px */
+  --typo-body18-semibold: 600 18px/24px "Pretendard Variable";
+
+  /* Body Styles - 16px */
+  --typo-body16-bold: 700 16px/24px "Pretendard Variable";
+  --typo-body16-semibold: 600 16px/24px "Pretendard Variable";
+  --typo-body16-medium: 500 16px/24px "Pretendard Variable";
+  --typo-body16-medium-compact: 500 16px/20px "Pretendard Variable";
+  --typo-body16-regular: 400 16px/24px "Pretendard Variable";
+
+  /* Body Styles - 14px */
+  --typo-body14-bold: 700 14px/20px "Pretendard Variable";
+  --typo-body14-semibold: 600 14px/20px "Pretendard Variable";
+  --typo-body14-medium: 500 14px/20px "Pretendard Variable";
+  --typo-body14-regular: 400 14px/20px "Pretendard Variable";
+  --typo-body14-light: 300 14px/20px "Pretendard Variable";
+
+  /* Caption Styles - 13px */
+  --typo-caption13-medium: 500 13px/20px "Pretendard Variable";
+
+  /* Caption Styles - 12px */
+  --typo-caption12-medium: 500 12px/20px "Pretendard Variable";
+  --typo-caption12-regular: 400 12px/20px "Pretendard Variable";
+  --typo-caption12-light: 300 12px/20px "Pretendard Variable";
+
+  /* Caption Styles - 11px */
+  --typo-caption11-medium: 500 11px/12px "Pretendard Variable";
+  --typo-caption11-regular: 400 11px/12px "Pretendard Variable";
+}
+
+/* ===================================
    Color Token Variables
    =================================== */
 
@@ -88,7 +132,99 @@
 body {
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", sans-serif;
+}
+
+/* ===================================
+   Typography Utility Classes
+   사용 예: <h1 class="typo-heading-h1">제목</h1>
+   =================================== */
+
+@layer utilities {
+  /* Heading Styles */
+  .typo-heading-h1 {
+    font: var(--typo-heading-h1);
+  }
+  .typo-heading-h2 {
+    font: var(--typo-heading-h2);
+  }
+  .typo-heading-h3 {
+    font: var(--typo-heading-h3);
+  }
+
+  /* Body 20px Styles */
+  .typo-body20-medium {
+    font: var(--typo-body20-medium);
+  }
+  .typo-body20-regular {
+    font: var(--typo-body20-regular);
+  }
+
+  /* Body 18px Styles */
+  .typo-body18-semibold {
+    font: var(--typo-body18-semibold);
+  }
+
+  /* Body 16px Styles */
+  .typo-body16-bold {
+    font: var(--typo-body16-bold);
+  }
+  .typo-body16-semibold {
+    font: var(--typo-body16-semibold);
+  }
+  .typo-body16-medium {
+    font: var(--typo-body16-medium);
+  }
+  .typo-body16-medium-compact {
+    font: var(--typo-body16-medium-compact);
+  }
+  .typo-body16-regular {
+    font: var(--typo-body16-regular);
+  }
+
+  /* Body 14px Styles */
+  .typo-body14-bold {
+    font: var(--typo-body14-bold);
+  }
+  .typo-body14-semibold {
+    font: var(--typo-body14-semibold);
+  }
+  .typo-body14-medium {
+    font: var(--typo-body14-medium);
+  }
+  .typo-body14-regular {
+    font: var(--typo-body14-regular);
+  }
+  .typo-body14-light {
+    font: var(--typo-body14-light);
+  }
+
+  /* Caption 13px Styles */
+  .typo-caption13-medium {
+    font: var(--typo-caption13-medium);
+  }
+
+  /* Caption 12px Styles */
+  .typo-caption12-medium {
+    font: var(--typo-caption12-medium);
+  }
+  .typo-caption12-regular {
+    font: var(--typo-caption12-regular);
+  }
+  .typo-caption12-light {
+    font: var(--typo-caption12-light);
+  }
+
+  /* Caption 11px Styles */
+  .typo-caption11-medium {
+    font: var(--typo-caption11-medium);
+  }
+  .typo-caption11-regular {
+    font: var(--typo-caption11-regular);
+  }
 }
 
 /* ===================================
