@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Button } from "@/commons/components/button";
 import { useLinkRouting } from "./hooks/index.link.routing.hook";
+import { useAreaVisibility } from "./hooks/index.area.hook";
 import "swiper/css";
 import "swiper/css/pagination";
 import styles from "./styles.module.css";
@@ -33,122 +34,131 @@ export function Layout({ children }: LayoutProps) {
     isMypageActive,
   } = useLinkRouting();
 
+  const { shouldShowHeader, shouldShowLogo, shouldShowBanner } =
+    useAreaVisibility();
+
   return (
     <div className={styles.container}>
       {/* Header Section */}
-      <header className={styles.header} data-testid="layout-header">
-        <div className={styles.headerInner}>
-          {/* Logo & Navigation Area */}
-          <div className={styles.headerLeft}>
-            {/* Logo */}
-            <div
-              className={styles.logoArea}
-              onClick={handleLogoClick}
-              data-testid="layout-logo"
-            >
-              <Image
-                src="/icons/logo.svg"
-                alt="Logo"
-                width={51.52}
-                height={32}
-                priority
-              />
+      {shouldShowHeader && (
+        <header className={styles.header} data-testid="layout-header">
+          <div className={styles.headerInner}>
+            {/* Logo & Navigation Area */}
+            <div className={styles.headerLeft}>
+              {/* Logo */}
+              {shouldShowLogo && (
+                <div
+                  className={styles.logoArea}
+                  onClick={handleLogoClick}
+                  data-testid="layout-logo"
+                >
+                  <Image
+                    src="/icons/logo.svg"
+                    alt="Logo"
+                    width={51.52}
+                    height={32}
+                    priority
+                  />
+                </div>
+              )}
+              {/* Navigation Tabs */}
+              <nav className={styles.tabArea}>
+                <div
+                  className={`${styles.tab} ${
+                    isBoardsActive ? styles.tabActive : ""
+                  }`}
+                  onClick={handleBoardsClick}
+                  data-testid="tab-boards"
+                >
+                  <span>트립토크</span>
+                </div>
+                <div
+                  className={`${styles.tab} ${
+                    isProductsActive ? styles.tabActive : ""
+                  }`}
+                  onClick={handleProductsClick}
+                  data-testid="tab-products"
+                >
+                  <span>숙박권 구매</span>
+                </div>
+                <div
+                  className={`${styles.tab} ${
+                    isMypageActive ? styles.tabActive : ""
+                  }`}
+                  onClick={handleMypageClick}
+                  data-testid="tab-mypage"
+                >
+                  <span>마이 페이지</span>
+                </div>
+              </nav>
             </div>
-            {/* Navigation Tabs */}
-            <nav className={styles.tabArea}>
-              <div
-                className={`${styles.tab} ${
-                  isBoardsActive ? styles.tabActive : ""
-                }`}
-                onClick={handleBoardsClick}
-                data-testid="tab-boards"
+            {/* Login Button Area */}
+            <div className={styles.headerRight}>
+              <Button
+                variant="secondary"
+                size="small"
+                shape="pill"
+                className={styles.loginButton}
               >
-                <span>트립토크</span>
-              </div>
-              <div
-                className={`${styles.tab} ${
-                  isProductsActive ? styles.tabActive : ""
-                }`}
-                onClick={handleProductsClick}
-                data-testid="tab-products"
-              >
-                <span>숙박권 구매</span>
-              </div>
-              <div
-                className={`${styles.tab} ${
-                  isMypageActive ? styles.tabActive : ""
-                }`}
-                onClick={handleMypageClick}
-                data-testid="tab-mypage"
-              >
-                <span>마이 페이지</span>
-              </div>
-            </nav>
+                <span>로그인</span>
+                <Image
+                  src="/icons/right_icon.svg"
+                  alt=""
+                  width={24}
+                  height={24}
+                />
+              </Button>
+            </div>
           </div>
-          {/* Login Button Area */}
-          <div className={styles.headerRight}>
-            <Button
-              variant="secondary"
-              size="small"
-              shape="pill"
-              className={styles.loginButton}
-            >
-              <span>로그인</span>
-              <Image
-                src="/icons/right_icon.svg"
-                alt=""
-                width={24}
-                height={24}
-              />
-            </Button>
-          </div>
-        </div>
-      </header>
+        </header>
+      )}
 
       {/* Banner Section */}
-      <div className={styles.banner}>
-        <Swiper
-          modules={[Pagination, Autoplay]}
-          spaceBetween={0}
-          slidesPerView={1}
-          pagination={{
-            clickable: true,
-            bulletActiveClass: styles.swiperPaginationBulletActive,
-          }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          loop={true}
-          className={styles.swiperContainer}
-        >
-          <SwiperSlide>
-            <Image
-              src="/images/banner1.jpg"
-              alt="Banner 1"
-              fill
-              style={{ objectFit: "cover" }}
-              priority
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              src="/images/banner2.jpg"
-              alt="Banner 2"
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              src="/images/banner3.jpg"
-              alt="Banner 3"
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          </SwiperSlide>
-        </Swiper>
-      </div>
+      {shouldShowBanner && (
+        <div className={styles.banner} data-testid="layout-banner">
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={0}
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+              bulletActiveClass: styles.swiperPaginationBulletActive,
+            }}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            className={styles.swiperContainer}
+          >
+            <SwiperSlide>
+              <Image
+                src="/images/banner1.jpg"
+                alt="Banner 1"
+                fill
+                style={{ objectFit: "cover" }}
+                priority
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src="/images/banner2.jpg"
+                alt="Banner 2"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src="/images/banner3.jpg"
+                alt="Banner 3"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      )}
 
       <div className={styles.gap}></div>
       <main className={styles.main}>{children}</main>
