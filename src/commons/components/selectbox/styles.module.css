@@ -224,16 +224,3 @@
   width: 14px;
   height: 14px;
 }
-
-/* ===================================
-   Focus States for Accessibility
-   =================================== */
-.selectbox:focus {
-  outline: 2px solid var(--color-brand-blue);
-  outline-offset: 2px;
-}
-
-.option:focus {
-  outline: 2px solid var(--color-brand-blue);
-  outline-offset: -2px;
-}
