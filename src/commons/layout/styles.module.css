@@ -1,0 +1,52 @@
+/* ===================================
+   Layout Container Styles
+   =================================== */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* ===================================
+   Header Section
+   1280px × 80px
+   =================================== */
+.header {
+  display: flex;
+  width: 1280px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Banner Section
+   1920px × 516px
+   =================================== */
+.banner {
+  display: flex;
+  width: 1920px;
+  height: 516px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Gap Section
+   1280px × 40px
+   =================================== */
+.gap {
+  display: flex;
+  width: 1280px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Main Content Section
+   1280px × auto
+   =================================== */
+.main {
+  display: flex;
+  width: 1280px;
+  flex-shrink: 0;
+}
