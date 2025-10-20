@@ -8,6 +8,7 @@ export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   variant?: "filled" | "outlined";
   size?: "small" | "medium";
+  state?: "default" | "error" | "focused" | "filled" | "read-only";
   label?: string;
   required?: boolean;
   error?: string;
@@ -21,6 +22,7 @@ export interface InputProps
  *
  * @param variant - 입력 필드 스타일: 'filled' | 'outlined'
  * @param size - 입력 필드 크기: 'small' | 'medium'
+ * @param state - 입력 필드 상태: 'default' | 'error' | 'focused' | 'filled' | 'read-only'
  * @param label - 레이블 텍스트
  * @param required - 필수 입력 필드 여부
  * @param error - 에러 메시지
@@ -32,6 +34,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     {
       variant = "outlined",
       size = "medium",
+      state: propState,
       label,
       required = false,
       error,
@@ -46,8 +49,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     // state 결정 로직
     const getState = () => {
+      if (propState) return propState;
       if (disabled) return "disabled";
-      if (readOnly) return "read-only";
+      if (readOnly) return "readOnly";
       if (error) return "error";
       if (value && String(value).length > 0) return "filled";
       return "default";
@@ -63,16 +67,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       .filter(Boolean)
       .join(" ");
 
-    // 값이 있는지 확인 (small 사이즈의 font-weight 제어용)
-    const hasValue = value && String(value).length > 0;
-
     const inputClasses = [
       styles.input,
       styles[`variant_${variant}`],
       styles[`size_${size}`],
       styles[`state_${state}`],
-      // small 사이즈에서 값이 있을 때 font-weight 500 적용을 위해 filled 클래스 추가
-      hasValue && state !== "filled" && styles.state_filled,
     ]
       .filter(Boolean)
       .join(" ");
