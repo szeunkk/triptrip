@@ -1,0 +1,174 @@
+/* ===================================
+   Pagination Base Styles
+   =================================== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ===================================
+   Navigation Button Styles
+   =================================== */
+.navigationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.navigationButton:hover:not(.disabled) {
+  opacity: 0.8;
+}
+
+.navigationButton.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* ===================================
+   Pages Container Styles
+   =================================== */
+.pagesContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ===================================
+   Page Button Base Styles
+   =================================== */
+.pageButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  color: var(--color-text-tertiary);
+  text-align: center;
+}
+
+.pageButton:hover:not(.active):not(:disabled) {
+  background-color: rgba(242, 242, 242, 0.5);
+}
+
+.pageButton:disabled {
+  cursor: not-allowed;
+}
+
+.pageButton.active {
+  background-color: var(--color-gray-05);
+  color: var(--color-text-primary);
+  cursor: default;
+}
+
+/* ===================================
+   Size Variants
+   =================================== */
+
+/* Medium: Navigation 24x24px, Pages 32x32px, 16px font (typo-body16-regular) */
+.size_medium .navigationButton {
+  width: 24px;
+  height: 24px;
+}
+
+.size_medium .pageButton {
+  width: 32px;
+  height: 32px;
+  font: var(--typo-body16-regular);
+}
+
+.size_medium .pageButton.active {
+  font: var(--typo-body16-medium);
+}
+
+/* Small: Navigation 24x24px, Pages 24x24px, 14px font (typo-body14-regular) */
+.size_small .navigationButton {
+  width: 24px;
+  height: 24px;
+}
+
+.size_small .pageButton {
+  width: 24px;
+  height: 24px;
+  font: var(--typo-body14-regular);
+}
+
+.size_small .pageButton.active {
+  font: var(--typo-body14-medium);
+}
+
+/* ===================================
+   State Variants
+   =================================== */
+
+/* State: Default */
+.state_default {
+  /* 기본 상태 - 위의 스타일 적용 */
+}
+
+/* State: Hover */
+.state_hover .pageButton:not(.active) {
+  background-color: rgba(242, 242, 242, 0.3);
+}
+
+/* State: Active */
+.state_active .pageButton.active {
+  background-color: var(--color-gray-10);
+}
+
+/* ===================================
+   Responsive Adjustments
+   =================================== */
+@media (max-width: 768px) {
+  .pagination {
+    gap: 4px;
+  }
+
+  .pagesContainer {
+    gap: 4px;
+  }
+
+  /* Medium size on mobile becomes smaller */
+  .size_medium .pageButton {
+    width: 28px;
+    height: 28px;
+    font: var(--typo-body14-regular);
+  }
+
+  .size_medium .pageButton.active {
+    font: var(--typo-body14-medium);
+  }
+
+  /* Small size on mobile */
+  .size_small .pageButton {
+    width: 20px;
+    height: 20px;
+    font: var(--typo-caption12-regular);
+  }
+
+  .size_small .pageButton.active {
+    font: var(--typo-caption12-medium);
+  }
+}
+
+/* ===================================
+   Focus States for Accessibility
+   =================================== */
+.pageButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.navigationButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
