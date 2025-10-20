@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { Input } from "@/commons/components/input";
 import Button from "@/commons/components/button";
+import Pagination from "@/commons/components/pagination";
 
 interface FormValues {
   email: string;
@@ -18,6 +19,8 @@ export default function Home() {
   const onSubmit = (data: FormValues) => {
     console.log(data);
   };
+
+  const onChangePage = () => {};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -37,6 +40,11 @@ export default function Home() {
       />
 
       <Button type="submit">제출</Button>
+      <Pagination
+        currentPage={1}
+        totalPages={5}
+        onPageChange={onChangePage}
+      ></Pagination>
     </form>
   );
 }
