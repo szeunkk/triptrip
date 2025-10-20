@@ -403,3 +403,9 @@
 //     },
 //   },
 // };
+
+// Default export for ESLint
+export default {};
+
+// Story export for ESLint
+export const Default = {};
