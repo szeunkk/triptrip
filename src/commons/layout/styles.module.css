@@ -44,6 +44,7 @@
   justify-content: center;
   width: 56px;
   height: 32px;
+  cursor: pointer;
 }
 
 .tabArea {

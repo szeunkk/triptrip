@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Button } from "@/commons/components/button";
+import { useLinkRouting } from "./hooks/index.link.routing.hook";
 import "swiper/css";
 import "swiper/css/pagination";
 import styles from "./styles.module.css";
@@ -22,15 +23,29 @@ export interface LayoutProps {
  * @param children - 메인 콘텐츠 영역에 렌더링될 React 노드
  */
 export function Layout({ children }: LayoutProps) {
+  const {
+    handleLogoClick,
+    handleBoardsClick,
+    handleProductsClick,
+    handleMypageClick,
+    isBoardsActive,
+    isProductsActive,
+    isMypageActive,
+  } = useLinkRouting();
+
   return (
     <div className={styles.container}>
       {/* Header Section */}
-      <header className={styles.header}>
+      <header className={styles.header} data-testid="layout-header">
         <div className={styles.headerInner}>
           {/* Logo & Navigation Area */}
           <div className={styles.headerLeft}>
             {/* Logo */}
-            <div className={styles.logoArea}>
+            <div
+              className={styles.logoArea}
+              onClick={handleLogoClick}
+              data-testid="layout-logo"
+            >
               <Image
                 src="/icons/logo.svg"
                 alt="Logo"
@@ -41,13 +56,31 @@ export function Layout({ children }: LayoutProps) {
             </div>
             {/* Navigation Tabs */}
             <nav className={styles.tabArea}>
-              <div className={`${styles.tab} ${styles.tabActive}`}>
+              <div
+                className={`${styles.tab} ${
+                  isBoardsActive ? styles.tabActive : ""
+                }`}
+                onClick={handleBoardsClick}
+                data-testid="tab-boards"
+              >
                 <span>트립토크</span>
               </div>
-              <div className={styles.tab}>
+              <div
+                className={`${styles.tab} ${
+                  isProductsActive ? styles.tabActive : ""
+                }`}
+                onClick={handleProductsClick}
+                data-testid="tab-products"
+              >
                 <span>숙박권 구매</span>
               </div>
-              <div className={styles.tab}>
+              <div
+                className={`${styles.tab} ${
+                  isMypageActive ? styles.tabActive : ""
+                }`}
+                onClick={handleMypageClick}
+                data-testid="tab-mypage"
+              >
                 <span>마이 페이지</span>
               </div>
             </nav>
