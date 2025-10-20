@@ -49,14 +49,12 @@ export default function Home() {
           },
         })}
       />
-
       <Button type="submit">제출</Button>
       <Pagination
         currentPage={1}
         totalPages={5}
         onPageChange={onChangePage}
       ></Pagination>
-
       <SelectBox
         value={selectedValue}
         placeholder="과일을 선택해주세요"
@@ -67,6 +65,7 @@ export default function Home() {
         }}
       />
       <SearchBar />
+      ㅎㅎ
     </form>
   );
 }
