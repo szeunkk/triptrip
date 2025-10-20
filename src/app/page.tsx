@@ -6,6 +6,7 @@ import Button from "@/commons/components/button";
 import Pagination from "@/commons/components/pagination";
 import SelectBox, { SelectOption } from "@/commons/components/selectbox";
 import { useState } from "react";
+import SearchBar from "@/commons/components/searchbar";
 
 interface FormValues {
   email: string;
@@ -65,6 +66,7 @@ export default function Home() {
           setSelectedValue(value);
         }}
       />
+      <SearchBar />
     </form>
   );
 }
