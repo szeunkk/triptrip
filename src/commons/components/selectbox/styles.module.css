@@ -26,11 +26,7 @@
 }
 
 .text {
-  font-family: "Pretendard Variable", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0;
+  font: var(--typo-body14-regular);
   color: var(--color-gray-50);
   flex: 1;
   text-align: left;
@@ -57,8 +53,7 @@
 }
 
 .selectbox.size_small .text {
-  font-size: 12px;
-  line-height: 20px;
+  font: var(--typo-caption12-regular);
 }
 
 .selectbox.size_small .icon {
@@ -73,8 +68,7 @@
 }
 
 .selectbox.size_medium .text {
-  font-size: 14px;
-  line-height: 20px;
+  font: var(--typo-body14-regular);
 }
 
 .selectbox.size_medium .icon {
@@ -167,9 +161,6 @@
 }
 
 .optionText {
-  font-family: "Pretendard Variable", sans-serif;
-  font-weight: 400;
-  letter-spacing: 0;
   color: var(--color-gray-70);
   flex: 1;
   text-align: left;
@@ -182,8 +173,7 @@
 }
 
 .optionText {
-  font-size: 14px;
-  line-height: 20px;
+  font: var(--typo-body14-regular);
 }
 
 /* Small size option overrides */
@@ -193,8 +183,7 @@
 }
 
 .container.size_small .optionText {
-  font-size: 12px;
-  line-height: 20px;
+  font: var(--typo-caption12-regular);
 }
 
 /* ===================================

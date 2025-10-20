@@ -56,10 +56,7 @@
 }
 
 .size_small .input {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0;
+  font: var(--typo-body14-regular);
 }
 
 /* Medium: 16px regular (typo-body16-regular) */
@@ -68,10 +65,7 @@
 }
 
 .size_medium .input {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0;
+  font: var(--typo-body16-regular);
 }
 
 /* ===================================
@@ -84,7 +78,6 @@
 
 .variant_default .input::placeholder {
   color: var(--color-gray-50);
-  font-weight: 400;
 }
 
 /* ===================================
@@ -97,7 +90,6 @@
 
 .variant_selected .input::placeholder {
   color: var(--color-gray-50);
-  font-weight: 400;
 }
 
 /* ===================================
@@ -109,13 +101,11 @@
 }
 
 .variant_typing .input {
-  font-weight: 500;
   color: var(--color-gray-black);
 }
 
 .variant_typing .input::placeholder {
   color: var(--color-gray-black);
-  font-weight: 500;
 }
 
 /* ===================================
@@ -127,13 +117,11 @@
 }
 
 .variant_filled .input {
-  font-weight: 500;
   color: var(--color-gray-black);
 }
 
 .variant_filled .input::placeholder {
   color: var(--color-gray-black);
-  font-weight: 500;
 }
 
 /* ===================================
@@ -150,15 +138,13 @@
 /* Small size typing/filled: 14px medium (typo-body14-medium) */
 .size_small.variant_typing .input,
 .size_small.variant_filled .input {
-  font-size: 14px;
-  line-height: 20px;
+  font: var(--typo-body14-medium);
 }
 
 /* Medium size typing/filled: 14px medium (typo-body14-medium) */
 .size_medium.variant_typing .input,
 .size_medium.variant_filled .input {
-  font-size: 14px;
-  line-height: 20px;
+  font: var(--typo-body14-medium);
 }
 
 /* ===================================

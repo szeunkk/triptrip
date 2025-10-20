@@ -26,10 +26,7 @@
   height: 40px;
   padding: 10px 12px;
   gap: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0px;
+  font: var(--typo-body14-semibold);
 }
 
 /* Medium: 18px semibold (typo-body18-semibold) */
@@ -37,10 +34,7 @@
   height: 48px;
   padding: 12px 16px;
   gap: 8px;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 24px;
-  letter-spacing: 0px;
+  font: var(--typo-body18-semibold);
 }
 
 /* ===================================
@@ -107,17 +101,14 @@
   padding: 2px 4px;
   gap: 4px;
   border-radius: 4px;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 20px;
+  font: var(--typo-caption13-medium);
 }
 
 /* Ghost disabled: 12px regular (typo-caption12-regular) */
 .variant_ghost.disabled {
   background-color: transparent;
   color: var(--color-gray-10);
-  font-weight: 400;
-  font-size: 12px;
+  font: var(--typo-caption12-regular);
 }
 
 /* Ghost variant ignores size prop */
@@ -126,9 +117,7 @@
   height: 24px;
   padding: 2px 4px;
   gap: 4px;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 20px;
+  font: var(--typo-caption13-medium);
 }
 
 .variant_ghost.disabled.size_small,
@@ -136,9 +125,7 @@
   height: 24px;
   padding: 2px 4px;
   gap: 4px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 20px;
+  font: var(--typo-caption12-regular);
 }
 
 /* Ghost variant ignores shape prop */

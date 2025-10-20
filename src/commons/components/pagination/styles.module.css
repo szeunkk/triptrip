@@ -57,7 +57,8 @@
 }
 
 .pageButton:hover:not(.active):not(:disabled) {
-  background-color: rgba(242, 242, 242, 0.5);
+  background-color: var(--color-gray-05);
+  opacity: 0.5;
 }
 
 .pageButton:disabled {
@@ -117,7 +118,8 @@
 
 /* State: Hover */
 .state_hover .pageButton:not(.active) {
-  background-color: rgba(242, 242, 242, 0.3);
+  background-color: var(--color-gray-05);
+  opacity: 0.3;
 }
 
 /* State: Active */
