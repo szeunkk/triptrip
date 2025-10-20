@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/commons/components/input";
 import Button from "@/commons/components/button";
 import Pagination from "@/commons/components/pagination";
+import SelectBox, { SelectOption } from "@/commons/components/selectbox";
+import { useState } from "react";
 
 interface FormValues {
   email: string;
@@ -21,6 +23,14 @@ export default function Home() {
   };
 
   const onChangePage = () => {};
+
+  const [selectedValue, setSelectedValue] = useState<string | number>("");
+
+  const options: SelectOption[] = [
+    { value: "apple", label: "🍎 Apple" },
+    { value: "banana", label: "🍌 Banana" },
+    { value: "orange", label: "🍊 Orange" },
+  ];
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -45,6 +55,16 @@ export default function Home() {
         totalPages={5}
         onPageChange={onChangePage}
       ></Pagination>
+
+      <SelectBox
+        value={selectedValue}
+        placeholder="과일을 선택해주세요"
+        options={options}
+        onSelect={(value) => {
+          console.log("✅ 선택된 값:", value);
+          setSelectedValue(value);
+        }}
+      />
     </form>
   );
 }
