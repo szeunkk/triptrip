@@ -10,13 +10,86 @@
 
 /* ===================================
    Header Section
-   1280px × 80px
+   1920px × 80px (full width)
+   Inner: 1280px × 80px
    =================================== */
 .header {
   display: flex;
-  width: 1280px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 80px;
   flex-shrink: 0;
+  background-color: var(--color-gray-white);
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1280px;
+  height: 80px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 40px;
+}
+
+.logoArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 32px;
+}
+
+.tabArea {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  height: 40px;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.tab span {
+  font: var(--typo-body16-medium);
+  color: var(--color-gray-80);
+}
+
+.tabActive {
+  border-bottom: 2px solid var(--color-gray-black);
+}
+
+.tabActive span {
+  font: var(--typo-body16-bold);
+  color: var(--color-gray-black);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.loginButton {
+  width: 93px;
+}
+
+.loginButton span {
+  font: var(--typo-body14-semibold);
 }
 
 /* ===================================
@@ -25,9 +98,20 @@
    =================================== */
 .banner {
   display: flex;
-  width: 1920px;
+  width: 100%;
   height: 516px;
   flex-shrink: 0;
+  position: relative;
+}
+
+.swiperContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.swiperPaginationBulletActive {
+  background: var(--color-gray-white);
+  opacity: 1;
 }
 
 /* ===================================
