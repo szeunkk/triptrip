@@ -26,7 +26,11 @@
 }
 
 .text {
-  font: var(--typo-body14-regular);
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
   color: var(--color-gray-50);
   flex: 1;
   text-align: left;
@@ -53,7 +57,11 @@
 }
 
 .selectbox.size_small .text {
-  font: var(--typo-caption12-regular);
+  font-family: var(--typo-caption12-regular-family);
+  font-weight: var(--typo-caption12-regular-weight);
+  font-size: var(--typo-caption12-regular-size);
+  line-height: var(--typo-caption12-regular-height);
+  letter-spacing: 0;
 }
 
 .selectbox.size_small .icon {
@@ -68,7 +76,11 @@
 }
 
 .selectbox.size_medium .text {
-  font: var(--typo-body14-regular);
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
 }
 
 .selectbox.size_medium .icon {
@@ -173,7 +185,11 @@
 }
 
 .optionText {
-  font: var(--typo-body14-regular);
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
 }
 
 /* Small size option overrides */
@@ -183,7 +199,11 @@
 }
 
 .container.size_small .optionText {
-  font: var(--typo-caption12-regular);
+  font-family: var(--typo-caption12-regular-family);
+  font-weight: var(--typo-caption12-regular-weight);
+  font-size: var(--typo-caption12-regular-size);
+  line-height: var(--typo-caption12-regular-height);
+  letter-spacing: 0;
 }
 
 /* ===================================

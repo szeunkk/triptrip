@@ -22,7 +22,11 @@
 
 /* Required 마크 */
 .required {
-  font: var(--typo-body16-medium);
+  font-family: var(--typo-body16-medium-family);
+  font-weight: var(--typo-body16-medium-weight);
+  font-size: var(--typo-body16-medium-size);
+  line-height: var(--typo-body16-medium-height);
+  letter-spacing: 0;
   color: var(--color-brand-red);
   margin-left: 4px;
 }
@@ -55,29 +59,49 @@
 
 /* Medium Size */
 .size_medium .label {
-  font: var(--typo-body16-medium);
+  font-family: var(--typo-body16-medium-family);
+  font-weight: var(--typo-body16-medium-weight);
+  font-size: var(--typo-body16-medium-size);
+  line-height: var(--typo-body16-medium-height);
+  letter-spacing: 0;
 }
 
 .input.size_medium {
   height: 48px;
   padding: 12px 16px;
-  font: var(--typo-body16-regular);
+  font-family: var(--typo-body16-regular-family);
+  font-weight: var(--typo-body16-regular-weight);
+  font-size: var(--typo-body16-regular-size);
+  line-height: var(--typo-body16-regular-height);
+  letter-spacing: 0;
 }
 
 /* Small Size */
 .size_small .label {
-  font: var(--typo-caption12-regular);
+  font-family: var(--typo-caption12-regular-family);
+  font-weight: var(--typo-caption12-regular-weight);
+  font-size: var(--typo-caption12-regular-size);
+  line-height: var(--typo-caption12-regular-height);
+  letter-spacing: 0;
 }
 
 .input.size_small {
   height: 40px;
   padding: 10px 16px;
-  font: var(--typo-body14-regular);
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
 }
 
 /* Small + Filled 상태 */
 .input.size_small.state_filled {
-  font: var(--typo-body14-medium);
+  font-family: var(--typo-body14-medium-family);
+  font-weight: var(--typo-body14-medium-weight);
+  font-size: var(--typo-body14-medium-size);
+  line-height: var(--typo-body14-medium-height);
+  letter-spacing: 0;
 }
 
 /* ===================================
@@ -176,10 +200,18 @@
 
 /* Error Message - Medium */
 .size_medium .errorMessage {
-  font: var(--typo-body16-medium);
+  font-family: var(--typo-body16-medium-family);
+  font-weight: var(--typo-body16-medium-weight);
+  font-size: var(--typo-body16-medium-size);
+  line-height: var(--typo-body16-medium-height);
+  letter-spacing: 0;
 }
 
 /* Error Message - Small */
 .size_small .errorMessage {
-  font: var(--typo-caption12-regular);
+  font-family: var(--typo-caption12-regular-family);
+  font-weight: var(--typo-caption12-regular-weight);
+  font-size: var(--typo-caption12-regular-size);
+  line-height: var(--typo-caption12-regular-height);
+  letter-spacing: 0;
 }

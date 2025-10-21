@@ -13,6 +13,15 @@ export interface TypographyStyle {
 }
 
 /**
+ * 폰트 패밀리 상수
+ * Next.js의 localFont를 통해 로드된 폰트들을 참조합니다.
+ */
+const FONT_FAMILY = {
+  pretendard: "var(--font-pretendard)",
+  pretendardVariable: "var(--font-pretendard-variable)",
+} as const;
+
+/**
  * 한글/기본 타이포그래피 (Pretendard)
  * 피그마 Foundation: 11020:26301
  */
@@ -20,21 +29,21 @@ export const typography = {
   // Heading Styles
   heading: {
     h1: {
-      fontFamily: "Pretendard",
+      fontFamily: FONT_FAMILY.pretendard,
       fontWeight: 700,
       fontSize: 28,
       lineHeight: 36,
       letterSpacing: 0,
     },
     h2: {
-      fontFamily: "Pretendard",
+      fontFamily: FONT_FAMILY.pretendard,
       fontWeight: 700,
       fontSize: 24,
       lineHeight: 32,
       letterSpacing: 0,
     },
     h3: {
-      fontFamily: "Pretendard",
+      fontFamily: FONT_FAMILY.pretendard,
       fontWeight: 700,
       fontSize: 20,
       lineHeight: 28,
@@ -45,14 +54,14 @@ export const typography = {
   // Body Styles - 20px
   body20: {
     medium: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 500,
       fontSize: 20,
       lineHeight: 24,
       letterSpacing: 0,
     },
     regular: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 400,
       fontSize: 20,
       lineHeight: 24,
@@ -63,7 +72,7 @@ export const typography = {
   // Body Styles - 18px
   body18: {
     semibold: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 600,
       fontSize: 18,
       lineHeight: 24,
@@ -74,35 +83,35 @@ export const typography = {
   // Body Styles - 16px
   body16: {
     bold: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 700,
       fontSize: 16,
       lineHeight: 24,
       letterSpacing: 0,
     },
     semibold: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 600,
       fontSize: 16,
       lineHeight: 24,
       letterSpacing: 0,
     },
     medium: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 500,
       fontSize: 16,
       lineHeight: 24,
       letterSpacing: 0,
     },
     mediumCompact: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 500,
       fontSize: 16,
       lineHeight: 20,
       letterSpacing: 0,
     },
     regular: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 400,
       fontSize: 16,
       lineHeight: 24,
@@ -113,35 +122,35 @@ export const typography = {
   // Body Styles - 14px
   body14: {
     bold: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 700,
       fontSize: 14,
       lineHeight: 20,
       letterSpacing: 0,
     },
     semibold: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 600,
       fontSize: 14,
       lineHeight: 20,
       letterSpacing: 0,
     },
     medium: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 500,
       fontSize: 14,
       lineHeight: 20,
       letterSpacing: 0,
     },
     regular: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 400,
       fontSize: 14,
       lineHeight: 20,
       letterSpacing: 0,
     },
     light: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 300,
       fontSize: 14,
       lineHeight: 20,
@@ -152,7 +161,7 @@ export const typography = {
   // Caption Styles - 13px
   caption13: {
     medium: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 500,
       fontSize: 13,
       lineHeight: 20,
@@ -163,21 +172,21 @@ export const typography = {
   // Caption Styles - 12px
   caption12: {
     medium: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 500,
       fontSize: 12,
       lineHeight: 20,
       letterSpacing: 0,
     },
     regular: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 400,
       fontSize: 12,
       lineHeight: 20,
       letterSpacing: 0,
     },
     light: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 300,
       fontSize: 12,
       lineHeight: 20,
@@ -188,14 +197,14 @@ export const typography = {
   // Caption Styles - 11px
   caption11: {
     medium: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 500,
       fontSize: 11,
       lineHeight: 12,
       letterSpacing: 0,
     },
     regular: {
-      fontFamily: "Pretendard Variable",
+      fontFamily: FONT_FAMILY.pretendardVariable,
       fontWeight: 400,
       fontSize: 11,
       lineHeight: 12,
@@ -281,4 +290,27 @@ export const getTypographyClassName = (
   variant: string
 ): string => {
   return `typo-${category}-${variant}`;
+};
+
+/**
+ * CSS 모듈에서 사용 가능한 스타일 객체 반환 유틸리티
+ */
+export const getTypographyStyleObject = (style: TypographyStyle) => {
+  return {
+    fontFamily: style.fontFamily,
+    fontWeight: style.fontWeight,
+    fontSize: `${style.fontSize}px`,
+    lineHeight: `${style.lineHeight}px`,
+    letterSpacing: `${style.letterSpacing}px`,
+  };
+};
+
+/**
+ * CSS 변수 이름으로 typography 가져오기
+ */
+export const getTypographyCSSVariable = (
+  category: string,
+  variant: string
+): string => {
+  return `var(--typo-${category}-${variant})`;
 };

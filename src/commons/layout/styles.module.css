@@ -66,7 +66,11 @@
 }
 
 .tab span {
-  font: var(--typo-body16-medium);
+  font-family: var(--typo-body16-medium-family);
+  font-weight: var(--typo-body16-medium-weight);
+  font-size: var(--typo-body16-medium-size);
+  line-height: var(--typo-body16-medium-height);
+  letter-spacing: 0;
   color: var(--color-gray-80);
 }
 
@@ -75,7 +79,11 @@
 }
 
 .tabActive span {
-  font: var(--typo-body16-bold);
+  font-family: var(--typo-body16-bold-family);
+  font-weight: var(--typo-body16-bold-weight);
+  font-size: var(--typo-body16-bold-size);
+  line-height: var(--typo-body16-bold-height);
+  letter-spacing: 0;
   color: var(--color-gray-black);
 }
 
@@ -90,7 +98,11 @@
 }
 
 .loginButton span {
-  font: var(--typo-body14-semibold);
+  font-family: var(--typo-body14-semibold-family);
+  font-weight: var(--typo-body14-semibold-weight);
+  font-size: var(--typo-body14-semibold-size);
+  line-height: var(--typo-body14-semibold-height);
+  letter-spacing: 0;
 }
 
 /* ===================================

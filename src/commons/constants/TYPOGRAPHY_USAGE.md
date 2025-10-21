@@ -39,6 +39,8 @@ Pretendard 폰트를 기본으로 사용하며, 추후 영문 전용 폰트로 �
 
 CSS 파일이나 인라인 스타일에서 사용할 수 있습니다.
 
+#### 방법 1: 통합 font 속성 사용 (간단)
+
 ```css
 .custom-title {
   font: var(--typo-heading-h1);
@@ -49,6 +51,36 @@ CSS 파일이나 인라인 스타일에서 사용할 수 있습니다.
   font: var(--typo-body14-regular);
 }
 ```
+
+#### 방법 2: 개별 CSS 변수 사용 (CSS 모듈 권장)
+
+CSS 모듈에서는 개별 변수를 사용하는 것이 더 안정적입니다.
+
+```css
+.custom-title {
+  font-family: var(--typo-heading-h1-family);
+  font-weight: var(--typo-heading-h1-weight);
+  font-size: var(--typo-heading-h1-size);
+  line-height: var(--typo-heading-h1-height);
+  letter-spacing: 0;
+  color: var(--color-text-primary);
+}
+
+.custom-description {
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
+}
+```
+
+**개별 변수 패턴:**
+
+- `--typo-{token}-family`: 폰트 패밀리 (fallback 포함)
+- `--typo-{token}-weight`: 폰트 굵기
+- `--typo-{token}-size`: 폰트 크기
+- `--typo-{token}-height`: 라인 높이
 
 ### 3. TypeScript 객체 사용
 
@@ -75,6 +107,8 @@ const MyComponent = () => {
 
 ### 4. 유틸리티 함수 사용
 
+#### CSS 스타일 문자열 생성
+
 ```tsx
 import {
   typography,
@@ -85,6 +119,41 @@ const MyComponent = () => {
   const styles = getTypographyStyles(typography.body16.regular);
 
   return <div style={{ styles }}>스타일 적용</div>;
+};
+```
+
+#### CSS 변수 이름 생성
+
+```tsx
+import { getTypographyCSSVariable } from "@/commons/constants/typography";
+
+const MyComponent = () => {
+  const cssVar = getTypographyCSSVariable("body16", "medium");
+  // 결과: "var(--typo-body16-medium)"
+
+  return <div style={{ font: cssVar }}>CSS 변수 적용</div>;
+};
+```
+
+#### 스타일 객체 생성 (CSS 모듈용)
+
+```tsx
+import {
+  typography,
+  getTypographyStyleObject,
+} from "@/commons/constants/typography";
+
+const MyComponent = () => {
+  const styleObj = getTypographyStyleObject(typography.body16.regular);
+  // 결과: {
+  //   fontFamily: "var(--font-pretendard-variable)",
+  //   fontWeight: 400,
+  //   fontSize: "16px",
+  //   lineHeight: "24px",
+  //   letterSpacing: "0px"
+  // }
+
+  return <div style={styleObj}>스타일 객체 적용</div>;
 };
 ```
 
@@ -153,6 +222,85 @@ const MyComponent = () => {
 | ------------------- | ------------------------ | --------------------------- | ---- | ------ | ---------------- |
 | `caption11.medium`  | `typo-caption11-medium`  | Pretendard Variable Medium  | 11px | 12px   | 매우 작은 라벨   |
 | `caption11.regular` | `typo-caption11-regular` | Pretendard Variable Regular | 11px | 12px   | 매우 작은 텍스트 |
+
+---
+
+## CSS 모듈에서 사용하기
+
+CSS 모듈 파일(`.module.css`)에서는 개별 CSS 변수를 사용하는 것이 권장됩니다.
+
+### 기본 사용법
+
+```css
+/* styles.module.css */
+.title {
+  font-family: var(--typo-heading-h1-family);
+  font-weight: var(--typo-heading-h1-weight);
+  font-size: var(--typo-heading-h1-size);
+  line-height: var(--typo-heading-h1-height);
+  letter-spacing: 0;
+  color: var(--color-gray-black);
+}
+
+.description {
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
+  color: var(--color-gray-70);
+}
+```
+
+### 상태별 적용 예제
+
+```css
+/* Button.module.css */
+.button {
+  /* 기본 스타일 */
+  font-family: var(--typo-body16-medium-family);
+  font-weight: var(--typo-body16-medium-weight);
+  font-size: var(--typo-body16-medium-size);
+  line-height: var(--typo-body16-medium-height);
+  letter-spacing: 0;
+}
+
+.button.active {
+  /* active 상태에서는 bold로 변경 */
+  font-family: var(--typo-body16-bold-family);
+  font-weight: var(--typo-body16-bold-weight);
+  font-size: var(--typo-body16-bold-size);
+  line-height: var(--typo-body16-bold-height);
+  letter-spacing: 0;
+}
+```
+
+### 크기별 적용 예제
+
+```css
+/* Input.module.css */
+.input {
+  /* 공통 스타일 */
+  width: 100%;
+  padding: 12px 16px;
+}
+
+.size_medium .input {
+  font-family: var(--typo-body16-regular-family);
+  font-weight: var(--typo-body16-regular-weight);
+  font-size: var(--typo-body16-regular-size);
+  line-height: var(--typo-body16-regular-height);
+  letter-spacing: 0;
+}
+
+.size_small .input {
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
+}
+```
 
 ---
 
@@ -271,22 +419,83 @@ import { typographyEn } from "@/commons/constants/typography";
 3. **줄높이**: `lineHeight`는 가독성을 위해 설정되어 있으므로 임의로 변경하지 마세요.
 4. **폰트 로딩**: Pretendard 폰트가 프로젝트에 올바르게 로드되어 있는지 확인하세요.
 5. **반응형**: 필요시 미디어 쿼리와 함께 사용하되, 토큰은 유지하세요.
+6. **CSS 모듈**: CSS 모듈 파일에서는 개별 CSS 변수(`-family`, `-weight`, `-size`, `-height`)를 사용하는 것이 권장됩니다.
+7. **letter-spacing**: 한글 폰트 특성상 기본적으로 `0`을 사용합니다.
+
+### 올바른 사용 예시
 
 ```css
-/* 좋은 예 */
-@media (max-width: 768px) {
-  .title {
-    font: var(--typo-heading-h2); /* h1 대신 h2 사용 */
-  }
+/* 좋은 예 - CSS 모듈에서 개별 변수 사용 */
+.title {
+  font-family: var(--typo-heading-h2-family);
+  font-weight: var(--typo-heading-h2-weight);
+  font-size: var(--typo-heading-h2-size);
+  line-height: var(--typo-heading-h2-height);
+  letter-spacing: 0;
 }
 
-/* 나쁜 예 */
+/* 좋은 예 - 일반 CSS에서 통합 변수 사용 */
+.title {
+  font: var(--typo-heading-h2);
+}
+
+/* 좋은 예 - 반응형 */
 @media (max-width: 768px) {
   .title {
-    font-size: 20px; /* 임의의 크기 사용 */
+    font-family: var(--typo-heading-h3-family);
+    font-weight: var(--typo-heading-h3-weight);
+    font-size: var(--typo-heading-h3-size);
+    line-height: var(--typo-heading-h3-height);
+    letter-spacing: 0;
   }
 }
 ```
+
+### 잘못된 사용 예시
+
+```css
+/* 나쁜 예 - 임의의 값 사용 */
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+/* 나쁜 예 - 토큰 일부만 사용 */
+.title {
+  font: var(--typo-heading-h1);
+  font-size: 24px; /* 토큰 크기를 임의로 변경 */
+}
+
+/* 나쁜 예 - 존재하지 않는 폰트 사용 */
+.title {
+  font-family: "Roboto", sans-serif; /* Pretendard 대신 다른 폰트 */
+}
+```
+
+---
+
+## CSS 변수 구조
+
+`globals.css`에서는 각 타이포그래피 토큰에 대해 다음과 같은 CSS 변수를 제공합니다:
+
+```css
+/* 예: typo-body16-medium의 경우 */
+--typo-body16-medium-family: var(--font-pretendard-variable),
+  "Pretendard Variable", ...;
+--typo-body16-medium-weight: 500;
+--typo-body16-medium-size: 16px;
+--typo-body16-medium-height: 24px;
+--typo-body16-medium: 500 16px/24px var(--typo-body16-medium-family); /* 통합 */
+```
+
+**변수 명명 규칙:**
+
+- `--typo-{category}-{variant}-family`: 폰트 패밀리 (fallback 체인 포함)
+- `--typo-{category}-{variant}-weight`: 폰트 굵기 (숫자)
+- `--typo-{category}-{variant}-size`: 폰트 크기 (px 단위)
+- `--typo-{category}-{variant}-height`: 라인 높이 (px 단위)
+- `--typo-{category}-{variant}`: 통합 font 단축 속성
 
 ---
 
@@ -297,7 +506,8 @@ import { typographyEn } from "@/commons/constants/typography";
 1. 피그마 채널에 접속: `m98xylm5`
 2. 노드 ID `11020:26301`에서 최신 스타일 확인
 3. `typography.ts` 파일 업데이트
-4. `globals.css`의 CSS 변수 업데이트
+4. `globals.css`의 CSS 변수 업데이트 (개별 변수 + 통합 변수)
+5. CSS 모듈 파일에서 사용 중인 타이포그래피 확인 및 검증
 
 ---
 

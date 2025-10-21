@@ -28,7 +28,8 @@
   border: none;
   outline: none;
   background: transparent;
-  font-family: "Pretendard Variable", sans-serif;
+  font-family: var(--font-pretendard-variable), var(--font-pretendard),
+    sans-serif;
   color: var(--color-gray-black);
   padding: 0;
   margin: 0;
@@ -56,7 +57,11 @@
 }
 
 .size_small .input {
-  font: var(--typo-body14-regular);
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
 }
 
 /* Medium: 16px regular (typo-body16-regular) */
@@ -65,7 +70,11 @@
 }
 
 .size_medium .input {
-  font: var(--typo-body16-regular);
+  font-family: var(--typo-body16-regular-family);
+  font-weight: var(--typo-body16-regular-weight);
+  font-size: var(--typo-body16-regular-size);
+  line-height: var(--typo-body16-regular-height);
+  letter-spacing: 0;
 }
 
 /* ===================================
@@ -138,13 +147,21 @@
 /* Small size typing/filled: 14px medium (typo-body14-medium) */
 .size_small.variant_typing .input,
 .size_small.variant_filled .input {
-  font: var(--typo-body14-medium);
+  font-family: var(--typo-body14-medium-family);
+  font-weight: var(--typo-body14-medium-weight);
+  font-size: var(--typo-body14-medium-size);
+  line-height: var(--typo-body14-medium-height);
+  letter-spacing: 0;
 }
 
 /* Medium size typing/filled: 14px medium (typo-body14-medium) */
 .size_medium.variant_typing .input,
 .size_medium.variant_filled .input {
-  font: var(--typo-body14-medium);
+  font-family: var(--typo-body14-medium-family);
+  font-weight: var(--typo-body14-medium-weight);
+  font-size: var(--typo-body14-medium-size);
+  line-height: var(--typo-body14-medium-height);
+  letter-spacing: 0;
 }
 
 /* ===================================

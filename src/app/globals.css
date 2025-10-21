@@ -8,42 +8,167 @@
 
 :root {
   /* Heading Styles */
-  --typo-heading-h1: 700 28px/36px "Pretendard";
-  --typo-heading-h2: 700 24px/32px "Pretendard";
-  --typo-heading-h3: 700 20px/28px "Pretendard";
+  --typo-heading-h1-family: var(--font-pretendard), "Pretendard", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --typo-heading-h1-weight: 700;
+  --typo-heading-h1-size: 28px;
+  --typo-heading-h1-height: 36px;
+  --typo-heading-h1: 700 28px/36px var(--typo-heading-h1-family);
+
+  --typo-heading-h2-family: var(--font-pretendard), "Pretendard", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --typo-heading-h2-weight: 700;
+  --typo-heading-h2-size: 24px;
+  --typo-heading-h2-height: 32px;
+  --typo-heading-h2: 700 24px/32px var(--typo-heading-h2-family);
+
+  --typo-heading-h3-family: var(--font-pretendard), "Pretendard", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --typo-heading-h3-weight: 700;
+  --typo-heading-h3-size: 20px;
+  --typo-heading-h3-height: 28px;
+  --typo-heading-h3: 700 20px/28px var(--typo-heading-h3-family);
 
   /* Body Styles - 20px */
-  --typo-body20-medium: 500 20px/24px "Pretendard Variable";
-  --typo-body20-regular: 400 20px/24px "Pretendard Variable";
+  --typo-body20-medium-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body20-medium-weight: 500;
+  --typo-body20-medium-size: 20px;
+  --typo-body20-medium-height: 24px;
+  --typo-body20-medium: 500 20px/24px var(--typo-body20-medium-family);
+
+  --typo-body20-regular-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body20-regular-weight: 400;
+  --typo-body20-regular-size: 20px;
+  --typo-body20-regular-height: 24px;
+  --typo-body20-regular: 400 20px/24px var(--typo-body20-regular-family);
 
   /* Body Styles - 18px */
-  --typo-body18-semibold: 600 18px/24px "Pretendard Variable";
+  --typo-body18-semibold-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body18-semibold-weight: 600;
+  --typo-body18-semibold-size: 18px;
+  --typo-body18-semibold-height: 24px;
+  --typo-body18-semibold: 600 18px/24px var(--typo-body18-semibold-family);
 
   /* Body Styles - 16px */
-  --typo-body16-bold: 700 16px/24px "Pretendard Variable";
-  --typo-body16-semibold: 600 16px/24px "Pretendard Variable";
-  --typo-body16-medium: 500 16px/24px "Pretendard Variable";
-  --typo-body16-medium-compact: 500 16px/20px "Pretendard Variable";
-  --typo-body16-regular: 400 16px/24px "Pretendard Variable";
+  --typo-body16-bold-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body16-bold-weight: 700;
+  --typo-body16-bold-size: 16px;
+  --typo-body16-bold-height: 24px;
+  --typo-body16-bold: 700 16px/24px var(--typo-body16-bold-family);
+
+  --typo-body16-semibold-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body16-semibold-weight: 600;
+  --typo-body16-semibold-size: 16px;
+  --typo-body16-semibold-height: 24px;
+  --typo-body16-semibold: 600 16px/24px var(--typo-body16-semibold-family);
+
+  --typo-body16-medium-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body16-medium-weight: 500;
+  --typo-body16-medium-size: 16px;
+  --typo-body16-medium-height: 24px;
+  --typo-body16-medium: 500 16px/24px var(--typo-body16-medium-family);
+
+  --typo-body16-medium-compact-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body16-medium-compact-weight: 500;
+  --typo-body16-medium-compact-size: 16px;
+  --typo-body16-medium-compact-height: 20px;
+  --typo-body16-medium-compact: 500 16px/20px
+    var(--typo-body16-medium-compact-family);
+
+  --typo-body16-regular-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body16-regular-weight: 400;
+  --typo-body16-regular-size: 16px;
+  --typo-body16-regular-height: 24px;
+  --typo-body16-regular: 400 16px/24px var(--typo-body16-regular-family);
 
   /* Body Styles - 14px */
-  --typo-body14-bold: 700 14px/20px "Pretendard Variable";
-  --typo-body14-semibold: 600 14px/20px "Pretendard Variable";
-  --typo-body14-medium: 500 14px/20px "Pretendard Variable";
-  --typo-body14-regular: 400 14px/20px "Pretendard Variable";
-  --typo-body14-light: 300 14px/20px "Pretendard Variable";
+  --typo-body14-bold-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body14-bold-weight: 700;
+  --typo-body14-bold-size: 14px;
+  --typo-body14-bold-height: 20px;
+  --typo-body14-bold: 700 14px/20px var(--typo-body14-bold-family);
+
+  --typo-body14-semibold-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body14-semibold-weight: 600;
+  --typo-body14-semibold-size: 14px;
+  --typo-body14-semibold-height: 20px;
+  --typo-body14-semibold: 600 14px/20px var(--typo-body14-semibold-family);
+
+  --typo-body14-medium-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body14-medium-weight: 500;
+  --typo-body14-medium-size: 14px;
+  --typo-body14-medium-height: 20px;
+  --typo-body14-medium: 500 14px/20px var(--typo-body14-medium-family);
+
+  --typo-body14-regular-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body14-regular-weight: 400;
+  --typo-body14-regular-size: 14px;
+  --typo-body14-regular-height: 20px;
+  --typo-body14-regular: 400 14px/20px var(--typo-body14-regular-family);
+
+  --typo-body14-light-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-body14-light-weight: 300;
+  --typo-body14-light-size: 14px;
+  --typo-body14-light-height: 20px;
+  --typo-body14-light: 300 14px/20px var(--typo-body14-light-family);
 
   /* Caption Styles - 13px */
-  --typo-caption13-medium: 500 13px/20px "Pretendard Variable";
+  --typo-caption13-medium-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-caption13-medium-weight: 500;
+  --typo-caption13-medium-size: 13px;
+  --typo-caption13-medium-height: 20px;
+  --typo-caption13-medium: 500 13px/20px var(--typo-caption13-medium-family);
 
   /* Caption Styles - 12px */
-  --typo-caption12-medium: 500 12px/20px "Pretendard Variable";
-  --typo-caption12-regular: 400 12px/20px "Pretendard Variable";
-  --typo-caption12-light: 300 12px/20px "Pretendard Variable";
+  --typo-caption12-medium-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-caption12-medium-weight: 500;
+  --typo-caption12-medium-size: 12px;
+  --typo-caption12-medium-height: 20px;
+  --typo-caption12-medium: 500 12px/20px var(--typo-caption12-medium-family);
+
+  --typo-caption12-regular-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-caption12-regular-weight: 400;
+  --typo-caption12-regular-size: 12px;
+  --typo-caption12-regular-height: 20px;
+  --typo-caption12-regular: 400 12px/20px var(--typo-caption12-regular-family);
+
+  --typo-caption12-light-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-caption12-light-weight: 300;
+  --typo-caption12-light-size: 12px;
+  --typo-caption12-light-height: 20px;
+  --typo-caption12-light: 300 12px/20px var(--typo-caption12-light-family);
 
   /* Caption Styles - 11px */
-  --typo-caption11-medium: 500 11px/12px "Pretendard Variable";
-  --typo-caption11-regular: 400 11px/12px "Pretendard Variable";
+  --typo-caption11-medium-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-caption11-medium-weight: 500;
+  --typo-caption11-medium-size: 11px;
+  --typo-caption11-medium-height: 12px;
+  --typo-caption11-medium: 500 11px/12px var(--typo-caption11-medium-family);
+
+  --typo-caption11-regular-family: var(--font-pretendard-variable),
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
+  --typo-caption11-regular-weight: 400;
+  --typo-caption11-regular-size: 11px;
+  --typo-caption11-regular-height: 12px;
+  --typo-caption11-regular: 400 11px/12px var(--typo-caption11-regular-family);
 }
 
 /* ===================================
@@ -132,10 +257,10 @@
 body {
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
-  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
-    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
-    "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", sans-serif;
+  font-family: var(--font-pretendard-variable), var(--font-pretendard),
+    -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue",
+    "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
 /* ===================================

@@ -5,6 +5,65 @@ import { ModalProvider } from "@/commons/providers/modal/modal.provider";
 import { ReactQueryProvider } from "@/commons/providers/react-query/react-query.provider";
 import Layout from "@/commons/layout";
 
+const pretendardVariable = localFont({
+  src: "./fonts/PretendardVariable.woff2",
+  variable: "--font-pretendard-variable",
+  weight: "100 900",
+  display: "swap",
+});
+
+const pretendard = localFont({
+  src: [
+    {
+      path: "./fonts/Pretendard-Thin.woff",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Pretendard-ExtraLight.woff",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Pretendard-Light.woff",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Pretendard-Regular.woff",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Pretendard-Medium.woff",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Pretendard-SemiBold.woff",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Pretendard-Bold.woff",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Pretendard-ExtraBold.woff",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Pretendard-Black.woff",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-pretendard",
+  display: "swap",
+});
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -27,9 +86,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${pretendardVariable.variable} ${pretendard.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryProvider>
           <ModalProvider>
