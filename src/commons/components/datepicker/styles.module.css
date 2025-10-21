@@ -1,0 +1,149 @@
+/* ===================================
+   DatePicker Base Styles
+   =================================== */
+.datepicker {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-gray-05);
+  border-radius: 8px;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+/* ===================================
+   Size Variants
+   =================================== */
+
+/* Small Size - 40px height, 263px width, 14px font */
+.size_small {
+  height: 40px;
+  width: 263px;
+}
+
+/* Medium Size - 48px height, 289px width, 16px font */
+.size_medium {
+  height: 48px;
+  width: 289px;
+}
+
+/* ===================================
+   Icon Wrapper Styles
+   =================================== */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+/* ===================================
+   Date Wrapper Styles
+   =================================== */
+.dateWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+/* Small Size Date Wrapper */
+.size_small .dateWrapper {
+  width: 207px;
+}
+
+/* Medium Size Date Wrapper */
+.size_medium .dateWrapper {
+  width: 233px;
+}
+
+/* ===================================
+   Date Group Styles
+   =================================== */
+.dateGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Small Size Date Group */
+.size_small .dateGroup {
+  width: 96px;
+}
+
+/* Medium Size Date Group */
+.size_medium .dateGroup {
+  width: 109px;
+}
+
+/* ===================================
+   Date Display Styles
+   =================================== */
+.dateDisplay {
+  color: var(--color-gray-60);
+  white-space: nowrap;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+/* Small Size Display */
+.size_small .dateDisplay {
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
+}
+
+/* Medium Size Display */
+.size_medium .dateDisplay {
+  font-family: var(--typo-body16-regular-family);
+  font-weight: var(--typo-body16-regular-weight);
+  font-size: var(--typo-body16-regular-size);
+  line-height: var(--typo-body16-regular-height);
+  letter-spacing: 0;
+}
+
+/* ===================================
+   Separator Styles
+   =================================== */
+.separator {
+  color: var(--color-gray-60);
+  width: 7px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Small Size Separator */
+.size_small .separator {
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
+}
+
+/* Medium Size Separator */
+.size_medium .separator {
+  font-family: var(--typo-body16-regular-family);
+  font-weight: var(--typo-body16-regular-weight);
+  font-size: var(--typo-body16-regular-size);
+  line-height: var(--typo-body16-regular-height);
+  letter-spacing: 0;
+}
+
+/* ===================================
+   Date Input Styles (Hidden)
+   =================================== */
+.dateInput {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  border: none;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
