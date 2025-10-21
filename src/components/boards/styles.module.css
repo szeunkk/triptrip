@@ -14,9 +14,16 @@
    =================================== */
 .title {
   display: flex;
+  align-items: center;
   width: 100%;
   height: 36px;
   flex-shrink: 0;
+  font-family: var(--typo-heading-h1-family);
+  font-weight: var(--typo-heading-h1-weight);
+  font-size: var(--typo-heading-h1-size);
+  line-height: var(--typo-heading-h1-height);
+  color: var(--color-text-primary);
+  letter-spacing: 0;
 }
 
 /* ===================================
@@ -36,9 +43,56 @@
    =================================== */
 .search {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 48px;
   flex-shrink: 0;
+}
+
+/* ===================================
+   Search Left Group
+   1110px × 48px
+   =================================== */
+.searchLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  height: 48px;
+}
+
+/* ===================================
+   SearchBar Component
+   640px × 48px
+   =================================== */
+.searchBar {
+  width: 640px;
+}
+
+/* ===================================
+   DatePicker Component
+   289px × 48px
+   =================================== */
+.datePicker {
+  width: 289px;
+}
+
+/* ===================================
+   Search Button
+   64px × 48px
+   =================================== */
+.searchButton {
+  width: 64px;
+}
+
+/* ===================================
+   Write Button
+   162px × 48px
+   =================================== */
+.writeButton {
+  width: 162px;
 }
 
 /* ===================================
