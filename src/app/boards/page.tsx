@@ -1,3 +1,5 @@
+import Boards from "@/components/boards";
+
 export default function BoardsPage() {
-  return <>게시판입니다.</>;
+  return <Boards />;
 }

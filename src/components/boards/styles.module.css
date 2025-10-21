@@ -1,0 +1,53 @@
+/* ===================================
+   Boards Container Styles
+   =================================== */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1280px;
+  margin: 0 auto;
+}
+
+/* ===================================
+   Title Section
+   1280px × 36px
+   =================================== */
+.title {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Gap Section
+   1280px × 24px
+   =================================== */
+.gap {
+  display: flex;
+  width: 100%;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Search Section
+   1280px × 48px
+   =================================== */
+.search {
+  display: flex;
+  width: 100%;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   List Section
+   1280px × 712px
+   =================================== */
+.list {
+  display: flex;
+  width: 100%;
+  height: 712px;
+  flex-shrink: 0;
+}

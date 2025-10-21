@@ -162,6 +162,7 @@ export function Layout({ children }: LayoutProps) {
 
       <div className={styles.gap}></div>
       <main className={styles.main}>{children}</main>
+      <div className={styles.gap}></div>
     </div>
   );
 }

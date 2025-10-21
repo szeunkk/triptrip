@@ -12,6 +12,7 @@
   font-family: var(--font-pretendard-variable), var(--font-pretendard),
     sans-serif;
   text-align: center;
+  white-space: nowrap;
 }
 
 .button:disabled {
