@@ -1,0 +1,78 @@
+/* ===================================
+   BoardsCommentWrite Container Styles
+   =================================== */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1280px;
+}
+
+/* ===================================
+   Comment Rate Section
+   1280px × 24px
+   =================================== */
+.commentRate {
+  display: flex;
+  width: 100%;
+  height: 24px;
+  flex-shrink: 0;
+  background-color: lightgray;
+}
+
+/* ===================================
+   Gap Section - 24px
+   1280px × 24px
+   =================================== */
+.gap24 {
+  display: flex;
+  width: 100%;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Comment Writer Section
+   1280px × 80px
+   =================================== */
+.commentWriter {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  flex-shrink: 0;
+  background-color: lightgray;
+}
+
+/* ===================================
+   Gap Section - 16px
+   1280px × 16px
+   =================================== */
+.gap16 {
+  display: flex;
+  width: 100%;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Comment Content Section
+   1280px × 144px
+   =================================== */
+.commentContent {
+  display: flex;
+  width: 100%;
+  height: 144px;
+  flex-shrink: 0;
+  background-color: lightgray;
+}
+
+/* ===================================
+   Comment Button Section
+   1280px × 48px
+   =================================== */
+.commentButton {
+  display: flex;
+  width: 100%;
+  height: 48px;
+  flex-shrink: 0;
+  background-color: lightgray;
+}
