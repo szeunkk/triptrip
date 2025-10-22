@@ -1,3 +1,5 @@
+import { BoardsDetail } from "@/components/boards-detail";
+
 export default function BoardsDetailPage() {
-  return <>상세페이지입니다.</>;
+  return <BoardsDetail />;
 }

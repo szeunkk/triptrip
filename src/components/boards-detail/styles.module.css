@@ -1,0 +1,103 @@
+/* ===================================
+   BoardsDetail Container Styles
+   =================================== */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1280px;
+}
+
+/* ===================================
+   Detail Title Section
+   1280px × 72px
+   =================================== */
+.detailTitle {
+  display: flex;
+  width: 100%;
+  height: 72px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
+
+/* ===================================
+   Gap Section
+   1280px × 24px
+   =================================== */
+.gap {
+  display: flex;
+  width: 100%;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Detail Writer Section
+   1280px × 80px
+   =================================== */
+.detailWriter {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
+
+/* ===================================
+   Detail Image Section
+   1280px × 531px
+   =================================== */
+.detailImage {
+  display: flex;
+  width: 100%;
+  height: 531px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
+
+/* ===================================
+   Detail Content Section
+   1280px × auto
+   =================================== */
+.detailContent {
+  display: flex;
+  width: 100%;
+  min-height: 200px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
+
+/* ===================================
+   Detail Youtube Section
+   1280px × 512px
+   =================================== */
+.detailYoutube {
+  display: flex;
+  width: 100%;
+  height: 512px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
+
+/* ===================================
+   Detail Like Section
+   1280px × 48px
+   =================================== */
+.detailLike {
+  display: flex;
+  width: 100%;
+  height: 48px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
+
+/* ===================================
+   Detail Button Section
+   1280px × 40px
+   =================================== */
+.detailButton {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
