@@ -13,10 +13,19 @@
    =================================== */
 .title {
   display: flex;
+  align-items: center;
   width: 100%;
   height: 36px;
   flex-shrink: 0;
-  background-color: var(--color-gray-10);
+}
+
+.titleText {
+  font-family: var(--typo-heading-h1-family);
+  font-weight: var(--typo-heading-h1-weight);
+  font-size: var(--typo-heading-h1-size);
+  line-height: var(--typo-heading-h1-height);
+  color: var(--color-text-primary);
+  letter-spacing: 0;
 }
 
 /* ===================================
@@ -39,5 +48,129 @@
   width: 100%;
   height: 152px;
   flex-shrink: 0;
-  background-color: var(--color-gray-10);
+  gap: 32px;
+}
+
+/* ===================================
+   Card Styles
+   296px × 152px
+   =================================== */
+.card {
+  display: flex;
+  gap: 8px;
+  width: 296px;
+  height: 152px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background-color: var(--color-bg-primary);
+}
+
+.cardImage {
+  display: flex;
+  width: 112px;
+  height: 152px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.image {
+  width: 112px;
+  height: 152px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 176px;
+  height: 152px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Card Top Section (Title + Profile)
+   176px × 80px
+   =================================== */
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardTitle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 176px;
+  font-family: var(--typo-body16-bold-family);
+  font-weight: var(--typo-body16-bold-weight);
+  font-size: var(--typo-body16-bold-size);
+  line-height: var(--typo-body16-bold-height);
+  letter-spacing: 0;
+  color: var(--color-gray-90);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+}
+
+.profileImage {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.userName {
+  font-family: var(--typo-body14-light-family);
+  font-weight: var(--typo-body14-light-weight);
+  font-size: var(--typo-body14-light-size);
+  line-height: var(--typo-body14-light-height);
+  letter-spacing: 0;
+  color: var(--color-text-secondary);
+}
+
+/* ===================================
+   Card Bottom Section (Good + Date)
+   176px × 24px
+   =================================== */
+.cardBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 24px;
+}
+
+.goodArea {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+}
+
+.goodCount {
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
+  color: var(--color-brand-red);
+}
+
+.date {
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
+  color: var(--color-text-tertiary);
 }
