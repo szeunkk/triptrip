@@ -2,6 +2,7 @@
    DatePicker Base Styles
    =================================== */
 .datepicker {
+  position: relative;
   display: flex;
   align-items: center;
   background-color: var(--color-gray-05);
@@ -138,11 +139,13 @@
    Date Input Styles (Hidden)
    =================================== */
 .dateInput {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
   width: 0;
   height: 0;
   opacity: 0;
   overflow: hidden;
-  border: none;
   padding: 0;
   margin: 0;
   flex-shrink: 0;
