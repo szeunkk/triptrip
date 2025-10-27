@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { ConfigProvider, Rate } from "antd";
 import { Input } from "@/commons/components/input";
+import { Button } from "@/commons/components/button";
 import styles from "./styles.module.css";
 
 /**
@@ -10,10 +12,31 @@ import styles from "./styles.module.css";
  * Rate, Writer, Content, Button 영역으로 구성됩니다.
  */
 export function BoardsCommentWrite() {
+  const [rating, setRating] = useState(2.5);
+
   return (
     <div className={styles.container}>
       {/* Comment Rate Section */}
-      <div className={styles.commentRate}></div>
+      <div className={styles.commentRate}>
+        <ConfigProvider
+          theme={{
+            components: {
+              Rate: {
+                starSize: 24,
+                starColor: "#FADA67",
+                starBg: "#c7c7c7",
+              },
+            },
+          }}
+        >
+          <Rate
+            value={rating}
+            onChange={setRating}
+            className={styles.rate}
+            allowHalf
+          />
+        </ConfigProvider>
+      </div>
 
       {/* Gap */}
       <div className={styles.gap24}></div>
@@ -43,13 +66,37 @@ export function BoardsCommentWrite() {
       <div className={styles.gap16}></div>
 
       {/* Comment Content Section */}
-      <div className={styles.commentContent}></div>
+      <div className={styles.commentContent}>
+        <textarea
+          className={styles.textarea}
+          placeholder="댓글을 입력해 주세요."
+          maxLength={100}
+        />
+        <div className={styles.charCount}>0/100</div>
+      </div>
 
       {/* Gap */}
       <div className={styles.gap16}></div>
 
       {/* Comment Button Section */}
-      <div className={styles.commentButton}></div>
+      <div className={styles.commentButton}>
+        <Button
+          variant="tertiary"
+          size="medium"
+          shape="rectangle"
+          className={styles.cancelButton}
+        >
+          취소
+        </Button>
+        <Button
+          variant="secondary"
+          size="medium"
+          shape="rectangle"
+          className={styles.submitButton}
+        >
+          등록하기
+        </Button>
+      </div>
     </div>
   );
 }
