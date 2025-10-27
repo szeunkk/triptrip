@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ApolloClientProvider } from "@/commons/providers/apollo-client/apollo-client.provider";
 import { ModalProvider } from "@/commons/providers/modal/modal.provider";
 import { ReactQueryProvider } from "@/commons/providers/react-query/react-query.provider";
 import Layout from "@/commons/layout";
@@ -90,11 +91,13 @@ export default function RootLayout({
       <body
         className={`${pretendardVariable.variable} ${pretendard.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ReactQueryProvider>
-          <ModalProvider>
-            <Layout>{children}</Layout>
-          </ModalProvider>
-        </ReactQueryProvider>
+        <ApolloClientProvider>
+          <ReactQueryProvider>
+            <ModalProvider>
+              <Layout>{children}</Layout>
+            </ModalProvider>
+          </ReactQueryProvider>
+        </ApolloClientProvider>
       </body>
     </html>
   );
