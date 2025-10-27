@@ -36,10 +36,16 @@
    =================================== */
 .commentWriter {
   display: flex;
+  flex-direction: row;
+  gap: 16px;
   width: 100%;
   height: 80px;
   flex-shrink: 0;
-  background-color: lightgray;
+}
+
+/* Writer Input: 312px width */
+.writerInput {
+  width: 312px;
 }
 
 /* ===================================
