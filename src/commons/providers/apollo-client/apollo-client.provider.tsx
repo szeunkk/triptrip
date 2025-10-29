@@ -17,7 +17,7 @@ export const ApolloClientProvider = ({
   const client = useMemo(() => {
     // 1. Upload Link 생성 (파일 업로드 지원)
     const uploadLink = createUploadLink({
-      uri: "http://main-practice.codebootcamp.co.kr/graphql",
+      uri: "https://main-practice.codebootcamp.co.kr/graphql",
       headers: {
         "Apollo-Require-Preflight": "true",
       },

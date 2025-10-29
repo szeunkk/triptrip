@@ -195,7 +195,7 @@ test.describe("BoardsBest - 데이터 바인딩 테스트", () => {
     }) => {
       // Given: 네트워크를 차단하여 에러 상황 재현
       await context.route(
-        "http://main-practice.codebootcamp.co.kr/graphql",
+        "https://main-practice.codebootcamp.co.kr/graphql",
         (route) => {
           route.abort("failed");
         }
@@ -218,7 +218,7 @@ test.describe("BoardsBest - 데이터 바인딩 테스트", () => {
     }) => {
       // Given: 네트워크를 차단하여 에러 상황 재현
       await context.route(
-        "http://main-practice.codebootcamp.co.kr/graphql",
+        "https://main-practice.codebootcamp.co.kr/graphql",
         (route) => {
           route.abort("failed");
         }
@@ -246,7 +246,7 @@ test.describe("BoardsBest - 데이터 바인딩 테스트", () => {
       // Given: 첫 번째 요청은 차단
       let requestCount = 0;
       await context.route(
-        "http://main-practice.codebootcamp.co.kr/graphql",
+        "https://main-practice.codebootcamp.co.kr/graphql",
         (route) => {
           requestCount++;
           if (requestCount === 1) {
@@ -268,7 +268,7 @@ test.describe("BoardsBest - 데이터 바인딩 테스트", () => {
       expect(cards).toBe(0);
 
       // When: 페이지 새로고침 (성공)
-      await context.unroute("http://main-practice.codebootcamp.co.kr/graphql");
+      await context.unroute("https://main-practice.codebootcamp.co.kr/graphql");
       await page.reload({ waitUntil: "networkidle" });
 
       // Then: 카드가 표시되어야 함

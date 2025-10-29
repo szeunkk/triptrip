@@ -12,8 +12,46 @@ import { test, expect } from "@playwright/test";
  */
 
 test.describe("BoardsDetail - Data Binding", () => {
-  // 테스트에 사용할 실제 게시글 ID
-  const testBoardId = "690174c9d4299d0029cd09b5";
+  // 테스트에 사용할 실제 게시글 ID (동적으로 조회)
+  let testBoardId: string;
+
+  // 모든 테스트 시작 전에 실제 존재하는 게시글 ID를 조회
+  test.beforeAll(async ({ request }) => {
+    // fetchBoards API를 호출하여 실제 게시글 목록 조회
+    const response = await request.post(
+      "https://main-practice.codebootcamp.co.kr/graphql",
+      {
+        data: {
+          query: `
+            query fetchBoards($page: Int) {
+              fetchBoards(page: $page) {
+                _id
+                title
+                writer
+              }
+            }
+          `,
+          variables: {
+            page: 1,
+          },
+        },
+      }
+    );
+
+    const responseData = await response.json();
+
+    // 게시글이 존재하는지 확인
+    if (
+      responseData.data?.fetchBoards &&
+      responseData.data.fetchBoards.length > 0
+    ) {
+      // 첫 번째 게시글의 ID를 테스트에 사용
+      testBoardId = responseData.data.fetchBoards[0]._id;
+      console.log(`✅ 테스트용 게시글 ID: ${testBoardId}`);
+    } else {
+      throw new Error("❌ 테스트할 게시글이 존재하지 않습니다.");
+    }
+  });
 
   test.describe("성공 시나리오 - 실제 API 데이터", () => {
     /**
@@ -233,7 +271,7 @@ test.describe("BoardsDetail - Data Binding", () => {
     }) => {
       // Given: 네트워크를 차단하여 에러 상황 재현
       await context.route(
-        "http://main-practice.codebootcamp.co.kr/graphql",
+        "https://main-practice.codebootcamp.co.kr/graphql",
         (route) => {
           route.abort("failed");
         }
