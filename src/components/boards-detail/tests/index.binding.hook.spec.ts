@@ -15,8 +15,11 @@ test.describe("BoardsDetail - Data Binding", () => {
   // 테스트에 사용할 실제 게시글 ID (동적으로 조회)
   let testBoardId: string;
 
-  // 모든 테스트 시작 전에 실제 존재하는 게시글 ID를 조회
-  test.beforeAll(async ({ request }) => {
+  // 각 테스트 전에 실제 존재하는 게시글 ID를 조회 (브라우저별 실행 보장)
+  test.beforeEach(async ({ request }) => {
+    // 이미 ID가 있으면 재사용
+    if (testBoardId) return;
+
     // fetchBoards API를 호출하여 실제 게시글 목록 조회
     const response = await request.post(
       "https://main-practice.codebootcamp.co.kr/graphql",

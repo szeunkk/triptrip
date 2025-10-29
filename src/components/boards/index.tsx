@@ -11,6 +11,7 @@ import {
   formatDate,
   convertToISODate,
 } from "./hooks/index.binding.hook";
+import { useBoardsPagination } from "./hooks/index.pagination.hook";
 import styles from "./styles.module.css";
 
 /**
@@ -29,6 +30,22 @@ export function Boards() {
   // 날짜 검색: startDate와 endDate가 모두 입력되었을 때만 검색
   const hasCompleteDateRange = dateRange.startDate && dateRange.endDate;
 
+  // 페이지네이션 데이터 가져오기
+  const {
+    lastPage,
+    itemNumbers,
+    setCurrentPage: setPaginationPage,
+  } = useBoardsPagination({
+    search: searchKeyword || undefined,
+    startDate: hasCompleteDateRange
+      ? convertToISODate(dateRange.startDate, false)
+      : undefined,
+    endDate: hasCompleteDateRange
+      ? convertToISODate(dateRange.endDate, true)
+      : undefined,
+    initialPage: currentPage,
+  });
+
   // API 데이터 가져오기 (날짜를 ISO 8601 형식으로 변환)
   const { data, loading, error } = useFetchBoards({
     page: currentPage,
@@ -41,10 +58,9 @@ export function Boards() {
       : undefined,
   });
 
-  const totalPages = 5; // TODO: API에서 전체 페이지 수를 가져올 수 있다면 동적으로 설정
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    setPaginationPage(page);
   };
 
   const [inputValue, setInputValue] = useState("");
@@ -161,9 +177,14 @@ export function Boards() {
                 <div
                   key={item._id}
                   className={styles.listItem}
-                  data-testid={`board-item-${item._id}`}
+                  data-testid={`board-item-${index}`}
                 >
-                  <div className={styles.itemNumber}>{index + 1}</div>
+                  <div
+                    className={styles.itemNumber}
+                    data-testid={`board-item-number-${index}`}
+                  >
+                    {itemNumbers[index] || index + 1}
+                  </div>
                   <div
                     className={styles.itemTitle}
                     data-testid={`board-title-${item._id}`}
@@ -187,10 +208,10 @@ export function Boards() {
           </div>
         </div>
         {/* 페이지네이션 영역 */}
-        <div className={styles.paginationWrapper}>
+        <div className={styles.paginationWrapper} data-testid="pagination">
           <Pagination
             currentPage={currentPage}
-            totalPages={totalPages}
+            totalPages={lastPage}
             onPageChange={handlePageChange}
             size="medium"
             showNavigationArrows={true}
