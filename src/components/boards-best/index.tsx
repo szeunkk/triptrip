@@ -2,9 +2,10 @@
 
 import React from "react";
 import Image from "next/image";
-import styles from "./styles.module.css";
 import { useFetchBoardsOfTheBest } from "./hooks/index.binding.hook";
 import { formatDate } from "@/components/boards/hooks/index.binding.hook";
+import { useBoardsBestLinkRouting } from "./hooks/index.link.routing.hook";
+import styles from "./styles.module.css";
 
 /**
  * BoardsBest Component
@@ -14,6 +15,9 @@ import { formatDate } from "@/components/boards/hooks/index.binding.hook";
 export function BoardsBest() {
   // 베스트 게시글 데이터 가져오기
   const { data, loading, error } = useFetchBoardsOfTheBest();
+
+  // 링크 라우팅 훅
+  const { handleCardClick } = useBoardsBestLinkRouting();
 
   // 이미지 URL 생성 함수
   const getImageUrl = (images: string[], index: number): string => {
@@ -49,7 +53,9 @@ export function BoardsBest() {
           <h2 className={styles.titleText}>오늘 핫한 트립토크</h2>
         </div>
         <div className={styles.gap}></div>
-        <div className={styles.best}>{/* 에러 상태 표시 */}</div>
+        <div className={styles.best}>
+          <div data-testid="boards-best-error">에러 발생</div>
+        </div>
       </div>
     );
   }
@@ -82,6 +88,8 @@ export function BoardsBest() {
             key={talk._id}
             className={styles.card}
             data-testid="boards-best-card"
+            data-board-id={talk._id}
+            onClick={() => handleCardClick(talk._id)}
           >
             <div className={styles.cardImage}>
               <Image

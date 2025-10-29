@@ -12,6 +12,7 @@ import {
   convertToISODate,
 } from "./hooks/index.binding.hook";
 import { useBoardsPagination } from "./hooks/index.pagination.hook";
+import { useBoardLinkRouting } from "./hooks/index.link.routing.hook";
 import styles from "./styles.module.css";
 
 /**
@@ -26,6 +27,9 @@ export function Boards() {
     startDate?: string;
     endDate?: string;
   }>({});
+
+  // 링크 라우팅 훅
+  const { handleBoardClick, handleWriteClick } = useBoardLinkRouting();
 
   // 날짜 검색: startDate와 endDate가 모두 입력되었을 때만 검색
   const hasCompleteDateRange = dateRange.startDate && dateRange.endDate;
@@ -74,7 +78,7 @@ export function Boards() {
     setInputValue(e.target.value);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSearch();
     }
@@ -126,7 +130,7 @@ export function Boards() {
             className={styles.searchBar}
             value={inputValue}
             onChange={handleInputChange}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             data-testid="search-input"
           />
           <Button
@@ -145,6 +149,8 @@ export function Boards() {
           size="medium"
           shape="rectangle"
           className={styles.writeButton}
+          onClick={handleWriteClick}
+          data-testid="write-button"
         >
           <Image src="/icons/write(w).svg" alt="write" width={24} height={24} />
           트립토크 등록
@@ -178,6 +184,7 @@ export function Boards() {
                   key={item._id}
                   className={styles.listItem}
                   data-testid={`board-item-${index}`}
+                  onClick={() => handleBoardClick(item._id)}
                 >
                   <div
                     className={styles.itemNumber}

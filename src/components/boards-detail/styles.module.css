@@ -269,4 +269,5 @@
 
 .buttonItem {
   width: 105px;
+  cursor: pointer;
 }

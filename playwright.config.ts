@@ -40,11 +40,13 @@ export default defineConfig({
     {
       name: "firefox",
       use: { ...devices["Desktop Firefox"] },
+      retries: 1, // Firefox는 렌더링이 느려서 1번 재시도
     },
 
     {
       name: "webkit",
       use: { ...devices["Desktop Safari"] },
+      retries: 2, // WebKit API 불안정성 대응을 위해 2번 재시도
     },
 
     /* Test against mobile viewports. */

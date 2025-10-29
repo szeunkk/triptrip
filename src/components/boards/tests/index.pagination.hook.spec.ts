@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { waitForBoardsReady } from "../../../utils/test-helpers";
 
 /**
  * Pagination Hook 테스트
@@ -7,20 +8,14 @@ import { test, expect } from "@playwright/test";
  */
 
 test.describe("Pagination Hook - fetchBoardsCount API", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }, testInfo) => {
+    const browserName = testInfo.project.name;
     // 게시판 페이지로 이동
     await page.goto("/boards");
-
-    // 페이지가 로드될 때까지 대기
-    await page.waitForSelector('[data-testid="board-item-0"]', {
-      timeout: 2000,
-      state: "attached",
-    });
-    // WebKit에서 보이지 않을 수 있어 스크롤 후 가시성 확인
-    await page.locator('[data-testid="board-item-0"]').scrollIntoViewIfNeeded();
-    await expect(page.locator('[data-testid="board-item-0"]')).toBeVisible({
-      timeout: 2000,
-    });
+    // 페이지 로딩 완료 대기
+    await page.waitForLoadState("domcontentloaded");
+    // 브라우저별 최적화된 대기 로직
+    await waitForBoardsReady(page, browserName);
   });
 
   test("실제 API를 호출하여 전체 게시글 수를 가져와야 합니다", async ({

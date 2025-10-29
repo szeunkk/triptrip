@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { waitForBoardsReady } from "../../../utils/test-helpers";
 
 /**
  * BoardsDetail Data Binding Hook Test
@@ -16,44 +17,61 @@ test.describe("BoardsDetail - Data Binding", () => {
   let testBoardId: string;
 
   // 각 테스트 전에 실제 존재하는 게시글 ID를 조회 (브라우저별 실행 보장)
-  test.beforeEach(async ({ request }) => {
+  test.beforeEach(async ({ page }, testInfo) => {
     // 이미 ID가 있으면 재사용
     if (testBoardId) return;
 
-    // fetchBoards API를 호출하여 실제 게시글 목록 조회
-    const response = await request.post(
-      "https://main-practice.codebootcamp.co.kr/graphql",
-      {
-        data: {
-          query: `
-            query fetchBoards($page: Int) {
-              fetchBoards(page: $page) {
-                _id
-                title
-                writer
-              }
-            }
-          `,
-          variables: {
-            page: 1,
-          },
-        },
+    const browserName = testInfo.project.name;
+
+    // 게시글 목록 페이지로 이동하여 실제 데이터 로드
+    await page.goto("/boards");
+
+    // 페이지 로딩이 완전히 완료될 때까지 대기
+    await page.waitForLoadState("domcontentloaded");
+    // 브라우저별 최적화된 대기 로직
+    await waitForBoardsReady(page, browserName);
+
+    // board-item이 실제로 있는지 확인 (error 상태가 아닌지 체크)
+    const timeout = browserName === "chromium" ? 2000 : 5000;
+    let hasBoardItems = await page
+      .locator('[data-testid^="board-item-"]')
+      .count();
+
+    // API 에러로 board-item이 없으면 페이지 재로드 후 재시도
+    if (hasBoardItems === 0) {
+      console.log(
+        `⚠️ [${browserName}] board-item이 없음. 페이지 재로드 후 재시도...`
+      );
+      await page.reload();
+      await page.waitForLoadState("domcontentloaded");
+      await waitForBoardsReady(page, browserName);
+
+      hasBoardItems = await page
+        .locator('[data-testid^="board-item-"]')
+        .count();
+
+      if (hasBoardItems === 0) {
+        throw new Error(
+          "❌ 재시도 후에도 게시글 목록을 불러올 수 없습니다. API 에러 또는 데이터 없음."
+        );
       }
-    );
 
-    const responseData = await response.json();
-
-    // 게시글이 존재하는지 확인
-    if (
-      responseData.data?.fetchBoards &&
-      responseData.data.fetchBoards.length > 0
-    ) {
-      // 첫 번째 게시글의 ID를 테스트에 사용
-      testBoardId = responseData.data.fetchBoards[0]._id;
-      console.log(`✅ 테스트용 게시글 ID: ${testBoardId}`);
-    } else {
-      throw new Error("❌ 테스트할 게시글이 존재하지 않습니다.");
+      console.log(`✅ [${browserName}] 재시도 성공: ${hasBoardItems}개 발견`);
     }
+
+    // GraphQL 응답을 통해 게시글 ID 추출 (짧은 타임아웃 설정)
+    const firstItem = page.locator('[data-testid="board-item-0"]');
+    const titleElement = firstItem.locator('[data-testid^="board-title-"]');
+    const testId = await titleElement.getAttribute("data-testid", {
+      timeout,
+    });
+    testBoardId = testId?.replace("board-title-", "") || "";
+
+    if (!testBoardId) {
+      throw new Error("❌ 테스트할 게시글 ID를 찾을 수 없습니다.");
+    }
+
+    console.log(`✅ 테스트용 게시글 ID: ${testBoardId}`);
   });
 
   test.describe("성공 시나리오 - 실제 API 데이터", () => {
@@ -66,16 +84,20 @@ test.describe("BoardsDetail - Data Binding", () => {
     test("게시글 상세 페이지에서 실제 API 데이터가 정상적으로 렌더링되어야 함", async ({
       page,
     }) => {
-      // Given: 게시글 상세 페이지로 이동
-      await page.goto(`/boards/${testBoardId}`);
+      // Given & When: 게시글 상세 페이지로 이동하면서 API 응답 대기
+      const [response] = await Promise.all([
+        page.waitForResponse(
+          (response) =>
+            response.url().includes("graphql") &&
+            response.request().postDataJSON()?.operationName === "fetchBoard",
+          { timeout: 2000 }
+        ),
+        page.goto(`/boards/${testBoardId}`),
+      ]);
 
-      // When: 실제 API 응답 대기
-      const response = await page.waitForResponse(
-        (response) =>
-          response.url().includes("graphql") &&
-          response.request().postDataJSON()?.operationName === "fetchBoard",
-        { timeout: 2000 }
-      );
+      // 페이지 로딩 완료 대기
+      await page.waitForLoadState("domcontentloaded");
+      await page.waitForLoadState("networkidle", { timeout: 2000 });
 
       // Then: API 응답이 성공적인지 확인
       expect(response.status()).toBe(200);
@@ -122,8 +144,9 @@ test.describe("BoardsDetail - Data Binding", () => {
     test("게시글 날짜가 YYYY.MM.DD 형식으로 정상 포맷되어야 함", async ({
       page,
     }) => {
-      // Given & When: 페이지 이동
+      // Given & When: 페이지 이동 및 로딩 완료 대기
       await page.goto(`/boards/${testBoardId}`);
+      await page.waitForLoadState("domcontentloaded");
       await page.waitForLoadState("networkidle", { timeout: 2000 });
 
       // Then: 날짜 형식 검증
@@ -150,16 +173,17 @@ test.describe("BoardsDetail - Data Binding", () => {
     test("이미지가 있는 게시글의 경우 Google Storage URL로 정상 렌더링되어야 함", async ({
       page,
     }) => {
-      // Given & When: 페이지 이동
+      // Given & When: 페이지 이동 및 로딩 완료 대기
       await page.goto(`/boards/${testBoardId}`);
+      await page.waitForLoadState("domcontentloaded");
       await page.waitForLoadState("networkidle", { timeout: 2000 });
 
       // Then: 이미지 URL 검증
-      const imageElement = page.locator('[data-testid="board-main-image"]');
+      const imageElement = page.locator('[data-testid^="board-main-image"]');
       const imageCount = await imageElement.count();
 
       if (imageCount > 0) {
-        await expect(imageElement).toBeVisible({ timeout: 2000 });
+        await expect(imageElement.first()).toBeVisible({ timeout: 2000 });
 
         // 이미지 src 속성 확인
         const src = await imageElement.getAttribute("src");
@@ -182,8 +206,9 @@ test.describe("BoardsDetail - Data Binding", () => {
     test("YouTube URL이 있는 게시글의 경우 썸네일이 정상적으로 렌더링되어야 함", async ({
       page,
     }) => {
-      // Given & When: 페이지 이동
+      // Given & When: 페이지 이동 및 로딩 완료 대기
       await page.goto(`/boards/${testBoardId}`);
+      await page.waitForLoadState("domcontentloaded");
       await page.waitForLoadState("networkidle", { timeout: 2000 });
 
       // Then: YouTube 썸네일 검증
@@ -211,8 +236,9 @@ test.describe("BoardsDetail - Data Binding", () => {
      * - likeCount, dislikeCount가 숫자로 정상 표시되는지 확인
      */
     test("좋아요/싫어요 수가 숫자로 정상 표시되어야 함", async ({ page }) => {
-      // Given & When: 페이지 이동
+      // Given & When: 페이지 이동 및 로딩 완료 대기
       await page.goto(`/boards/${testBoardId}`);
+      await page.waitForLoadState("domcontentloaded");
       await page.waitForLoadState("networkidle", { timeout: 2000 });
 
       // Then: 좋아요/싫어요 수 검증
@@ -248,10 +274,9 @@ test.describe("BoardsDetail - Data Binding", () => {
       // Given: 존재하지 않는 게시글 ID 사용
       const invalidBoardId = "invalid-board-id-12345";
 
-      // When: 페이지 이동
+      // When: 페이지 이동 및 로딩 완료 대기
       await page.goto(`/boards/${invalidBoardId}`);
-
-      // 네트워크 요청 완료 대기
+      await page.waitForLoadState("domcontentloaded");
       await page.waitForLoadState("networkidle", { timeout: 2000 });
 
       // Then: 에러 상태 확인
@@ -298,10 +323,9 @@ test.describe("BoardsDetail - Data Binding", () => {
      * - 로딩 상태가 아닌 실제 데이터가 표시되는지 확인
      */
     test("게시글 데이터가 최종적으로 정상 로드되어야 함", async ({ page }) => {
-      // Given & When: 페이지 이동
+      // Given & When: 페이지 이동 및 로딩 완료 대기
       await page.goto(`/boards/${testBoardId}`);
-
-      // 최종적으로 데이터가 로드되어야 함
+      await page.waitForLoadState("domcontentloaded");
       await page.waitForLoadState("networkidle", { timeout: 2000 });
 
       // Then: 실제 데이터 표시 확인

@@ -10,6 +10,7 @@ import {
   getBoardImageUrl,
   getYoutubeThumbnailUrl,
 } from "./hooks/index.binding.hook";
+import { useLinkRouting } from "./hooks/index.link.routing.hook";
 
 /**
  * BoardsDetail Component
@@ -19,6 +20,9 @@ import {
 export function BoardsDetail() {
   // 실제 게시글 상세 데이터 불러오기
   const { data, loading, error } = useFetchBoard();
+
+  // 링크 라우팅 훅
+  const { handleGoToList, handleGoToEdit } = useLinkRouting();
 
   // 로딩 상태 처리
   if (loading) {
@@ -209,6 +213,8 @@ export function BoardsDetail() {
           size="small"
           shape="rectangle"
           className={styles.buttonItem}
+          onClick={handleGoToList}
+          data-testid="button-list"
         >
           <Image src="/icons/menu.svg" alt="menu" width={24} height={24} />
           목록으로
@@ -218,6 +224,8 @@ export function BoardsDetail() {
           size="small"
           shape="rectangle"
           className={styles.buttonItem}
+          onClick={handleGoToEdit}
+          data-testid="button-edit"
         >
           <Image src="/icons/edit.svg" alt="edit" width={24} height={24} />
           수정하기
