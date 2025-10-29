@@ -86,12 +86,9 @@ export const ApolloClientProvider = ({
       typePolicies: {
         Query: {
           fields: {
-            // 페이지네이션 처리 예시
+            // 페이지네이션 처리: 각 페이지별로 독립적으로 캐시
             fetchBoards: {
-              keyArgs: false,
-              merge(existing = [], incoming) {
-                return [...existing, ...incoming];
-              },
+              keyArgs: ["page", "search", "startDate", "endDate"],
             },
           },
         },
