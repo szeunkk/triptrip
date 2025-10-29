@@ -105,17 +105,18 @@ export function useFetchBoard(): IUseFetchBoardReturn {
 }
 
 /**
- * YouTube URL에서 Video ID 추출
- * @param url YouTube URL
- * @returns Video ID or null
+ * YouTube URL에서 Video ID를 추출하는 유틸리티 함수
+ * 다양한 YouTube URL 형식을 지원합니다.
+ * - https://www.youtube.com/watch?v=VIDEO_ID
+ * - https://youtu.be/VIDEO_ID
+ * - https://www.youtube.com/embed/VIDEO_ID
+ *
+ * @param url - YouTube URL
+ * @returns Video ID 또는 null
  */
-export const extractYoutubeVideoId = (url?: string): string | null => {
+export function extractYoutubeVideoId(url?: string): string | null {
   if (!url) return null;
 
-  // 다양한 YouTube URL 형식 지원
-  // https://www.youtube.com/watch?v=VIDEO_ID
-  // https://youtu.be/VIDEO_ID
-  // https://www.youtube.com/embed/VIDEO_ID
   const patterns = [
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\s]+)/,
     /^([a-zA-Z0-9_-]{11})$/,
@@ -129,14 +130,15 @@ export const extractYoutubeVideoId = (url?: string): string | null => {
   }
 
   return null;
-};
+}
 
 /**
- * 날짜를 YYYY.MM.DD 형식으로 변환
- * @param dateString 날짜 문자열
- * @returns 포맷된 날짜 문자열
+ * 날짜를 YYYY.MM.DD 형식으로 변환하는 유틸리티 함수
+ *
+ * @param dateString - ISO 형식의 날짜 문자열
+ * @returns YYYY.MM.DD 형식의 날짜 문자열
  */
-export const formatDate = (dateString?: string): string => {
+export function formatDate(dateString?: string): string {
   if (!dateString) return "";
 
   const date = new Date(dateString);
@@ -145,32 +147,36 @@ export const formatDate = (dateString?: string): string => {
   const day = String(date.getDate()).padStart(2, "0");
 
   return `${year}.${month}.${day}`;
-};
+}
 
 /**
- * 게시글 상세 이미지 URL 생성
- * @param images 이미지 배열
- * @param index 이미지 인덱스
- * @returns 이미지 URL or null
+ * 게시글 이미지의 전체 URL을 생성하는 유틸리티 함수
+ * Google Storage의 이미지 경로를 전체 URL로 변환합니다.
+ *
+ * @param images - 이미지 경로 배열
+ * @param index - 가져올 이미지의 인덱스 (기본값: 0)
+ * @returns 이미지 전체 URL 또는 null
  */
-export const getBoardImageUrl = (
+export function getBoardImageUrl(
   images?: string[],
   index: number = 0
-): string | null => {
+): string | null {
   if (!images || images.length === 0) return null;
   if (index >= images.length) return null;
 
   return `https://storage.googleapis.com/${images[index]}`;
-};
+}
 
 /**
- * YouTube 썸네일 URL 생성
- * @param youtubeUrl YouTube URL
- * @returns 썸네일 URL or null
+ * YouTube 썸네일 URL을 생성하는 유틸리티 함수
+ * YouTube URL에서 Video ID를 추출하여 썸네일 이미지 URL을 생성합니다.
+ *
+ * @param youtubeUrl - YouTube URL
+ * @returns YouTube 썸네일 이미지 URL 또는 null
  */
-export const getYoutubeThumbnailUrl = (youtubeUrl?: string): string | null => {
+export function getYoutubeThumbnailUrl(youtubeUrl?: string): string | null {
   const videoId = extractYoutubeVideoId(youtubeUrl);
   if (!videoId) return null;
 
   return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-};
+}
