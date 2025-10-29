@@ -15,7 +15,7 @@ test.describe("Boards 컴포넌트 데이터 바인딩", () => {
   }) => {
     // 간단한 방법: UI가 렌더링되었는지 확인하고, UI를 통해 데이터 검증
     // API 응답은 이미 beforeEach에서 발생했으므로 UI 검증에 집중
-    
+
     // 게시글 목록이 렌더링될 때까지 대기
     const listItems = page.locator('[data-testid^="board-item-"]');
     await expect(listItems.first()).toBeVisible({ timeout: 2000 });
@@ -26,7 +26,7 @@ test.describe("Boards 컴포넌트 데이터 바인딩", () => {
 
     // 첫 번째 게시글의 요소들이 모두 표시되는지 확인
     const firstItem = listItems.first();
-    
+
     // 제목이 있는지 확인 (비어있지 않음)
     const titleElement = firstItem.locator('[data-testid^="board-title-"]');
     await expect(titleElement).toBeVisible({ timeout: 2000 });
@@ -45,13 +45,14 @@ test.describe("Boards 컴포넌트 데이터 바인딩", () => {
     await expect(dateElement).toBeVisible({ timeout: 2000 });
     const dateText = await dateElement.textContent();
     expect(dateText).toMatch(/^\d{4}\.\d{2}\.\d{2}$/);
-    
+
     // API 응답 검증 (선택적)
-    const response = await page.waitForResponse(
-      (response) => response.url().includes("graphql"),
-      { timeout: 500 }
-    ).catch(() => null);
-    
+    const response = await page
+      .waitForResponse((response) => response.url().includes("graphql"), {
+        timeout: 500,
+      })
+      .catch(() => null);
+
     if (response) {
       expect(response.status()).toBe(200);
     }
