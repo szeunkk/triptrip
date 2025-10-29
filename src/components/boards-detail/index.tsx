@@ -44,7 +44,11 @@ export function BoardsDetail() {
 
   // 데이터 바인딩
   const board = data.fetchBoard;
-  const boardImageUrl = getBoardImageUrl(board.images, 0);
+  // 최대 3개의 이미지 URL 배열 생성
+  const boardImageUrls =
+    board.images
+      ?.map((_, index) => getBoardImageUrl(board.images, index))
+      .filter((url): url is string => url !== null && url.length > 0) || [];
   const youtubeThumbnailUrl = getYoutubeThumbnailUrl(board.youtubeUrl);
   const formattedDate = formatDate(board.createdAt);
 
@@ -103,18 +107,21 @@ export function BoardsDetail() {
       {/* Gap */}
       <div className={styles.gap}></div>
 
-      {/* Detail Image Section - 이미지가 있을 경우에만 표시 */}
-      {boardImageUrl && (
+      {/* Detail Image Section - 이미지가 있을 경우에만 표시 (최대 3개) */}
+      {boardImageUrls.length > 0 && (
         <>
           <div className={styles.detailImage}>
-            <Image
-              src={boardImageUrl}
-              alt="detail"
-              width={400}
-              height={531}
-              className={styles.mainImage}
-              data-testid="board-main-image"
-            />
+            {boardImageUrls.map((imageUrl, index) => (
+              <Image
+                key={index}
+                src={imageUrl}
+                alt={`detail-${index + 1}`}
+                width={400}
+                height={531}
+                className={styles.mainImage}
+                data-testid={`board-main-image-${index}`}
+              />
+            ))}
           </div>
 
           {/* Gap */}

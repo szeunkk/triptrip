@@ -75,6 +75,40 @@ export const formatDate = (dateString: string): string => {
 };
 
 /**
+ * YYYY-MM-DD 형식의 날짜를 ISO 8601 형식으로 변환하는 함수
+ * startDate는 해당 날짜의 00:00:00 UTC로 변환
+ * endDate는 해당 날짜의 23:59:59.999 UTC로 변환
+ *
+ * @param dateString YYYY-MM-DD 형식의 날짜 문자열
+ * @param isEndDate 종료 날짜 여부 (true: 23:59:59.999, false: 00:00:00.000)
+ * @returns ISO 8601 형식의 날짜 문자열 (예: 2019-12-03T09:54:33.000Z)
+ */
+export const convertToISODate = (
+  dateString?: string,
+  isEndDate: boolean = false
+): string | undefined => {
+  if (!dateString) return undefined;
+
+  try {
+    const [year, month, day] = dateString.split("-").map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+
+    if (isEndDate) {
+      // 종료 날짜는 23:59:59.999로 설정
+      date.setUTCHours(23, 59, 59, 999);
+    } else {
+      // 시작 날짜는 00:00:00.000으로 설정
+      date.setUTCHours(0, 0, 0, 0);
+    }
+
+    return date.toISOString();
+  } catch (error) {
+    console.error("날짜 변환 오류:", error);
+    return undefined;
+  }
+};
+
+/**
  * 게시글 목록을 가져오는 커스텀 훅
  * Apollo Client의 useQuery를 사용하여 fetchBoards GraphQL 쿼리를 실행합니다.
  *

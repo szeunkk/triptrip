@@ -6,7 +6,11 @@ import { SearchBar } from "@/commons/components/searchbar";
 import { DatePicker } from "@/commons/components/datepicker";
 import { Button } from "@/commons/components/button";
 import { Pagination } from "@/commons/components/pagination";
-import { useFetchBoards, formatDate } from "./hooks/index.binding.hook";
+import {
+  useFetchBoards,
+  formatDate,
+  convertToISODate,
+} from "./hooks/index.binding.hook";
 import styles from "./styles.module.css";
 
 /**
@@ -22,12 +26,19 @@ export function Boards() {
     endDate?: string;
   }>({});
 
-  // API 데이터 가져오기
+  // 날짜 검색: startDate와 endDate가 모두 입력되었을 때만 검색
+  const hasCompleteDateRange = dateRange.startDate && dateRange.endDate;
+
+  // API 데이터 가져오기 (날짜를 ISO 8601 형식으로 변환)
   const { data, loading, error } = useFetchBoards({
     page: currentPage,
     search: searchKeyword || undefined,
-    startDate: dateRange.startDate,
-    endDate: dateRange.endDate,
+    startDate: hasCompleteDateRange
+      ? convertToISODate(dateRange.startDate, false)
+      : undefined,
+    endDate: hasCompleteDateRange
+      ? convertToISODate(dateRange.endDate, true)
+      : undefined,
   });
 
   const totalPages = 5; // TODO: API에서 전체 페이지 수를 가져올 수 있다면 동적으로 설정
@@ -54,13 +65,25 @@ export function Boards() {
   };
 
   const handleStartDateChange = (date: string) => {
-    setDateRange((prev) => ({ ...prev, startDate: date }));
-    setCurrentPage(1); // 날짜 변경 시 첫 페이지로 이동
+    setDateRange((prev) => {
+      const newRange = { ...prev, startDate: date };
+      // startDate와 endDate가 모두 있을 때만 첫 페이지로 이동
+      if (newRange.startDate && newRange.endDate) {
+        setCurrentPage(1);
+      }
+      return newRange;
+    });
   };
 
   const handleEndDateChange = (date: string) => {
-    setDateRange((prev) => ({ ...prev, endDate: date }));
-    setCurrentPage(1); // 날짜 변경 시 첫 페이지로 이동
+    setDateRange((prev) => {
+      const newRange = { ...prev, endDate: date };
+      // startDate와 endDate가 모두 있을 때만 첫 페이지로 이동
+      if (newRange.startDate && newRange.endDate) {
+        setCurrentPage(1);
+      }
+      return newRange;
+    });
   };
 
   // 게시글 데이터 (실제 API 데이터 사용)
