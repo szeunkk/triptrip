@@ -198,7 +198,6 @@ test.describe("Boards 컴포넌트 데이터 바인딩", () => {
       const listItems = page.locator('[data-testid^="board-item-"]');
       // 검색 결과가 있으면 표시, 없으면 빈 메시지 표시
       const hasResults = (await listItems.count()) > 0;
-      const emptyMessage = page.locator(".emptyMessage");
 
       if (hasResults) {
         await expect(listItems.first()).toBeVisible({ timeout: 2000 });
