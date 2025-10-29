@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import styles from "./styles.module.css";
+import { useFetchBoardsOfTheBest } from "./hooks/index.binding.hook";
 
 /**
  * BoardsBest Component
@@ -10,45 +11,72 @@ import styles from "./styles.module.css";
  * Title, Gap, Best 영역으로 구성됩니다.
  */
 export function BoardsBest() {
-  // 임시 베스트 게시글 데이터
-  const bestTalks = [
-    {
-      id: 1,
-      image: "/images/img-1.svg",
-      title: "제주 살이 1일차 청산별곡이 생각나네요",
-      profileImage: "/images/profile/1.svg",
-      userName: "홍길동",
-      goodCount: 24,
-      date: "2024.11.11",
-    },
-    {
-      id: 2,
-      image: "/images/img-2.svg",
-      title: "길 걷고 있었는데 고양이한테 간택 받았어요",
-      profileImage: "/images/profile/2.svg",
-      userName: "홍길동",
-      goodCount: 24,
-      date: "2024.11.11",
-    },
-    {
-      id: 3,
-      image: "/images/img-3.svg",
-      title: "강릉 여름바다 보기 좋네요 서핑하고 싶어요!",
-      profileImage: "/images/profile/3.svg",
-      userName: "홍길동",
-      goodCount: 24,
-      date: "2024.11.11",
-    },
-    {
-      id: 4,
-      image: "/images/img-4.svg",
-      title: "누가 양양 핫하다고 했어 나밖에 없는데?",
-      profileImage: "/images/profile/4.svg",
-      userName: "홍길동",
-      goodCount: 24,
-      date: "2024.11.11",
-    },
-  ];
+  // 베스트 게시글 데이터 가져오기
+  const { data, loading, error } = useFetchBoardsOfTheBest();
+
+  // 날짜 포맷 함수 (YYYY.MM.DD)
+  const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}.${month}.${day}`;
+  };
+
+  // 이미지 URL 생성 함수
+  const getImageUrl = (images: string[], index: number): string => {
+    if (images && images.length > 0 && images[0]) {
+      return `https://storage.googleapis.com/${images[0]}`;
+    }
+    return `/images/img-${index + 1}.svg`;
+  };
+
+  // 프로필 이미지 URL 생성 함수
+  const getProfileImageUrl = (index: number): string => {
+    return `/images/profile/${index + 1}.svg`;
+  };
+
+  // 로딩 중일 때
+  if (loading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.title}>
+          <h2 className={styles.titleText}>오늘 핫한 트립토크</h2>
+        </div>
+        <div className={styles.gap}></div>
+        <div className={styles.best}>{/* 로딩 상태 표시 */}</div>
+      </div>
+    );
+  }
+
+  // 에러가 발생했을 때
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.title}>
+          <h2 className={styles.titleText}>오늘 핫한 트립토크</h2>
+        </div>
+        <div className={styles.gap}></div>
+        <div className={styles.best}>{/* 에러 상태 표시 */}</div>
+      </div>
+    );
+  }
+
+  // 데이터가 없을 때
+  if (!data?.fetchBoardsOfTheBest || data.fetchBoardsOfTheBest.length === 0) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.title}>
+          <h2 className={styles.titleText}>오늘 핫한 트립토크</h2>
+        </div>
+        <div className={styles.gap}></div>
+        <div className={styles.best}>{/* 데이터 없음 상태 표시 */}</div>
+      </div>
+    );
+  }
+
+  // 최대 4개의 게시글만 표시
+  const bestTalks = data.fetchBoardsOfTheBest.slice(0, 4);
 
   return (
     <div className={styles.container}>
@@ -57,30 +85,39 @@ export function BoardsBest() {
       </div>
       <div className={styles.gap}></div>
       <div className={styles.best}>
-        {bestTalks.map((talk) => (
-          <div key={talk.id} className={styles.card}>
+        {bestTalks.map((talk, index) => (
+          <div
+            key={talk._id}
+            className={styles.card}
+            data-testid="boards-best-card"
+          >
             <div className={styles.cardImage}>
               <Image
-                src={talk.image}
+                src={getImageUrl(talk.images, index)}
                 alt={talk.title}
                 width={112}
                 height={152}
                 className={styles.image}
+                data-testid="card-image"
               />
             </div>
             <div className={styles.cardContent}>
               <div className={styles.cardTop}>
-                <h3 className={styles.cardTitle}>{talk.title}</h3>
+                <h3 className={styles.cardTitle} data-testid="card-title">
+                  {talk.title}
+                </h3>
                 <div className={styles.profile}>
                   <div className={styles.profileImage}>
                     <Image
-                      src={talk.profileImage}
-                      alt={talk.userName}
+                      src={getProfileImageUrl(index)}
+                      alt={talk.writer}
                       width={24}
                       height={24}
                     />
                   </div>
-                  <span className={styles.userName}>{talk.userName}</span>
+                  <span className={styles.userName} data-testid="card-username">
+                    {talk.writer}
+                  </span>
                 </div>
               </div>
               <div className={styles.cardBottom}>
@@ -91,9 +128,16 @@ export function BoardsBest() {
                     width={24}
                     height={24}
                   />
-                  <span className={styles.goodCount}>{talk.goodCount}</span>
+                  <span
+                    className={styles.goodCount}
+                    data-testid="card-goodcount"
+                  >
+                    {talk.likeCount}
+                  </span>
                 </div>
-                <span className={styles.date}>{talk.date}</span>
+                <span className={styles.date} data-testid="card-date">
+                  {formatDate(talk.createdAt)}
+                </span>
               </div>
             </div>
           </div>
