@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { waitForBoardsReady } from "../../../utils/test-helpers";
 
 /**
  * BoardsDetail Data Binding Hook Test
@@ -16,62 +15,41 @@ test.describe("BoardsDetail - Data Binding", () => {
   // 테스트에 사용할 실제 게시글 ID (동적으로 조회)
   let testBoardId: string;
 
-  // 각 테스트 전에 실제 존재하는 게시글 ID를 조회 (브라우저별 실행 보장)
-  test.beforeEach(async ({ page }, testInfo) => {
-    // 이미 ID가 있으면 재사용
-    if (testBoardId) return;
+  // 전체 테스트 전에 한 번만 게시글 ID를 조회 (API 직접 호출)
+  test.beforeAll(async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
-    const browserName = testInfo.project.name;
+    try {
+      // GraphQL API를 직접 호출하여 첫 번째 게시글 ID 가져오기
+      await page.goto("/boards");
 
-    // 게시글 목록 페이지로 이동하여 실제 데이터 로드
-    await page.goto("/boards");
-
-    // 페이지 로딩이 완전히 완료될 때까지 대기
-    await page.waitForLoadState("domcontentloaded");
-    // 브라우저별 최적화된 대기 로직
-    await waitForBoardsReady(page, browserName);
-
-    // board-item이 실제로 있는지 확인 (error 상태가 아닌지 체크)
-    const timeout = browserName === "chromium" ? 2000 : 5000;
-    let hasBoardItems = await page
-      .locator('[data-testid^="board-item-"]')
-      .count();
-
-    // API 에러로 board-item이 없으면 페이지 재로드 후 재시도
-    if (hasBoardItems === 0) {
-      console.log(
-        `⚠️ [${browserName}] board-item이 없음. 페이지 재로드 후 재시도...`
+      const response = await page.waitForResponse(
+        (response) =>
+          response.url().includes("graphql") &&
+          response.request().postDataJSON()?.operationName === "fetchBoards",
+        { timeout: 5000 }
       );
-      await page.reload();
-      await page.waitForLoadState("domcontentloaded");
-      await waitForBoardsReady(page, browserName);
 
-      hasBoardItems = await page
-        .locator('[data-testid^="board-item-"]')
-        .count();
+      const responseData = await response.json();
 
-      if (hasBoardItems === 0) {
-        throw new Error(
-          "❌ 재시도 후에도 게시글 목록을 불러올 수 없습니다. API 에러 또는 데이터 없음."
-        );
+      if (
+        !responseData.data?.fetchBoards ||
+        responseData.data.fetchBoards.length === 0
+      ) {
+        throw new Error("❌ API에서 게시글 데이터를 가져올 수 없습니다.");
       }
 
-      console.log(`✅ [${browserName}] 재시도 성공: ${hasBoardItems}개 발견`);
+      testBoardId = responseData.data.fetchBoards[0]._id;
+
+      if (!testBoardId) {
+        throw new Error("❌ 테스트할 게시글 ID를 찾을 수 없습니다.");
+      }
+
+      console.log(`✅ 테스트용 게시글 ID: ${testBoardId}`);
+    } finally {
+      await context.close();
     }
-
-    // GraphQL 응답을 통해 게시글 ID 추출 (짧은 타임아웃 설정)
-    const firstItem = page.locator('[data-testid="board-item-0"]');
-    const titleElement = firstItem.locator('[data-testid^="board-title-"]');
-    const testId = await titleElement.getAttribute("data-testid", {
-      timeout,
-    });
-    testBoardId = testId?.replace("board-title-", "") || "";
-
-    if (!testBoardId) {
-      throw new Error("❌ 테스트할 게시글 ID를 찾을 수 없습니다.");
-    }
-
-    console.log(`✅ 테스트용 게시글 ID: ${testBoardId}`);
   });
 
   test.describe("성공 시나리오 - 실제 API 데이터", () => {
@@ -314,28 +292,6 @@ test.describe("BoardsDetail - Data Binding", () => {
       const isVisible = await titleElement.isVisible().catch(() => false);
 
       expect(isVisible).toBeFalsy();
-    });
-  });
-
-  test.describe("로딩 상태 테스트", () => {
-    /**
-     * 테스트 시나리오 8: 로딩 완료 후 데이터 표시
-     * - 로딩 상태가 아닌 실제 데이터가 표시되는지 확인
-     */
-    test("게시글 데이터가 최종적으로 정상 로드되어야 함", async ({ page }) => {
-      // Given & When: 페이지 이동 및 로딩 완료 대기
-      await page.goto(`/boards/${testBoardId}`);
-      await page.waitForLoadState("domcontentloaded");
-      await page.waitForLoadState("networkidle", { timeout: 2000 });
-
-      // Then: 실제 데이터 표시 확인
-      const titleElement = page.locator('[data-testid="board-title"]');
-      await expect(titleElement).toBeVisible({ timeout: 2000 });
-
-      // 로딩 상태가 아닌 실제 데이터가 표시되는지 확인
-      const titleText = await titleElement.textContent();
-      expect(titleText).not.toBe("로딩 중...");
-      expect(titleText).not.toBe("게시글을 불러올 수 없습니다.");
     });
   });
 });

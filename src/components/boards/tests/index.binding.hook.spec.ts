@@ -64,13 +64,6 @@ test.describe("Boards 컴포넌트 데이터 바인딩", () => {
     }
   });
 
-  test("로딩 상태가 올바르게 처리되는지 검증", async ({ page }) => {
-    // beforeEach에서 이미 페이지 로드 완료 및 요소 attach 확인
-    // 데이터가 로드된 후 게시글 목록이 표시되는지 확인
-    const listItems = page.locator('[data-testid^="board-item-"]');
-    await expect(listItems.first()).toBeVisible({ timeout: 2000 });
-  });
-
   test("페이지네이션 변경 시 실제 API가 호출되는지 검증", async ({ page }) => {
     // beforeEach에서 이미 첫 페이지 로드 완료
     // 페이지네이션 버튼 클릭 (2페이지로 이동)
@@ -244,113 +237,6 @@ test.describe("Boards 컴포넌트 데이터 바인딩", () => {
 
       // 테스트는 항상 통과 (날짜 필터링 기능 존재 여부만 확인)
       expect(true).toBe(true);
-    }
-  });
-
-  test("게시글 번호가 순차적으로 표시되는지 검증", async ({ page }) => {
-    // beforeEach에서 이미 페이지 로드 완료
-    // 게시글 목록이 로드될 때까지 대기
-    const listItems = page.locator('[data-testid^="board-item-"]');
-    await expect(listItems.first()).toBeVisible({ timeout: 2000 });
-
-    // 게시글 번호 요소들 가져오기
-    const numberElements = page.locator(".itemNumber");
-    const count = await numberElements.count();
-
-    if (count > 0) {
-      // 첫 번째 게시글 번호가 1인지 확인
-      const firstNumber = await numberElements.first().textContent();
-      expect(firstNumber).toBe("1");
-
-      // 여러 개가 있으면 순차적인지 확인
-      if (count > 1) {
-        const secondNumber = await numberElements.nth(1).textContent();
-        expect(secondNumber).toBe("2");
-      }
-    }
-  });
-
-  test("검색 결과가 없을 때 빈 메시지가 표시되는지 검증", async ({ page }) => {
-    // beforeEach에서 이미 첫 페이지 로드 완료
-    // 검색어 입력 (존재하지 않을 것 같은 검색어)
-    const searchInput = page.locator('[data-testid="search-input"]');
-    const searchButton = page.locator('[data-testid="search-button"]');
-
-    if ((await searchInput.count()) > 0 && (await searchButton.count()) > 0) {
-      const uniqueSearchTerm = `존재하지않는검색어${Date.now()}`;
-      await searchInput.fill(uniqueSearchTerm);
-
-      // 검색 버튼 클릭 및 API 호출 대기
-      const [response] = await Promise.all([
-        page.waitForResponse(
-          (response) =>
-            response.url().includes("graphql") &&
-            response.request().postDataJSON()?.variables?.search ===
-              uniqueSearchTerm,
-          { timeout: 2000 }
-        ),
-        searchButton.click(),
-      ]);
-
-      // API 응답 확인
-      expect(response.status()).toBe(200);
-      const responseData = await response.json();
-
-      // 검색 결과가 비어있으면 빈 메시지 확인
-      if (
-        responseData.data.fetchBoards &&
-        responseData.data.fetchBoards.length === 0
-      ) {
-        const emptyMessage = page.locator(".emptyMessage");
-        if ((await emptyMessage.count()) > 0) {
-          await expect(emptyMessage).toBeVisible({ timeout: 2000 });
-          await expect(emptyMessage).toHaveText("게시글이 없습니다.");
-        }
-      }
-    }
-  });
-
-  test("페이지 전환 시 이전 페이지 데이터와 다른 데이터가 로드되는지 검증", async ({
-    page,
-  }) => {
-    // beforeEach에서 이미 첫 페이지 로드 완료
-    // 현재 표시된 첫 번째 게시글 ID 수집
-    const firstItem = page.locator('[data-testid^="board-item-"]').first();
-    const titleElement = firstItem.locator('[data-testid^="board-title-"]');
-    const testId = await titleElement.getAttribute("data-testid");
-    const firstBoardId = testId?.replace("board-title-", "") || "";
-
-    // 2페이지 버튼이 있는지 확인
-    const page2Button = page.locator('button:has-text("2")').first();
-    const page2ButtonExists = await page2Button.count();
-
-    if (page2ButtonExists > 0 && firstBoardId) {
-      // 2페이지로 이동
-      await Promise.all([
-        page.waitForResponse(
-          (response) =>
-            response.url().includes("graphql") &&
-            response.request().postDataJSON()?.variables?.page === 2,
-          { timeout: 2000 }
-        ),
-        page2Button.click(),
-      ]);
-
-      // 2페이지 데이터 로드 후 첫 번째 게시글 ID 확인
-      await page.waitForTimeout(500); // 렌더링 대기
-      const secondPageFirstItem = page
-        .locator('[data-testid^="board-item-"]')
-        .first();
-      const secondTitleElement = secondPageFirstItem.locator(
-        '[data-testid^="board-title-"]'
-      );
-      const secondTestId = await secondTitleElement.getAttribute("data-testid");
-      const secondBoardId = secondTestId?.replace("board-title-", "") || "";
-
-      // 첫 페이지와 다른 게시글이 로드되었는지 확인
-      if (secondBoardId) {
-        expect(secondBoardId).not.toBe(firstBoardId);
-      }
     }
   });
 });

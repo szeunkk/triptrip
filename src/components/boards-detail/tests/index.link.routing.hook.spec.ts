@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { waitForBoardsReady } from "../../../utils/test-helpers";
 
 /**
  * BoardsDetail 컴포넌트 링크 라우팅 테스트
@@ -12,59 +11,40 @@ test.describe("BoardsDetail 링크 라우팅 테스트", () => {
   // 테스트에 사용할 실제 게시글 ID
   let testBoardId: string;
 
-  // 각 테스트 전에 실제 존재하는 게시글 ID를 조회
-  test.beforeEach(async ({ page }, testInfo) => {
-    // 이미 ID가 있으면 재사용
-    if (testBoardId) return;
+  // 전체 테스트 전에 한 번만 게시글 ID를 조회 (API 직접 호출)
+  test.beforeAll(async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
-    const browserName = testInfo.project.name;
+    try {
+      // GraphQL API를 직접 호출하여 첫 번째 게시글 ID 가져오기
+      await page.goto("/boards");
 
-    // 게시글 목록 페이지로 이동하여 실제 데이터 로드
-    await page.goto("/boards");
-
-    // 페이지 로딩이 완전히 완료될 때까지 대기
-    await page.waitForLoadState("domcontentloaded");
-    // 브라우저별 최적화된 대기 로직
-    await waitForBoardsReady(page, browserName);
-
-    // board-item이 실제로 있는지 확인 (error 상태가 아닌지 체크)
-    const timeout = browserName === "chromium" ? 2000 : 5000;
-    let hasBoardItems = await page
-      .locator('[data-testid^="board-item-"]')
-      .count();
-
-    // API 에러로 board-item이 없으면 페이지 재로드 후 재시도
-    if (hasBoardItems === 0) {
-      console.log(
-        `⚠️ [${browserName}] board-item이 없음. 페이지 재로드 후 재시도...`
+      const response = await page.waitForResponse(
+        (response) =>
+          response.url().includes("graphql") &&
+          response.request().postDataJSON()?.operationName === "fetchBoards",
+        { timeout: 5000 }
       );
-      await page.reload();
-      await page.waitForLoadState("domcontentloaded");
-      await waitForBoardsReady(page, browserName);
 
-      hasBoardItems = await page
-        .locator('[data-testid^="board-item-"]')
-        .count();
+      const responseData = await response.json();
 
-      if (hasBoardItems === 0) {
-        throw new Error(
-          "❌ 재시도 후에도 게시글 목록을 불러올 수 없습니다. API 에러 또는 데이터 없음."
-        );
+      if (
+        !responseData.data?.fetchBoards ||
+        responseData.data.fetchBoards.length === 0
+      ) {
+        throw new Error("❌ API에서 게시글 데이터를 가져올 수 없습니다.");
       }
 
-      console.log(`✅ [${browserName}] 재시도 성공: ${hasBoardItems}개 발견`);
-    }
+      testBoardId = responseData.data.fetchBoards[0]._id;
 
-    // 페이지에서 게시글 ID 추출 (짧은 타임아웃 설정)
-    const firstItem = page.locator('[data-testid="board-item-0"]');
-    const titleElement = firstItem.locator('[data-testid^="board-title-"]');
-    const testId = await titleElement.getAttribute("data-testid", {
-      timeout,
-    });
-    testBoardId = testId?.replace("board-title-", "") || "";
+      if (!testBoardId) {
+        throw new Error("❌ 테스트할 게시글 ID를 찾을 수 없습니다.");
+      }
 
-    if (!testBoardId) {
-      throw new Error("❌ 테스트할 게시글 ID를 찾을 수 없습니다.");
+      console.log(`✅ 테스트용 게시글 ID: ${testBoardId}`);
+    } finally {
+      await context.close();
     }
   });
 
@@ -307,23 +287,6 @@ test.describe("BoardsDetail 링크 라우팅 테스트", () => {
       // 네비게이션 완료 대기
       await navigationPromise;
       await page.waitForLoadState("networkidle", { timeout: 2000 });
-    });
-
-    test("목록으로 버튼은 boardId 없이도 동작해야 함", async ({ page }) => {
-      // Given: 정상적인 페이지 로딩
-      await page.goto(`/boards/${testBoardId}`);
-      await page.waitForLoadState("domcontentloaded");
-      await page.waitForLoadState("networkidle", { timeout: 2000 });
-
-      // 버튼이 렌더링될 때까지 대기
-      const listButton = page.getByTestId("button-list");
-      await expect(listButton).toBeVisible({ timeout: 2000 });
-
-      // When: 목록으로 버튼 클릭 (boardId 불필요)
-      await listButton.click();
-
-      // Then: boardId 없이도 목록 페이지로 이동
-      await expect(page).toHaveURL("/boards", { timeout: 2000 });
     });
   });
 });

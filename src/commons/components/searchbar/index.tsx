@@ -9,6 +9,7 @@ export interface SearchBarProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   variant?: "default" | "selected" | "typing" | "filled";
   size?: "small" | "medium";
+  "data-testid"?: string;
 }
 
 /**
@@ -26,6 +27,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
       size = "medium",
       placeholder = "제목을 검색해 주세요.",
       className,
+      "data-testid": dataTestId,
       ...rest
     },
     ref
@@ -53,6 +55,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           type="text"
           className={styles.input}
           placeholder={placeholder}
+          data-testid={dataTestId}
           {...rest}
         />
       </div>
