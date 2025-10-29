@@ -2,9 +2,11 @@
 
 import { gql, useQuery } from "@apollo/client";
 import { useParams } from "next/navigation";
+import type { ApolloError } from "@apollo/client";
 
 /**
- * GraphQL 쿼리: 게시글 상세 정보 조회
+ * GraphQL 쿼리 정의
+ * fetchBoard 쿼리를 사용하여 게시글 상세 정보를 가져옵니다.
  */
 const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
@@ -27,14 +29,17 @@ const FETCH_BOARD = gql`
 `;
 
 /**
- * GraphQL 응답 타입 정의
+ * 게시글 주소 타입 정의
  */
-interface IBoardAddress {
+export interface IBoardAddress {
   address?: string;
   addressDetail?: string;
 }
 
-interface IBoard {
+/**
+ * 게시글 데이터 타입 정의
+ */
+export interface IBoard {
   _id: string;
   writer?: string;
   title?: string;
@@ -47,32 +52,57 @@ interface IBoard {
   boardAddress?: IBoardAddress;
 }
 
-interface IFetchBoardData {
+/**
+ * fetchBoard 쿼리 응답 타입
+ */
+export interface IFetchBoardResponse {
   fetchBoard: IBoard;
 }
 
-interface IFetchBoardVariables {
+/**
+ * fetchBoard 쿼리 변수 타입
+ */
+export interface IFetchBoardVariables {
   boardId: string;
 }
 
 /**
- * 게시글 상세 데이터를 불러오는 훅
- * @returns { data, loading, error }
+ * useFetchBoard 훅 반환 타입
  */
-export const useFetchBoard = () => {
+export interface IUseFetchBoardReturn {
+  data: IFetchBoardResponse | undefined;
+  loading: boolean;
+  error: ApolloError | undefined;
+}
+
+/**
+ * 게시글 상세 데이터를 가져오는 커스텀 훅
+ * Apollo Client의 useQuery를 사용하여 fetchBoard GraphQL 쿼리를 실행합니다.
+ * 다이나믹 라우팅된 boardId를 useParams로 추출하여 사용합니다.
+ *
+ * @returns {Object} 쿼리 결과 객체
+ * @returns {IFetchBoardResponse | undefined} data - 게시글 상세 데이터
+ * @returns {boolean} loading - 로딩 상태
+ * @returns {ApolloError | undefined} error - 에러 객체
+ */
+export function useFetchBoard(): IUseFetchBoardReturn {
   const params = useParams();
   const boardId = params.boardId as string;
 
   const { data, loading, error } = useQuery<
-    IFetchBoardData,
+    IFetchBoardResponse,
     IFetchBoardVariables
   >(FETCH_BOARD, {
     variables: { boardId },
     skip: !boardId,
   });
 
-  return { data, loading, error };
-};
+  return {
+    data,
+    loading,
+    error,
+  };
+}
 
 /**
  * YouTube URL에서 Video ID 추출

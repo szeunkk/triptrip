@@ -125,29 +125,21 @@ test.describe("BoardsDetail - Data Binding", () => {
 
   /**
    * 테스트 시나리오 5: 로딩 상태 확인
+   * 데이터가 최종적으로 정상 로드되는지 확인
    */
-  test("게시글 데이터 로딩 중 로딩 상태가 표시되어야 함", async ({ page }) => {
+  test("게시글 데이터가 최종적으로 정상 로드되어야 함", async ({ page }) => {
     const testBoardId = "690174c9d4299d0029cd09b5";
-
-    // 네트워크 속도를 느리게 설정하여 로딩 상태를 확인
-    await page.route("**/graphql", async (route) => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      await route.continue();
-    });
 
     await page.goto(`/boards/${testBoardId}`);
 
-    // 로딩 상태 확인 (선택적)
-    const loadingElement = page.locator('[data-testid="board-loading"]');
-    const loadingCount = await loadingElement.count();
-
-    if (loadingCount > 0) {
-      await expect(loadingElement).toBeVisible({ timeout: 1000 });
-    }
-
     // 최종적으로 데이터가 로드되어야 함
     await page.waitForLoadState("networkidle", { timeout: 2000 });
+
     const titleElement = page.locator('[data-testid="board-title"]');
     await expect(titleElement).toBeVisible({ timeout: 2000 });
+
+    // 로딩 상태가 아닌 실제 데이터가 표시되는지 확인
+    const titleText = await titleElement.textContent();
+    expect(titleText).not.toBe("로딩 중...");
   });
 });

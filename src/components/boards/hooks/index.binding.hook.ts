@@ -1,4 +1,4 @@
-import { gql, useQuery, DocumentNode } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 
 /**
  * GraphQL 쿼리 정의
@@ -23,7 +23,7 @@ const FETCH_BOARDS = gql`
       createdAt
     }
   }
-` as DocumentNode;
+`;
 
 /**
  * 게시글 데이터 타입 정의
@@ -38,7 +38,7 @@ export interface IBoard {
 /**
  * fetchBoards 쿼리 응답 타입
  */
-export interface IFetchBoardsData {
+export interface IFetchBoardsResponse {
   fetchBoards: IBoard[];
 }
 
@@ -50,6 +50,15 @@ export interface IFetchBoardsVariables {
   endDate?: string;
   search?: string;
   page?: number;
+}
+
+/**
+ * useFetchBoards 훅 반환 타입
+ */
+export interface IUseFetchBoardsReturn {
+  data: IFetchBoardsResponse | undefined;
+  loading: boolean;
+  error: Error | undefined;
 }
 
 /**
@@ -67,18 +76,27 @@ export const formatDate = (dateString: string): string => {
 
 /**
  * 게시글 목록을 가져오는 커스텀 훅
- * Apollo Client의 useQuery를 사용하여 데이터를 요청합니다.
+ * Apollo Client의 useQuery를 사용하여 fetchBoards GraphQL 쿼리를 실행합니다.
  *
- * @param variables 쿼리 변수 (startDate, endDate, search, page)
- * @returns { data, loading, error } 형태의 쿼리 결과
+ * @param variables - 쿼리 변수 (startDate, endDate, search, page)
+ * @returns {Object} 쿼리 결과 객체
+ * @returns {IFetchBoardsResponse | undefined} data - 게시글 목록 데이터
+ * @returns {boolean} loading - 로딩 상태
+ * @returns {Error | undefined} error - 에러 객체
  */
-export const useFetchBoards = (variables?: IFetchBoardsVariables) => {
+export function useFetchBoards(
+  variables?: IFetchBoardsVariables
+): IUseFetchBoardsReturn {
   const { data, loading, error } = useQuery<
-    IFetchBoardsData,
+    IFetchBoardsResponse,
     IFetchBoardsVariables
   >(FETCH_BOARDS, {
     variables,
   });
 
-  return { data, loading, error };
-};
+  return {
+    data,
+    loading,
+    error: error as Error | undefined,
+  };
+}
