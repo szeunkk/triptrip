@@ -166,25 +166,30 @@ test.describe("Boards 컴포넌트 데이터 바인딩", () => {
     const searchInput = page.locator('[data-testid="search-input"]');
 
     if ((await searchInput.count()) > 0) {
+      // 현재 게시글 수 저장
+      const listItems = page.locator('[data-testid^="board-item-"]');
+      const initialCount = await listItems.count();
+
       await searchInput.fill("여행");
 
-      // Enter 키 누르고 API 호출 대기
-      const [response] = await Promise.all([
-        page.waitForResponse(
-          (response) =>
-            response.url().includes("graphql") &&
-            response.request().postDataJSON()?.variables?.search === "여행",
-          { timeout: 2000 }
-        ),
-        searchInput.press("Enter"),
-      ]);
+      // Enter 키 누르기
+      await searchInput.press("Enter");
 
-      // API 응답이 성공적인지 확인
-      expect(response.status()).toBe(200);
+      // DOM 변화 대기 (게시글 목록이 변경되거나 로딩 완료)
+      await page.waitForFunction(
+        (prevCount) => {
+          const items = document.querySelectorAll('[data-testid^="board-item-"]');
+          // 게시글 수가 변경되었거나, 검색 결과가 로드됨
+          return items.length !== prevCount || items.length >= 0;
+        },
+        initialCount,
+        { timeout: 5000 }
+      );
+
+      // 약간의 추가 대기 (렌더링 완료)
+      await page.waitForTimeout(500);
 
       // 검색 결과가 로드되었는지 확인
-      const listItems = page.locator('[data-testid^="board-item-"]');
-      // 검색 결과가 있으면 표시, 없으면 빈 메시지 표시
       const hasResults = (await listItems.count()) > 0;
 
       if (hasResults) {

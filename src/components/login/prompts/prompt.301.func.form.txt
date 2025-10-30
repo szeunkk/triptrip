@@ -1,0 +1,102 @@
+아래의 조건을 모두 적용하여, 아래의 요구사항을 모두 구현할 것.
+구현 결과를 체크리스트로 반환할 것.
+
+==============================================
+
+조건-커서룰) 아래의 커서룰을 적용하여 작업하고, 이 작업이 끝나면 해당 rules 적용 결과를 체크리스트로 반환할 것.
+            - @01-common.mdc
+            - @04-func.mdc
+
+==============================================
+
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: mdmoccg6)
+
+조건-파일경로) 참고할 API  문서경로: https://main-practice.codebootcamp.co.kr/graphql
+
+조건-파일경로) 참고할 TSX  파일경로: src/components/login/index.tsx
+조건-파일경로) 참고할 CSS  파일경로: src/components/login/styles.module.css
+조건-파일경로) 구현될 HOOK 파일경로: src/components/login/hooks/index.form.hook.tsx
+조건-파일경로) 구현될 TEST 파일경로: src/components/login/tests/index.form.hook.spec.ts
+
+==============================================
+
+핵심요구사항) 병렬처리 구현을 위한 작업 방식 조건
+            - 다른 채팅에서 개발중인 파일을 수정 및 삭제 하지 말 것.
+            - 테스트 충돌을 방지하기 위해, 빌드테스트, 전체테스트를 하지 말 것.
+
+핵심요구사항) 아래의 GraphQL 쿼리를 사용하여 데이터를 불러오는 훅을 구현할 것.
+            1) 로그인 API
+                - 변수
+                    - email
+                    - password
+                - 실행문
+                    - mutation loginUser($password: String!, $email: String!) {
+                        loginUser(
+                            password: $password
+                            email: $email
+                        ) {
+                            accessToken
+                        }
+                    }
+                - zod 검증 조건
+                    - email: '@' 포함
+                    - password: 최소 1글자 이상
+            
+            2) 회원 조회 API
+                - 요청 데이터  
+                    - 헤더에 인증정보 포함 => "Authorization": "Bearer accessToken"
+                - 실행문
+                    - query {
+                        fetchUserLoggedIn{
+                            _id
+                            name
+
+                        }
+                    }
+
+핵심요구사항) 라이브러리는 다음의 조건을 따를 것.
+                - 폼: 이미 설치되어있는 react-hook-form, @hookform/resolvers를 사용할 것.
+                - 검증: 이미 설치되어있는 zod를 사용할 것.
+                - API: Apollo Client의 useMutation, useQuery 훅을 사용하여 데이터를 요청할 것.
+
+핵심요구사항) 반환값은 { data, loading, error } 형태로 구성할 것.
+
+핵심요구사항) TypeScript 제네릭을 사용하여 타입 안전성을 확보할 것.
+
+핵심요구사항) 다음의 로그인 폼 기능을 playwright 테스트를 활용하여 TDD기반으로 step-by-step 으로 구현하고, 적용 결과를 체크리스트로 반환할 것.
+            1) 테스트 제외 라이브러리
+                - jest
+                - @testing-library/react
+
+            2) 테스트 조건
+                - network 통신이 포함된 테스트의 timeout은 2000ms 미만으로 설정할 것.
+                - network 통신이 없는 단순 연산, 렌더링 테스트는 500ms 미만 혹은 timeout 미설정으로 할 것.
+                - /login 페이지가 완전히 로드된 후 테스트할 것.
+                    - 페이지 로드 식별 요구사항: 고정식별자 data-testid 대기 방법
+                    - 페이지 로드 식별 금지사항: networkidle 대기 방법
+
+            3) 테스트 API 조건
+                3-1) 데이터
+                    - 실제 API 데이터를 사용할 것.
+                    - Mock데이터, MockedProvider, intercept 등 네트워크 모킹 사용 금지
+
+                3-2) 성공시나리오
+                    - 실제 API를 호출해 정상적인 응답을 수신해야 함.
+                    (1) 로그인 API
+                        - 사용할 email: "audwogus@bnd.com"
+                        - 사용할 password: "audwogus1204"
+                        - Mock 데이터를 모킹하지 말 것.
+                        - 응답 데이터가 정상적으로 UI에 반영되는 지 검증할 것.
+                        - loginUser API: accessToken이 정상적으로 반환되는지 확인할 것.
+                    (2) 로그인 성공 시 회원 조회 API
+                        - fetchUserLoggedIn API: _id, name이 정상적으로 반환되는지 확인할 것.
+                        - 반환받은 API 요청 값을 로컬스토리지에 저장할 것.
+                            - loginUser API => key: "accessToken", value: accessToken 변수 값
+                            - fetchUserLoggedIn API => key: "user", value: { _id, name }
+                    (3) 이후 쿼리스트링이 있으면, 해당 주소로 없으면 기본 페이지('/boards)로 이동할 것.
+
+                3-3) 실패시나리오
+                    - 로그인에 실패하면, 로그인 검증 실패 에러 메시지를 보여줄 것.
+                    - 검증 실패 피그마
+                        - 활용할MCP: CursorTalkToFigmaMCP(채널명: mdmoccg6)
+                        - 노드ID: 285:32761

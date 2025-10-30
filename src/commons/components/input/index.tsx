@@ -59,6 +59,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const state = getState();
 
+    // data-testid 추출 (에러 메시지용)
+    const dataTestId = rest["data-testid"];
+    const errorTestId = dataTestId ? `${dataTestId}-error` : undefined;
+
     const containerClasses = [
       styles.container,
       styles[`size_${size}`],
@@ -102,7 +106,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {/* 에러 메시지 영역 */}
-        {error && <div className={styles.errorMessage}>{error}</div>}
+        {error && (
+          <div className={styles.errorMessage} data-testid={errorTestId}>
+            {error}
+          </div>
+        )}
       </div>
     );
   }

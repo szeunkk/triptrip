@@ -1,0 +1,102 @@
+아래의 조건을 모두 적용하여, 아래의 요구사항을 모두 구현할 것.
+구현 결과를 체크리스트로 반환할 것.
+
+==============================================
+
+조건-커서룰) 아래의 커서룰을 적용하여 작업하고, 이 작업이 끝나면 해당 rules 적용 결과를 체크리스트로 반환할 것.
+            - @01-common.mdc
+            - @04-func.mdc
+
+==============================================
+
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: mdmoccg6)
+
+조건-파일경로) 참고할 API  문서경로: https://main-practice.codebootcamp.co.kr/graphql
+
+조건-파일경로) 참고할 TSX  파일경로: src/components/signup/index.tsx
+조건-파일경로) 참고할 CSS  파일경로: src/components/signup/styles.module.css
+조건-파일경로) 구현될 HOOK 파일경로: src/components/signup/hooks/index.form.hook.tsx
+조건-파일경로) 구현될 TEST 파일경로: src/components/signup/tests/index.form.hook.spec.ts
+
+==============================================
+
+핵심요구사항) 병렬처리 구현을 위한 작업 방식 조건
+            - 다른 채팅에서 개발중인 파일을 수정 및 삭제 하지 말 것.
+            - 테스트 충돌을 방지하기 위해, 빌드테스트, 전체테스트를 하지 말 것.
+
+핵심요구사항) 아래의 GraphQL 쿼리를 사용하여 데이터를 불러오는 훅을 구현할 것.
+            - 변수
+                - createUserInput
+                    - email
+                    - name
+                    - password
+                    - passwordConfirm
+            - 실행문
+                - mutation createUser($createUserInput: CreateUserInput!) {
+                    createUser(createUserInput: $createUserInput) {
+                        _id
+                    }
+                }
+            - zod 검증 조건
+                - email: '@' 포함
+                - name: 최소 1글자 이상
+                - password: 최소 8글자 이상
+                - passwordConfirm: password와 동일한 지 여부
+            
+
+핵심요구사항) 라이브러리는 다음의 조건을 따를 것.
+                - 폼: 이미 설치되어있는 react-hook-form, @hookform/resolvers를 사용할 것.
+                - 검증: 이미 설치되어있는 zod를 사용할 것.
+                - API: Apollo Client의 useMutation 훅을 사용하여 데이터를 요청할 것.
+
+핵심요구사항) 반환값은 { data, loading, error } 형태로 구성할 것.
+
+핵심요구사항) TypeScript 제네릭을 사용하여 타입 안전성을 확보할 것.
+
+핵심요구사항) 다음의 로그인 폼 기능을 playwright 테스트를 활용하여 TDD기반으로 step-by-step 으로 구현하고, 적용 결과를 체크리스트로 반환할 것.
+            1) 테스트 제외 라이브러리
+                - jest
+                - @testing-library/react
+
+            2) 테스트 조건
+                - network 통신이 포함된 테스트의 timeout은 2000ms 미만으로 설정할 것.
+                - network 통신이 없는 단순 연산, 렌더링 테스트는 500ms 미만 혹은 timeout 미설정으로 할 것.
+                - /signup 페이지가 완전히 로드된 후 테스트할 것.
+                    - 페이지 로드 식별 요구사항: 고정식별자 data-testid 대기 방법
+                    - 페이지 로드 식별 금지사항: networkidle 대기 방법
+
+            3) 테스트 API 조건
+                3-1) 데이터
+                    - 실제 API 데이터를 사용할 것.
+                    - Mock데이터, MockedProvider, intercept 등 네트워크 모킹 사용 금지
+
+                3-2) 성공시나리오
+                    - API 모킹하지 말 것.
+                    - 이메일 중복을 피하기 위해 이메일은 timestamp를 포함하여 항상 등록할 것.
+                    - _id가 정상적으로 반환되는지 확인할 것.
+
+                3-3) 실패시나리오
+                    - API 모킹할 것.
+
+            4) 유저시나리오(회원가입)
+                4-1) 모든 인풋이 입력되면 회원가입 버튼을 활성화할 것.
+
+                4-2) 회원가입버튼을 누르면 회원가입 API를 요청할 것.
+                
+                4-3) 회원가입에 성공하면, 가입 완료 모달을 노출하고 아래의 상황별 지시를 따를 것.
+                    - 회원가입 성공 모달
+                        - 활용할MCP: CursorTalkToFigmaMCP(채널명: mdmoccg6)
+                        - 모달 backdrop 노드ID: 11195:11689
+                        - 모달 popup 노드ID: 8649:11769
+                            - 사용되는 svg 파일은 직접 읽지 않고, 크기만 구현할 것.
+                            - 모달 내 사용할 logo: /icons/logo.svg (너비 77.28px * 높이 48px)
+                            - 로그인하기 버튼: 공통컴포넌트 사용 <Button />, height는 버튼의 size를 사용하고, width값만 class로 전달할 것.
+                            - 로그인하기 확인 버튼 클릭 -> 열려있는 모든 모달을 닫기 -> 로그인페이지로 이동 ('/login')
+                                - 단 쿼리문이 있을 경우, 쿼리문을 포함하여 login 페이지로 이동할 것.
+            
+                4-4) 회원가입에 실패하면, 회원가입 검증 실패 에러 메시지를 보여줄 것. 
+                    - 검증 실패 피그마
+                        - 활용할MCP: CursorTalkToFigmaMCP(채널명: mdmoccg6)
+                        - 노드ID: 285:32697
+
+                

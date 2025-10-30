@@ -1,4 +1,19 @@
 /* ===================================
+   Login Styles
+   =================================== */
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 1080px;
+  width: 100%;
+  padding: 244px 20px 40px 20px;
+}
+
+/* ===================================
    Login Container Styles
    =================================== */
 .container {
@@ -8,54 +23,161 @@
 }
 
 /* ===================================
-   Logo Section
+   Top Section (Logo + Login Form)
+   320px × 280px
+   =================================== */
+.topSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ===================================
+   Logo Area Section
    320px × 128px
    =================================== */
-.logo {
+.logoArea {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 128px;
   flex-shrink: 0;
-  background-color: var(--color-gray-10);
 }
 
-/* ===================================
-   Gap Section
-   320px × 24px
-   =================================== */
-.gap {
+.logoWrapper {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.welcomeText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 24px;
-  flex-shrink: 0;
+  margin-top: 24px;
+  font-family: var(--typo-body18-semibold-family);
+  font-weight: var(--typo-body18-semibold-weight);
+  font-size: var(--typo-body18-semibold-size);
+  line-height: var(--typo-body18-semibold-height);
+  letter-spacing: 0;
+  color: var(--color-gray-black);
+  text-align: center;
 }
 
 /* ===================================
-   InputGroup Section
-   320px × 48px
+   Login Form Section
+   320px × 128px
    =================================== */
-.inputGroup {
+.loginFormSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 128px;
+  margin-top: 24px;
+  flex-shrink: 0;
+}
+
+.loginFormTitle {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 48px;
+  height: 20px;
+  font-family: var(--typo-body14-medium-family);
+  font-weight: var(--typo-body14-medium-weight);
+  font-size: var(--typo-body14-medium-size);
+  line-height: var(--typo-body14-medium-height);
+  letter-spacing: 0;
+  color: var(--color-gray-80);
+  text-align: center;
   flex-shrink: 0;
-  background-color: var(--color-gray-10);
+}
+
+.inputArea {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 16px;
+  flex-shrink: 0;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputWidth {
+  width: 320px;
+}
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 20px;
+  margin-top: 8px;
+  font-family: var(--typo-body12-regular-family);
+  font-weight: var(--typo-body12-regular-weight);
+  font-size: var(--typo-body12-regular-size);
+  line-height: var(--typo-body12-regular-height);
+  letter-spacing: 0;
+  color: #f66a6a;
+}
+
+.additionalErrorMessage {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 20px;
+  margin-top: 8px;
+  font-family: var(--typo-body12-regular-family);
+  font-weight: var(--typo-body12-regular-weight);
+  font-size: var(--typo-body12-regular-size);
+  line-height: var(--typo-body12-regular-height);
+  letter-spacing: 0;
+  color: #f66a6a;
 }
 
 /* ===================================
-   ButtonGroup Section
+   Button Section
    320px × 92px
    =================================== */
-.buttonGroup {
+.buttonSection {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 92px;
   flex-shrink: 0;
-  background-color: var(--color-gray-10);
+  margin-top: 24px;
+}
+
+.loginButton {
+  width: 320px;
+}
+
+.signupText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20px;
+  margin-top: 24px;
+  font-family: var(--typo-body14-regular-family);
+  font-weight: var(--typo-body14-regular-weight);
+  font-size: var(--typo-body14-regular-size);
+  line-height: var(--typo-body14-regular-height);
+  letter-spacing: 0;
+  color: var(--color-gray-80);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }

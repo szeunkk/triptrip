@@ -20,26 +20,25 @@ test.describe("BoardsDetail 링크 라우팅 테스트", () => {
       // GraphQL API를 직접 호출하여 첫 번째 게시글 ID 가져오기
       await page.goto("/boards");
 
-      const response = await page.waitForResponse(
-        (response) =>
-          response.url().includes("graphql") &&
-          response.request().postDataJSON()?.operationName === "fetchBoards",
-        { timeout: 5000 }
-      );
+      // DOM 기반으로 게시글 로드 대기 (브라우저 독립적)
+      await page.waitForSelector('[data-testid^="board-item-"]', {
+        timeout: 5000,
+      });
 
-      const responseData = await response.json();
+      // 첫 번째 게시글의 data-testid에서 ID 추출
+      const firstBoardTitle = page
+        .locator('[data-testid="board-item-0"]')
+        .locator('[data-testid^="board-title-"]');
+      const testId = await firstBoardTitle.getAttribute("data-testid");
 
-      if (
-        !responseData.data?.fetchBoards ||
-        responseData.data.fetchBoards.length === 0
-      ) {
-        throw new Error("❌ API에서 게시글 데이터를 가져올 수 없습니다.");
+      if (!testId) {
+        throw new Error("❌ 테스트할 게시글 ID를 찾을 수 없습니다.");
       }
 
-      testBoardId = responseData.data.fetchBoards[0]._id;
+      testBoardId = testId.replace("board-title-", "");
 
       if (!testBoardId) {
-        throw new Error("❌ 테스트할 게시글 ID를 찾을 수 없습니다.");
+        throw new Error("❌ 테스트할 게시글 ID를 파싱할 수 없습니다.");
       }
 
       console.log(`✅ 테스트용 게시글 ID: ${testBoardId}`);
