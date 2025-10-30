@@ -34,8 +34,12 @@ export function Layout({ children }: LayoutProps) {
     isMypageActive,
   } = useLinkRouting();
 
-  const { shouldShowHeader, shouldShowLogo, shouldShowBanner } =
-    useAreaVisibility();
+  const {
+    shouldShowHeader,
+    shouldShowLogo,
+    shouldShowBanner,
+    shouldShowHeroImage,
+  } = useAreaVisibility();
 
   return (
     <div className={styles.container}>
@@ -160,9 +164,21 @@ export function Layout({ children }: LayoutProps) {
         </div>
       )}
 
-      <div className={styles.gap}></div>
-      <main className={styles.main}>{children}</main>
-      <div className={styles.gap}></div>
+      {!shouldShowHeroImage && <div className={styles.gap}></div>}
+      <main className={styles.main}>
+        {children}
+        {shouldShowHeroImage && (
+          <div className={styles.heroImage}>
+            <Image
+              src="/images/hero.jpg"
+              alt="Hero"
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        )}
+      </main>
+      {!shouldShowHeroImage && <div className={styles.gap}></div>}
     </div>
   );
 }

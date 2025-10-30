@@ -105,7 +105,7 @@ export const url = {
   auth: {
     /** 로그인 */
     login: {
-      path: "/(auth)/login",
+      path: "/login",
       metadata: {
         access: "누구나" as AccessType,
         layout: LAYOUT_AUTH,
@@ -114,7 +114,7 @@ export const url = {
 
     /** 회원가입 */
     signup: {
-      path: "/(auth)/signup",
+      path: "/signup",
       metadata: {
         access: "누구나" as AccessType,
         layout: LAYOUT_AUTH,

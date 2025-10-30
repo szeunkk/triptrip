@@ -9,6 +9,7 @@ import { getLayoutConfig } from "@/commons/constants/url";
  * @returns {boolean} shouldShowHeader - 헤더 영역 노출 여부
  * @returns {boolean} shouldShowLogo - 로고 노출 여부
  * @returns {boolean} shouldShowBanner - 배너 영역 노출 여부
+ * @returns {boolean} shouldShowHeroImage - 히어로 이미지 노출 여부
  */
 export function useAreaVisibility() {
   const pathname = usePathname();
@@ -20,5 +21,6 @@ export function useAreaVisibility() {
     shouldShowHeader: layoutConfig.header.visible,
     shouldShowLogo: layoutConfig.header.logo,
     shouldShowBanner: layoutConfig.banner,
+    shouldShowHeroImage: layoutConfig.heroimage,
   };
 }
