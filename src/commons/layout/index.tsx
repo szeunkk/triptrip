@@ -168,14 +168,15 @@ export function Layout({ children }: LayoutProps) {
       <main className={styles.main}>
         {children}
         {shouldShowHeroImage && (
-          <div className={styles.heroImage}>
-            <Image
-              src="/images/hero.jpg"
-              alt="Hero"
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          </div>
+          <Image
+            src="/images/hero.jpg"
+            width={0}
+            height={0}
+            sizes="100%"
+            alt="Hero"
+            style={{ objectFit: "cover" }}
+            className={styles.heroImage}
+          />
         )}
       </main>
       {!shouldShowHeroImage && <div className={styles.gap}></div>}

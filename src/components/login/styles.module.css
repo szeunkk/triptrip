@@ -1,0 +1,61 @@
+/* ===================================
+   Login Container Styles
+   =================================== */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+}
+
+/* ===================================
+   Logo Section
+   320px × 128px
+   =================================== */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 128px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
+
+/* ===================================
+   Gap Section
+   320px × 24px
+   =================================== */
+.gap {
+  display: flex;
+  width: 100%;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ===================================
+   InputGroup Section
+   320px × 48px
+   =================================== */
+.inputGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
+
+/* ===================================
+   ButtonGroup Section
+   320px × 92px
+   =================================== */
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 92px;
+  flex-shrink: 0;
+  background-color: var(--color-gray-10);
+}
