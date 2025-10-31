@@ -109,15 +109,8 @@ test.describe("로그인 폼 테스트", () => {
     // 로그인 버튼 클릭
     await loginButton.click();
 
-    // 페이지 이동 또는 localStorage 저장 대기 (브라우저 독립적)
-    await page.waitForFunction(
-      () => {
-        const url = window.location.pathname;
-        const hasToken = !!localStorage.getItem("accessToken");
-        return url === "/boards" || hasToken;
-      },
-      { timeout: 2000 }
-    );
+    // 페이지 이동 대기
+    await page.waitForURL("/boards", { timeout: 5000 });
 
     // /boards 페이지로 이동 확인 (추가 대기)
     await expect(page).toHaveURL("/boards", { timeout: 2000 });
@@ -195,30 +188,24 @@ test.describe("로그인 폼 테스트", () => {
     await passwordInput.fill("audwogus1204");
     await loginButton.click();
 
-    // 페이지 이동 확인 - URL이 변경되거나 localStorage에 저장되었는지 확인
-    // Firefox에서 API 타이밍 이슈가 있을 수 있으므로 더 유연한 검증 사용
-    await page.waitForFunction(
-      () => {
-        const url = window.location.pathname;
-        const hasToken = !!localStorage.getItem("accessToken");
-        return url === "/boards/new" || hasToken;
-      },
-      { timeout: 2000 }
-    );
+    // 페이지 이동 대기 - redirect 경로로 이동
+    await page.waitForURL("/boards/new", { timeout: 5000 });
 
-    // 최종 URL이 redirect 경로인지 확인
-    const currentURL = page.url();
-    const hasRedirected = currentURL.includes("/boards/new");
+    // /boards/new 페이지로 이동 확인
+    await expect(page).toHaveURL("/boards/new", { timeout: 2000 });
 
-    // localStorage에 토큰이 저장되었는지 확인
+    // localStorage에 accessToken과 user 정보 저장 확인
     const accessToken = await page.evaluate(() =>
       localStorage.getItem("accessToken")
     );
+    const user = await page.evaluate(() => localStorage.getItem("user"));
 
-    // 둘 중 하나라도 성공하면 로그인은 성공한 것
-    expect(hasRedirected || !!accessToken).toBeTruthy();
+    expect(accessToken).not.toBeNull();
+    expect(accessToken).toBeTruthy();
 
-    // 최종적으로 redirect 경로로 이동했는지 확인 (더 긴 timeout)
-    await expect(page).toHaveURL("/boards/new", { timeout: 2000 });
+    expect(user).not.toBeNull();
+    const userData = JSON.parse(user!);
+    expect(userData).toHaveProperty("_id");
+    expect(userData).toHaveProperty("name");
   });
 });

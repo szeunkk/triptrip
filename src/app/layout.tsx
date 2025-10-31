@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ApolloClientProvider } from "@/commons/providers/apollo-client/apollo-client.provider";
+import { AuthProvider } from "@/commons/providers/auth/auth.provider";
 import { ModalProvider } from "@/commons/providers/modal/modal.provider";
 import { ReactQueryProvider } from "@/commons/providers/react-query/react-query.provider";
 import Layout from "@/commons/layout";
@@ -92,11 +93,13 @@ export default function RootLayout({
         className={`${pretendardVariable.variable} ${pretendard.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ApolloClientProvider>
-          <ReactQueryProvider>
-            <ModalProvider>
-              <Layout>{children}</Layout>
-            </ModalProvider>
-          </ReactQueryProvider>
+          <AuthProvider>
+            <ReactQueryProvider>
+              <ModalProvider>
+                <Layout>{children}</Layout>
+              </ModalProvider>
+            </ReactQueryProvider>
+          </AuthProvider>
         </ApolloClientProvider>
       </body>
     </html>

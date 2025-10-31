@@ -32,13 +32,13 @@ export interface MessageModalProps {
   onButtonClick: () => void;
 
   /** 버튼 variant (default: "primary") */
-  buttonVariant?: "primary" | "secondary" | "tertiary";
+  buttonVariant?: "primary" | "secondary" | "tertiary" | "ghost";
 
   /** 버튼 size (default: "small") */
-  buttonSize?: "small" | "medium" | "large";
+  buttonSize?: "small" | "medium";
 
   /** 버튼 shape (default: "rectangle") */
-  buttonShape?: "rectangle" | "rounded" | "circle";
+  buttonShape?: "rectangle" | "pill";
 
   /** 버튼 커스텀 클래스 */
   buttonClassName?: string;
