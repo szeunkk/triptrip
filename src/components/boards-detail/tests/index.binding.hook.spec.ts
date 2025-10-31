@@ -163,7 +163,7 @@ test.describe("BoardsDetail - Data Binding", () => {
         await expect(imageElement.first()).toBeVisible({ timeout: 2000 });
 
         // 이미지 src 속성 확인
-        const src = await imageElement.getAttribute("src");
+        const src = await imageElement.first().getAttribute("src");
         expect(src).toBeTruthy();
 
         // Google Storage URL 확인

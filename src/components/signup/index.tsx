@@ -1,8 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "@/commons/components/input";
 import { Button } from "@/commons/components/button";
+import { useModal } from "@/commons/providers/modal/modal.provider";
+import { useSignupForm } from "./hooks/index.form.hook";
+import { SignupSuccessModal } from "./signup-success-modal";
 import styles from "./styles.module.css";
 
 /**
@@ -11,8 +14,22 @@ import styles from "./styles.module.css";
  * Title, Gap, InputGroup, Gap, Button 영역으로 구성됩니다.
  */
 export function Signup() {
+  const { register, handleSubmit, formState, onSubmit, data, loading, error } =
+    useSignupForm();
+  const { openModal } = useModal();
+
+  // 회원가입 성공 시 모달 표시
+  useEffect(() => {
+    if (data?.createUser?._id) {
+      openModal(<SignupSuccessModal />);
+    }
+  }, [data, openModal]);
+
+  // 모든 필드가 유효한지 확인
+  const isFormValid = formState.isValid && !loading;
+
   return (
-    <div className={styles.signup}>
+    <div className={styles.signup} data-testid="signup-page">
       <div className={styles.container}>
         {/* Title Section */}
         <div className={styles.title}>회원가입</div>
@@ -28,7 +45,11 @@ export function Signup() {
           </div>
 
           {/* Inputs Container */}
-          <div className={styles.inputsContainer}>
+          <form
+            className={styles.inputsContainer}
+            onSubmit={handleSubmit(onSubmit)}
+            data-testid="signup-form"
+          >
             <Input
               variant="outlined"
               size="small"
@@ -36,6 +57,9 @@ export function Signup() {
               placeholder="이메일을 입력해 주세요."
               required
               className={styles.inputField}
+              error={formState.errors.email?.message}
+              data-testid="email-input"
+              {...register("email")}
             />
             <Input
               variant="outlined"
@@ -44,6 +68,9 @@ export function Signup() {
               placeholder="이름을 입력해 주세요."
               required
               className={styles.inputField}
+              error={formState.errors.name?.message}
+              data-testid="name-input"
+              {...register("name")}
             />
             <Input
               variant="outlined"
@@ -53,6 +80,9 @@ export function Signup() {
               placeholder="비밀번호를 입력해 주세요."
               required
               className={styles.inputField}
+              error={formState.errors.password?.message}
+              data-testid="password-input"
+              {...register("password")}
             />
             <Input
               variant="outlined"
@@ -62,8 +92,22 @@ export function Signup() {
               placeholder="비밀번호를 한번 더 입력해 주세요."
               required
               className={styles.inputField}
+              error={formState.errors.passwordConfirm?.message}
+              data-testid="password-confirm-input"
+              {...register("passwordConfirm")}
             />
-          </div>
+
+            {/* API 에러 메시지 */}
+            {error &&
+              !formState.errors.email &&
+              !formState.errors.name &&
+              !formState.errors.password &&
+              !formState.errors.passwordConfirm && (
+                <div className={styles.errorMessage} data-testid="api-error">
+                  {error}
+                </div>
+              )}
+          </form>
         </div>
 
         {/* Gap */}
@@ -76,8 +120,11 @@ export function Signup() {
             size="medium"
             shape="rectangle"
             className={styles.submitButton}
+            disabled={!isFormValid}
+            onClick={handleSubmit(onSubmit)}
+            data-testid="signup-button"
           >
-            회원가입
+            {loading ? "처리중..." : "회원가입"}
           </Button>
         </div>
       </div>

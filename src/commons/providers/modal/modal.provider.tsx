@@ -56,6 +56,34 @@ export function ModalProvider({ children }: ModalProviderProps) {
     };
   }, []);
 
+  // ========================================
+  // Portal Ready Flag (하이브리드 방식)
+  // ========================================
+
+  useEffect(() => {
+    if (!portalElement) return;
+
+    if (isOpen) {
+      // 모달 열릴 때: 자식이 추가될 때까지 MutationObserver로 감지
+      if (portalElement.childElementCount > 0) {
+        portalElement.setAttribute("data-portal-ready", "true");
+      }
+
+      const observer = new MutationObserver(() => {
+        if (portalElement.childElementCount > 0) {
+          portalElement.setAttribute("data-portal-ready", "true");
+          observer.disconnect();
+        }
+      });
+
+      observer.observe(portalElement, { childList: true });
+      return () => observer.disconnect();
+    } else {
+      // 모달 닫힐 때: 즉시 제거 (cleanup)
+      portalElement.removeAttribute("data-portal-ready");
+    }
+  }, [portalElement, isOpen]);
+
   // Modal 열기
   const openModal = useCallback((modalContent: ReactNode) => {
     setContent(modalContent);

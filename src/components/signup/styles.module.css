@@ -116,3 +116,16 @@
 .submitButton {
   width: 100%;
 }
+
+/* ===================================
+   Error Message (API Error)
+   =================================== */
+.errorMessage {
+  width: 100%;
+  font-family: var(--typo-body12-regular-family);
+  font-weight: var(--typo-body12-regular-weight);
+  font-size: var(--typo-body12-regular-size);
+  line-height: var(--typo-body12-regular-height);
+  color: var(--color-error);
+  margin-top: 4px;
+}

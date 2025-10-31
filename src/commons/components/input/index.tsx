@@ -14,6 +14,7 @@ export interface InputProps
   error?: string;
   readOnly?: boolean;
   disabled?: boolean;
+  "data-testid"?: string;
 }
 
 /**

@@ -9,7 +9,7 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: mdmoccg6)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 7xzefcfg)
 
 조건-파일경로) 참고할 API  문서경로: https://main-practice.codebootcamp.co.kr/graphql
 
@@ -30,7 +30,6 @@
                     - email
                     - name
                     - password
-                    - passwordConfirm
             - 실행문
                 - mutation createUser($createUserInput: CreateUserInput!) {
                     createUser(createUserInput: $createUserInput) {
@@ -85,7 +84,7 @@
                 
                 4-3) 회원가입에 성공하면, 가입 완료 모달을 노출하고 아래의 상황별 지시를 따를 것.
                     - 회원가입 성공 모달
-                        - 활용할MCP: CursorTalkToFigmaMCP(채널명: mdmoccg6)
+                        - 활용할MCP: CursorTalkToFigmaMCP(채널명: 7xzefcfg)
                         - 모달 backdrop 노드ID: 11195:11689
                         - 모달 popup 노드ID: 8649:11769
                             - 사용되는 svg 파일은 직접 읽지 않고, 크기만 구현할 것.
@@ -96,7 +95,7 @@
             
                 4-4) 회원가입에 실패하면, 회원가입 검증 실패 에러 메시지를 보여줄 것. 
                     - 검증 실패 피그마
-                        - 활용할MCP: CursorTalkToFigmaMCP(채널명: mdmoccg6)
+                        - 활용할MCP: CursorTalkToFigmaMCP(채널명: 7xzefcfg)
                         - 노드ID: 285:32697
 
                 
