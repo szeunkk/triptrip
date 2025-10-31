@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/commons/components/button";
 import { Input } from "@/commons/components/input";
 import { useLoginForm } from "./hooks/index.form.hook";
@@ -15,7 +16,16 @@ import styles from "./styles.module.css";
  * 로고, 환영 메시지, 로그인 폼, 로그인 버튼, 회원가입 링크로 구성됩니다.
  */
 export function Login() {
+  const searchParams = useSearchParams();
   const { register, handleSubmit, errors, onSubmit, loading } = useLoginForm();
+
+  // 회원가입 링크에 redirect 파라미터 전달
+  const signupUrl = useMemo(() => {
+    const redirect = searchParams.get("redirect");
+    return redirect
+      ? `${url.auth.signup.path}?redirect=${encodeURIComponent(redirect)}`
+      : url.auth.signup.path;
+  }, [searchParams]);
 
   return (
     <div className={styles.login}>
@@ -95,7 +105,7 @@ export function Login() {
             >
               {loading ? "로그인 중..." : "로그인"}
             </Button>
-            <Link href={url.auth.signup.path} className={styles.signupText}>
+            <Link href={signupUrl} className={styles.signupText}>
               회원가입
             </Link>
           </div>

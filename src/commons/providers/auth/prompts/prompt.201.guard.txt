@@ -53,13 +53,20 @@
                     - 이미 셋팅되어있는 modal.provider를 수정하지 말 것.
                     - 모달은 한 번만 보여야 하며, 닫힌 뒤에는 같은 상황에서 다시 나타나지 않도록 할 것.
 
-                2-2) 공통컴포넌트조건
-                    - 로그인해주세요모달: <Modal />, variant: 'info', actions: 'single'
+                2-2) 모달popup 메시지 내용
+                    - title: 로그인이 필요한 서비스입니다.
+                    - button: 공통컴포넌트 <Button />
+                        - buttonText (1) 취소 (2) 로그인하기
+                            - (1) 취소 클릭 시 모달 닫기 후 이전 페이지 이동
+                            - (2) 로그인하기 클릭 시 모달 닫기 이후 로그인 페이지 이동
 
                 2-3) 페이지이동조건
                     - commons/constants/url.ts의 페이지URL에 정의된 경로로 이동할 것.
 
-                    - 로그인해주세요모달:
-                        1. '확인' 클릭
-                        2. 열려있는 모든 모달을 닫기
-                        3. 로그인페이지로 이동 => /login
+핵심요구사항) 아래 추가된 사항을 step-by-step 구현할 것.
+            - 비로그인 상태에서 보호된 페이지 접근 시,
+                현재 페이지의 pathname을 redirect 파라미터로 포함하여 로그인 페이지로 이동할 것.
+                예) /boards/12345 → /auth/login?redirect=/boards/12345
+            - 로그인 성공 시 redirect 파라미터 값이 존재하면 해당 경로로 이동할 것.
+            - redirect 파라미터가 없을 경우 기본값 "/boards" 로 이동할 것.
+            - router.replace(redirect) 사용으로 로그인 페이지 뒤로가기 방지할 것.

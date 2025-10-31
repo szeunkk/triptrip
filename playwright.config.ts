@@ -72,12 +72,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: `NODE_ENV=test PORT=${port} npm run dev`,
+    command: `PORT=${port} npm run dev:test`,
     url: `http://localhost:${port}`,
-    reuseExistingServer: !process.env.CI,
-    env: {
-      NODE_ENV: "test",
-      NEXT_PUBLIC_TEST_ENV: "test",
-    },
+    reuseExistingServer: false, // 항상 새 서버 시작 (환경 변수 적용 보장)
   },
 });

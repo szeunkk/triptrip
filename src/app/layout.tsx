@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ApolloClientProvider } from "@/commons/providers/apollo-client/apollo-client.provider";
 import { AuthProvider } from "@/commons/providers/auth/auth.provider";
+import { AuthGuard } from "@/commons/providers/auth/auth.guard";
 import { ModalProvider } from "@/commons/providers/modal/modal.provider";
 import { ReactQueryProvider } from "@/commons/providers/react-query/react-query.provider";
 import Layout from "@/commons/layout";
@@ -96,7 +97,9 @@ export default function RootLayout({
           <AuthProvider>
             <ReactQueryProvider>
               <ModalProvider>
-                <Layout>{children}</Layout>
+                <AuthGuard>
+                  <Layout>{children}</Layout>
+                </AuthGuard>
               </ModalProvider>
             </ReactQueryProvider>
           </AuthProvider>
