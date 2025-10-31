@@ -75,12 +75,14 @@ test.describe("회원가입 폼 기능 테스트", () => {
     // 회원가입 성공 모달이 표시될 때까지 대기 (API 응답 시간 고려)
     // WebKit은 portal 렌더가 느리므로 data-portal-ready 플래그와 ready 플래그 모두 대기
     await page.waitForSelector('#modal-root[data-portal-ready="true"]', {
-      timeout: 4000,
+      timeout: 2000,
       state: "attached",
     });
     await expect(
-      page.locator('[data-testid="signup-success-popup"][data-ready="true"]')
-    ).toBeVisible({ timeout: 4000 });
+      page.locator(
+        '[data-testid="signup-success-modal-popup"][data-ready="true"]'
+      )
+    ).toBeVisible({ timeout: 2000 });
   });
 
   test("4-3) 회원가입 성공 시 가입 완료 모달 노출 및 로그인 페이지로 이동", async ({
@@ -104,16 +106,18 @@ test.describe("회원가입 폼 기능 테스트", () => {
     // 회원가입 성공 모달 표시 확인
     // WebKit은 portal 렌더가 느리므로 data-portal-ready 플래그와 ready 플래그 모두 대기
     await page.waitForSelector('#modal-root[data-portal-ready="true"]', {
-      timeout: 4000,
+      timeout: 2000,
       state: "attached",
     });
     const successModal = page.locator(
-      '[data-testid="signup-success-popup"][data-ready="true"]'
+      '[data-testid="signup-success-modal-popup"][data-ready="true"]'
     );
-    await expect(successModal).toBeVisible({ timeout: 4000 });
+    await expect(successModal).toBeVisible({ timeout: 2000 });
 
     // 로그인하기 버튼 클릭
-    const loginButton = page.locator('[data-testid="login-button"]');
+    const loginButton = page.locator(
+      '[data-testid="signup-success-modal-button"]'
+    );
     await expect(loginButton).toBeVisible();
     await loginButton.click();
 
@@ -145,15 +149,17 @@ test.describe("회원가입 폼 기능 테스트", () => {
 
     // WebKit은 portal 렌더가 느리므로 data-portal-ready 플래그와 ready 플래그 모두 대기
     await page.waitForSelector('#modal-root[data-portal-ready="true"]', {
-      timeout: 4000,
+      timeout: 2000,
       state: "attached",
     });
     await expect(
-      page.locator('[data-testid="signup-success-popup"][data-ready="true"]')
-    ).toBeVisible({ timeout: 4000 });
+      page.locator(
+        '[data-testid="signup-success-modal-popup"][data-ready="true"]'
+      )
+    ).toBeVisible({ timeout: 2000 });
 
     // 로그인하기 버튼 클릭
-    await page.locator('[data-testid="login-button"]').click();
+    await page.locator('[data-testid="signup-success-modal-button"]').click();
 
     // 쿼리 파라미터를 포함하여 로그인 페이지로 이동 확인 (URL 인코딩됨)
     await expect(page).toHaveURL("/login?redirect=%2Fboards");

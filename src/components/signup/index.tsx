@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/commons/components/input";
 import { Button } from "@/commons/components/button";
+import { MessageModal } from "@/commons/components/message-modal";
 import { useModal } from "@/commons/providers/modal/modal.provider";
 import { useSignupForm } from "./hooks/index.form.hook";
-import { SignupSuccessModal } from "./signup-success-modal";
+import { url } from "@/commons/constants/url";
 import styles from "./styles.module.css";
 
 /**
@@ -14,6 +16,8 @@ import styles from "./styles.module.css";
  * Title, Gap, InputGroup, Gap, Button 영역으로 구성됩니다.
  */
 export function Signup() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { register, handleSubmit, formState, onSubmit, data, loading, error } =
     useSignupForm();
   const { openModal } = useModal();
@@ -21,9 +25,22 @@ export function Signup() {
   // 회원가입 성공 시 모달 표시
   useEffect(() => {
     if (data?.createUser?._id) {
-      openModal(<SignupSuccessModal />);
+      // 쿼리 파라미터 확인 및 로그인 경로 생성
+      const query = searchParams.toString();
+      const loginPath = query
+        ? `${url.auth.login.path}?${query}`
+        : url.auth.login.path;
+
+      openModal(
+        <MessageModal
+          title="회원가입을 축하 드려요."
+          buttonText="로그인 하기"
+          onButtonClick={() => router.push(loginPath)}
+          testId="signup-success-modal"
+        />
+      );
     }
-  }, [data, openModal]);
+  }, [data, openModal, router, searchParams]);
 
   // 모든 필드가 유효한지 확인
   const isFormValid = formState.isValid && !loading;

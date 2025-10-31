@@ -178,12 +178,14 @@ test.describe("Boards 컴포넌트 데이터 바인딩", () => {
       // DOM 변화 대기 (게시글 목록이 변경되거나 로딩 완료)
       await page.waitForFunction(
         (prevCount) => {
-          const items = document.querySelectorAll('[data-testid^="board-item-"]');
+          const items = document.querySelectorAll(
+            '[data-testid^="board-item-"]'
+          );
           // 게시글 수가 변경되었거나, 검색 결과가 로드됨
           return items.length !== prevCount || items.length >= 0;
         },
         initialCount,
-        { timeout: 5000 }
+        { timeout: 2000 }
       );
 
       // 약간의 추가 대기 (렌더링 완료)

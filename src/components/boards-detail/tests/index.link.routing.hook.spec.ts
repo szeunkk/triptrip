@@ -22,7 +22,7 @@ test.describe("BoardsDetail 링크 라우팅 테스트", () => {
 
       // DOM 기반으로 게시글 로드 대기 (브라우저 독립적)
       await page.waitForSelector('[data-testid^="board-item-"]', {
-        timeout: 5000,
+        timeout: 2000,
       });
 
       // 첫 번째 게시글의 data-testid에서 ID 추출

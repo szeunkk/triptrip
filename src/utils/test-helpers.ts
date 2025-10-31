@@ -12,7 +12,7 @@ export async function waitForBoardsReady(
   browserName: string = "chromium"
 ) {
   // 브라우저별 타임아웃 설정
-  const timeout = browserName === "chromium" ? 2000 : 5000;
+  const timeout = browserName === "chromium" ? 2000 : 2000;
 
   // 1) networkidle 대기 - API 요청 완료 보장
   await page.waitForLoadState("networkidle", { timeout });
@@ -56,7 +56,7 @@ export async function waitForBoardsBestReady(
   browserName: string = "chromium"
 ) {
   // 브라우저별 타임아웃 설정
-  const timeout = browserName === "chromium" ? 2000 : 5000;
+  const timeout = browserName === "chromium" ? 2000 : 2000;
 
   // 1) BoardsBest 완료 대기: boards-best-card 또는 error
   await page.waitForFunction(

@@ -116,11 +116,11 @@ test.describe("로그인 폼 테스트", () => {
         const hasToken = !!localStorage.getItem("accessToken");
         return url === "/boards" || hasToken;
       },
-      { timeout: 5000 }
+      { timeout: 2000 }
     );
 
     // /boards 페이지로 이동 확인 (추가 대기)
-    await expect(page).toHaveURL("/boards", { timeout: 5000 });
+    await expect(page).toHaveURL("/boards", { timeout: 2000 });
 
     // localStorage에 accessToken과 user 정보 저장 확인
     const accessToken = await page.evaluate(() =>
@@ -203,7 +203,7 @@ test.describe("로그인 폼 테스트", () => {
         const hasToken = !!localStorage.getItem("accessToken");
         return url === "/boards/new" || hasToken;
       },
-      { timeout: 5000 }
+      { timeout: 2000 }
     );
 
     // 최종 URL이 redirect 경로인지 확인
@@ -219,6 +219,6 @@ test.describe("로그인 폼 테스트", () => {
     expect(hasRedirected || !!accessToken).toBeTruthy();
 
     // 최종적으로 redirect 경로로 이동했는지 확인 (더 긴 timeout)
-    await expect(page).toHaveURL("/boards/new", { timeout: 10000 });
+    await expect(page).toHaveURL("/boards/new", { timeout: 2000 });
   });
 });
