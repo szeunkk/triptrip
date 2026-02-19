@@ -1,0 +1,46 @@
+아래의 조건을 모두 적용하여, 아래의 요구사항을 모두 구현할 것.
+구현 결과를 체크리스트로 반환할 것.
+
+==============================================
+
+조건-커서룰) 아래의 커서룰을 적용하여 작업하고, 이 작업이 끝나면 해당 rules 적용 결과를 체크리스트로 반환할 것.
+            - @01-common.mdc
+            - @04-func.mdc
+
+==============================================
+
+조건-파일경로) 참고할 API 문서경로: http://main-practice.codebootcamp.co.kr/graphql
+
+조건-파일경로) 참고할 TSX  파일경로: src/commons/layout/navigation/profile/modal/index.tsx
+조건-파일경로) 참고할 CSS  파일경로: src/commons/layout/navigation/profile/modal/styles.module.css
+조건-파일경로) 구현될 HOOK 파일경로: src/commons/layout/navigation/profile/modal/portone/index.ts
+
+==============================================
+
+핵심요구사항) 다음의 API를 portone v2를 연동하여 step-by-step 으로 구현하고, 적용 결과를 체크리스트로 반환할 것.
+            1. portone 결제 요청 시 storeID와 channelKe는 절대 코드에 직접 기입하지 않고, .env 파일의 환경 변수로부터 불러올 것.
+                - NEXT_PUBLIC_PORTONE_STORE_ID, NEXT_PUBLIC_PORTONE_CHANNEL_KEY
+            
+            2. 결제 요청 로직을 컴포넌트가 아닌 hook에 구현할 것.
+
+            3. tsx 파일에서는 hook 결제 함수만 import 하여 사용할 것.
+
+            4. API 서버에서 결제 상태를 검증할 수 있도록 paymentId를 백엔드로 전달하는 로직을 포함할 것.
+                - paymentId는 uuid v4로 생성하여 portone 결제 요청에 포함시킬 것.
+                - 이후 GraphQL mutation 호출 시 paymentId 그대로 전달할 것
+
+            5. 결제 완료 후 paymentId를 받아 아래 graphql API를 호출하여 결제 상태를 서버에서 검증할 것.
+                - mutation createPointTransactionOfLoading($paymentId: ID!) {
+                    createPointTransactionOfLoading(paymentId: $paymentId) {
+                        id
+                        amount
+                        status
+                    }
+                    }
+
+핵심요구사항) modal/index.tsx 파일에서 충전하기 버튼을 눌렀을 때 결제 요청 hook 을 실행시키도록 구현할 것.
+
+핵심요구사항) 모달(충전하기) -> requestPayment -> response.status가 success 이면 mutation(createPointTransactionOfLoading)의 순서로 진행할 것.
+            - response.status가 success가 아닐 시, 충전에 실패하였다는 모달 메시지를 띄울 것.
+
+

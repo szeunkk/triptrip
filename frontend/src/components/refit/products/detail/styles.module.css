@@ -1,0 +1,491 @@
+@import url("https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css");
+
+.detailPage,
+.detailPage * {
+  font-family: "SUIT Variable", sans-serif;
+}
+
+.detailPage {
+  width: 100%;
+  max-width: 1092px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+/* 목록으로 돌아가기 버튼 */
+.backButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.backButton svg {
+  width: 17.5px;
+  height: 17.5px;
+  flex-shrink: 0;
+}
+
+.backButton span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #23345c;
+}
+
+/* 메인 컨테이너 */
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+}
+
+/* 왼쪽 컬럼 */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20.5px;
+  width: 718px;
+  flex-shrink: 0;
+}
+
+/* Title Area */
+.titleArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.titleContent {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #1c2a4a;
+}
+
+.subtitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.subtitleText {
+  font-size: 12.25px;
+  font-weight: 400;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #23345c;
+}
+
+.dot {
+  font-size: 12.25px;
+  font-weight: 400;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #23345c;
+}
+
+.timeAgo {
+  font-size: 12.25px;
+  font-weight: 400;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #23345c;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 31.5px;
+  height: 31.5px;
+  background: transparent;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.iconButton svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* 사진 미리보기 */
+.imagePreview {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.thumbnailList {
+  display: flex;
+  flex-direction: column;
+  gap: 10.5px;
+  width: 120px;
+  flex-shrink: 0;
+  max-height: 438.4921875px;
+  overflow-y: auto;
+}
+
+.thumbnailList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.thumbnailList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thumbnailList::-webkit-scrollbar-thumb {
+  background: rgba(28, 42, 74, 0.2);
+  border-radius: 2px;
+}
+
+.thumbnailList::-webkit-scrollbar-thumb:hover {
+  background: rgba(28, 42, 74, 0.3);
+}
+
+.thumbnail {
+  width: 120px;
+  height: 90px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.thumbnailActive {
+  border: 1px solid #1c2a4a;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f9fc;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}
+
+.mainImage {
+  width: 584px;
+  height: 438.4921875px;
+  flex-shrink: 0;
+}
+
+.mainImageContent {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f9fc;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 7px;
+}
+
+/* 섹션 */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(28, 42, 74, 0.1);
+}
+
+.sectionTitle {
+  font-size: 17.5px;
+  font-weight: 600;
+  line-height: 26.25px;
+  letter-spacing: -0.435791015625px;
+  color: #1c2a4a;
+}
+
+.description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #23345c;
+  white-space: pre-wrap;
+}
+
+/* 거래 희망 장소 */
+.locationInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+}
+
+.locationInfo svg {
+  width: 17.5px;
+  height: 17.5px;
+  flex-shrink: 0;
+}
+
+.locationInfo span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #23345c;
+}
+
+.mapPlaceholder {
+  width: 718px;
+  height: 400px;
+  background: #f8f9fc;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #23345c;
+  overflow: hidden;
+}
+
+.mapWrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+/* 오른쪽 컬럼 - Sticky */
+.rightColumn {
+  width: 345px;
+  flex-shrink: 0;
+}
+
+.stickyWrapper {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 가격 및 구매 카드 */
+.priceCard {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  gap: 21px;
+  background: #ffffff;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 7px;
+}
+
+.priceSection {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.priceRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 7px;
+}
+
+.priceAmount {
+  font-size: 26.25px;
+  font-weight: 700;
+  line-height: 31.5px;
+  letter-spacing: 0.2355194091796875px;
+  color: #1c2a4a;
+}
+
+.priceCurrency {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #23345c;
+  margin-bottom: 5px;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoList li {
+  font-size: 12.25px;
+  font-weight: 400;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #23345c;
+}
+
+/* 구매하기 버튼 */
+.buyButton {
+  width: 100%;
+  height: 35px;
+  background: #1c2a4a;
+  border: none;
+  border-radius: 5px;
+  font-size: 12.25px;
+  font-weight: 500;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.buyButton:hover:not(:disabled) {
+  background: #23345c;
+}
+
+.buyButton:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.buyButtonSoldOut {
+  background: #6b7280;
+  cursor: not-allowed;
+}
+
+/* 판매자 및 찜 행 */
+.sellerRow {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+}
+
+/* 판매자 카드 */
+.sellerCard {
+  display: flex;
+  flex-direction: column;
+  width: 255px;
+  padding: 8px 15px;
+  background: #ffffff;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 8px;
+  gap: 11px;
+}
+
+.sellerTitle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #1c2a4a;
+  margin: 0;
+}
+
+.sellerInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10.5px;
+}
+
+.sellerAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: rgba(28, 42, 74, 0.1);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sellerAvatar svg {
+  width: 21px;
+  height: 21px;
+}
+
+.sellerDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.sellerName {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #1c2a4a;
+}
+
+.sellerLocation {
+  font-size: 12.25px;
+  font-weight: 400;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #23345c;
+}
+
+/* 찜 카드 */
+.likeCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 77px;
+  height: 77px;
+  background: #ffffff;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.likeContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.likeLabel {
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0.09228515625px;
+  color: #23345c;
+  text-align: center;
+}
+
+.likeCount {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: -0.35888671875px;
+  color: #1c2a4a;
+  text-align: center;
+}

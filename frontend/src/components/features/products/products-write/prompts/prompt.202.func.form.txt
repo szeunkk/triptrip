@@ -1,0 +1,91 @@
+아래의 조건을 모두 적용하여, 아래의 요구사항을 모두 구현할 것.
+구현 결과를 체크리스트로 반환할 것.
+
+==============================================
+
+조건-커서룰) 아래의 커서룰을 적용하여 작업하고, 이 작업이 끝나면 해당 rules 적용 결과를 체크리스트로 반환할 것.
+            - @01-common.mdc
+            - @04-func.mdc
+
+==============================================
+
+조건-파일경로) 참고할 TSX  파일경로: src/components/features/products/products-write/index.tsx
+조건-파일경로) 참고할 CSS  파일경로: src/components/features/products/products-write/styles.module.css
+조건-파일경로) 구현될 HOOK 파일경로: src/components/features/products/products-write/hooks/index.form.hook.tsx
+조건-파일경로) 구현될 TEST 파일경로: src/components/features/products/products-write/tests/index.form.hook.spec.ts
+
+==============================================
+
+핵심요구사항) 아래의 GraphQL 쿼리를 사용하여 데이터를 불러오는 훅을 구현할 것.
+            - 변수
+                - createTravelproductInput
+                    - name
+                    - remarks
+                    - contents
+                    - price
+                    - tags
+                    - travelproductAddress
+                    - images
+            - 실행문
+                - mutation createTravelproduct($createTravelproductInput: CreateTravelproductInput!) {
+                    createTravelproduct(createTravelproductInput: $createTravelproductInput) {
+                        _id
+                        name
+                        remarks
+                        contents
+                        price
+                        tags
+                        images
+                        pickedCount
+                        travelproductAddress
+                        seller{
+                            name
+                            picture
+                        }
+                    }
+                }
+            - zod 검증 조건
+                - name: 최소 1글자 이상
+                - remarks: 최소 1글자 이상
+                - contents: 최소 1글자 이상
+                - price: 최소 1글자 이상
+                - travelproductAddress: 최소 1글자 이상
+
+핵심요구사항) 라이브러리는 다음의 조건을 따를 것.
+                - 폼: 이미 설치되어있는 react-hook-form, @hookform/resolvers를 사용할 것.
+                - 검증: 이미 설치되어있는 zod를 사용할 것.
+                - API: Apollo Client의 useMutation 훅을 사용하여 데이터를 요청할 것.
+
+핵심요구사항) 반환값은 { data, loading, error } 형태로 구성할 것.
+
+핵심요구사항) TypeScript 제네릭을 사용하여 타입 안전성을 확보할 것.
+
+핵심요구사항) 다음의 게시글 작성 폼 기능을 playwright 테스트를 활용하여 TDD 기반으로 step-by-step 으로 구현하고, 적용 결과를 체크리스트로 반환할 것.
+            - 테스트 실행 시 운영 데이터 오염없이 성공 시나리오를 재현할 것.
+
+            1) 테스트 제외 라이브러리
+                - jest
+                - @testing-library/react
+
+            2) 테스트 조건
+                - network 통신이 포함된 테스트의 timeout은 2000ms 미만으로 설정할 것.
+                - network 통신이 없는 단순 연산, 렌더링 테스트는 500ms 미만 혹은 timeout 미설정으로 할 것.
+                - /boards/new 페이지가 완전히 로드된 후 테스트할 것.
+                    - 페이지 로드 식별 요구사항: 고정식별자 data-testid 대기 방법
+                    - 페이지 로드 식별 금지사항: networkidle 대기 방법
+
+            3) 테스트 API 조건
+                3-1) 데이터 
+                    - 실제 API 호출을 흉내내되, 서버에 데이터가 반영되지 않도록 playwright의 page.route() intercept 기능을 사용하여 네트워크 요청을 가짜 성공 응답으로 처리할 것.
+                    - Mock 데이터, MockedProvider 등 외부 mocking 라이브러리 사용 금지 (Playwright 내장 intercept만 허용)
+
+                3-2) 성공 시나리오
+                    - 실제 API 호출 대신 intercept로 200 응답을 모방할 것.
+                    - 응답에는 실제 API 응답 구조를 반영하여 _id 필드를 포함해야 함.
+                    - 상품명(name)에 timestamp를 추가해 고유성을 보장할 것.
+                    - 상품 등록에 성공하면 반환된 _id 값을 사용하여 상품 상세 페이지로 이동할 것.
+                    - 상품 상세페이지: /products/[productId]
+
+                3-3) 실패 시나리오
+                    - 실패 시나리오(API 오류, 필수 필드 누락 등)는 page.route()를 사용하여 400~500 범위의 에러 응답을 모킹할 것.
+                    - 오류 메시지가 UI에 정확히 표시되는 지 확인. => 오류 메시지는 <Input /> 공통 컴포넌트 내 에러메시지를 활용할 것.

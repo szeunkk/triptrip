@@ -1,0 +1,26 @@
+아래의 조건을 모두 적용하여, 아래의 요구사항을 모두 구현할 것.
+구현 결과를 체크리스트로 반환할 것.
+
+==============================================
+
+조건-커서룰) 아래의 커서룰을 적용하여 작업하고, 이 작업이 끝나면 해당 rules 적용 결과를 체크리스트로 반환할 것.
+            - @01-common.mdc
+
+==============================================
+
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: bh1vril2)
+조건-피그마) 구현될 컴포넌트 노드ID: 285:31826
+
+조건-파일경로) 구현될 TSX 파일경로: src/components/features/products/products-write/index.tsx
+조건-파일경로) 구현될 CSS 파일경로: src/components/features/products/products-write/styles.module.css
+
+조건-API문서) kakao API : https://developers.kakao.com/docs/latest/ko/local/dev-guide#address-coord
+
+==============================================
+
+핵심요구사항) kakao API를 활용하여 주소 검색 완료 후 경도, 위도 값을 받아오도록 할 것.
+            - 메서드: GET
+            - URL : https://dapi.kakao.com/v2/local/search/address.${FORMAT}
+            - 인증 방식 : REST API 키(.env NEXT_PUBLIC_KAKAO_APP_JS_KEY 를 활용할 것.)
+
+핵심요구사항) 주소 검색 완료 핸들러를 통해 위도, 경도가 입력이 되면, 해당 위도, 경도와 @googlemaps/js-api-loader 를 활용하여, styles_map 부분에 위도, 경도에 해당하는 지도를 구현할 것.

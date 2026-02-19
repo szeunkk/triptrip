@@ -1,0 +1,29 @@
+.boardsDetail{
+    width: 80rem;
+
+    /* padding: 2.5rem 0; */
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.imagesGroup{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2.5rem;
+}
+
+.addimage1{
+    width: 25rem;
+    object-fit: cover;
+}
+
+.boardsDetail__button__group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}

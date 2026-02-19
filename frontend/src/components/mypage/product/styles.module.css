@@ -1,0 +1,237 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  background-color: var(--color-gray-white);
+  border-radius: 8px;
+  height: 40px;
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-gray-white);
+  color: var(--color-gray-700);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabActive {
+  background-color: var(--color-gray-black);
+  color: var(--color-gray-white);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Searchbar Group */
+.searchbargroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 16px;
+  height: 48px;
+}
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 640px;
+  height: 48px;
+  padding: 12px;
+  background-color: var(--color-gray-50);
+  border-radius: 8px;
+}
+
+.searchIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  color: var(--color-gray-500);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--color-gray-500);
+}
+
+/* List */
+.list {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-gray-white);
+  border-radius: 16px;
+  padding: 24px 48px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.08);
+}
+
+.listInner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* List Header */
+.listHeader {
+  display: flex;
+  flex-direction: row;
+  height: 52px;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerNumber {
+  width: 64px;
+  text-align: center;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+}
+
+.headerProductName {
+  flex: 1;
+  min-width: 848px;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+}
+
+.headerBookmarkProductName {
+  flex: 1;
+  min-width: 740px;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+}
+
+.headerPrice {
+  width: 100px;
+  text-align: center;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+}
+
+.headerSeller {
+  width: 100px;
+  text-align: center;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+}
+
+.headerDate {
+  width: 100px;
+  text-align: center;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+}
+
+/* List Body */
+.listBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tableElement {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 44px;
+  gap: 8px;
+  border: 1px solid var(--color-gray-50);
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+.rowNumber {
+  width: 64px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  color: var(--color-gray-500);
+}
+
+.rowProductName {
+  flex: 1;
+  min-width: 848px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.rowBookmarkProductName {
+  flex: 1;
+  min-width: 740px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.productName {
+  color: var(--color-gray-900);
+}
+
+.productNameSold {
+  color: var(--color-gray-400);
+}
+
+.status {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-blue);
+}
+
+.rowPrice {
+  width: 100px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  color: var(--color-gray-800);
+}
+
+.rowSeller {
+  width: 100px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  color: var(--color-gray-800);
+}
+
+.rowDate {
+  width: 100px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  color: var(--color-gray-500);
+}

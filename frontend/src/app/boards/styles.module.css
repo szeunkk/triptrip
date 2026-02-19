@@ -1,0 +1,26 @@
+.boards{
+    width: 120rem;
+    margin: 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.BoardsList{
+    width: 80rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 1.5rem;
+
+    flex: 0 0 auto
+    
+}
+
+.BoardsListMenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

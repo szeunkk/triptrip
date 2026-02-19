@@ -1,0 +1,108 @@
+.formContainer {
+  min-width: 25rem;
+  max-width: 25rem;
+  width: 100%;
+  padding: 15.25rem 1.25rem 2.5rem 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.formContainer > div {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  font-weight: var(--font-weight-medium);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5rem;
+}
+
+.formContainer img {
+  width: 7.5rem;
+  height: inherit;
+}
+
+.formContainer button {
+  width: 20rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.inputContainer {
+  width: 20rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+.inputContainer label {
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  color: var(--color-gray-800);
+}
+
+.inputContainer input {
+  height: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.inputContainer input::placeholder {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.error input {
+  border: 0.06rem solid var(--color-red);
+}
+
+.errorMessage {
+  display: block;
+  margin-top: 0.5rem;
+
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  color: var(--color-red);
+}
+
+.modal {
+  width: 30rem;
+  border-radius: 1.5rem;
+}
+
+.modal img {
+  height: 3rem;
+}
+
+.modal div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+
+  font-size: var(--font-size-btn);
+  font-weight: var(--font-weight-semibold);
+
+  flex: 1 0 0;
+}
+
+.modalBtn div {
+  margin-top: 1.5rem;
+}

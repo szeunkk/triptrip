@@ -1,0 +1,467 @@
+.container {
+  width: 100%;
+  min-height: 802px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 0;
+}
+
+.headerContainer {
+  width: 756px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 28px;
+}
+
+.heading {
+  display: flex;
+}
+
+.title {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 500;
+  font-size: 26.25px;
+  line-height: 31.5px;
+  letter-spacing: 0.236px;
+  color: #1c2a4a;
+}
+
+.paragraph {
+  display: flex;
+}
+
+.description {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.15px;
+  color: #23345c;
+}
+
+.contentContainer {
+  width: 756px;
+  display: flex;
+  gap: 21px;
+}
+
+.leftSection {
+  width: 497px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+.rightSection {
+  width: 238px;
+}
+
+.infoCard {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+}
+
+.infoCardTitle {
+  display: flex;
+  padding: 22px 21px 14px 21px;
+}
+
+.infoCardTitleText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: -0.15px;
+  color: #1c2a4a;
+}
+
+.infoCardContent {
+  display: flex;
+  flex-direction: column;
+  padding: 0 21px 21px 21px;
+  gap: 14px;
+}
+
+.chargeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoLabel {
+  display: flex;
+}
+
+.infoLabelText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 400;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #23345c;
+}
+
+.infoValue {
+  display: flex;
+}
+
+.infoValueText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 500;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #1c2a4a;
+}
+
+.totalRow {
+  border-top: 1px solid rgba(28, 42, 74, 0.1);
+  padding-top: 7px;
+}
+
+.totalRowInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.totalLabel {
+  display: flex;
+}
+
+.totalLabelText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.15px;
+  color: #1c2a4a;
+}
+
+.totalValue {
+  display: flex;
+}
+
+.totalValueText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.15px;
+  color: #1c2a4a;
+}
+
+.afterChargeBox {
+  background-color: rgba(248, 249, 252, 0.3);
+  border-radius: 7px;
+  padding: 10.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+}
+
+.afterChargeLabel {
+  display: flex;
+}
+
+.afterChargeLabelText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 500;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #1c2a4a;
+}
+
+.afterChargeValue {
+  display: flex;
+}
+
+.afterChargeValueText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 28px;
+  letter-spacing: -0.359px;
+  color: #1c2a4a;
+}
+
+.chargeActionButton {
+  width: 100%;
+  height: 31.5px;
+  background-color: #1c2a4a;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 500;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #ffffff;
+  transition: opacity 0.2s ease;
+}
+
+.chargeActionButton:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.chargeActionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.noticeBox {
+  border-top: 1px solid rgba(28, 42, 74, 0.1);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+}
+
+.noticeItem {
+  display: flex;
+}
+
+.noticeItemText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 400;
+  font-size: 10.5px;
+  line-height: 14px;
+  letter-spacing: 0.092px;
+  color: #23345c;
+}
+
+.currentPointCard {
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(135deg, #1c2a4a 0%, #1c2a4acc 100%);
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px;
+}
+
+.pointInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+}
+
+.pointLabelContainer {
+  display: flex;
+}
+
+.pointLabel {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 400;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #ffffff;
+}
+
+.pointValueContainer {
+  display: flex;
+}
+
+.pointValue {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 700;
+  font-size: 26.25px;
+  line-height: 31.5px;
+  letter-spacing: 0.236px;
+  color: #ffffff;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconWrapper {
+  width: 56px;
+  height: 56px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chargeCard {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  padding: 21px 21px 0 21px;
+  gap: 5.25px;
+}
+
+.cardTitle {
+  display: flex;
+}
+
+.cardTitleText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: -0.15px;
+  color: #1c2a4a;
+}
+
+.cardDescription {
+  display: flex;
+}
+
+.cardDescriptionText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.15px;
+  color: #23345c;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  padding: 21px;
+  gap: 14px;
+}
+
+.buttonGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10.5px;
+}
+
+.buttonWrapper {
+  position: relative;
+  width: 144px;
+  height: 74px;
+}
+
+.chargeButton {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.chargeButton:hover {
+  border-color: rgba(28, 42, 74, 0.3);
+}
+
+.chargeButton.selected {
+  border-color: #1c2a4a;
+  background-color: rgba(28, 42, 74, 0.05);
+}
+
+.buttonContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.amountLabel {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.amountText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.15px;
+  color: #1c2a4a;
+  text-align: center;
+}
+
+.pointLabel {
+  display: flex;
+  width: auto;
+}
+
+.pointText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 400;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #23345c;
+  text-align: center;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #c6ff3e;
+  border-radius: 5px;
+  padding: 2.75px 6.895px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badgeText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 500;
+  font-size: 10.5px;
+  line-height: 14px;
+  letter-spacing: 0.092px;
+  color: #1c2a4a;
+}
+
+.notice {
+  display: flex;
+  margin-top: 0;
+}
+
+.noticeText {
+  font-family: "SUIT Variable", sans-serif;
+  font-weight: 400;
+  font-size: 10.5px;
+  line-height: 14px;
+  letter-spacing: 0.092px;
+  color: #23345c;
+}

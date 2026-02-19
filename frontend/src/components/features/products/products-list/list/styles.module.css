@@ -1,0 +1,377 @@
+.container {
+  width: 80rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.title {
+  width: 100%;
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 2.25rem;
+  color: var(--color-gray-black);
+}
+
+.tabs {
+  width: 16.375rem;
+  height: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0;
+  background-color: var(--color-gray-white);
+  border-radius: 0.5rem;
+}
+
+.tab {
+  width: 7.6875rem;
+  height: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-gray-white);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5rem;
+  color: var(--color-gray-700);
+  cursor: pointer;
+}
+
+.tabActive {
+  background-color: var(--color-gray-black);
+  color: var(--color-gray-white);
+  font-weight: var(--font-weight-semibold);
+}
+
+.searchbarGroup {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchbarLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.datepicker {
+  width: 18.0625rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  background-color: var(--color-gray-50);
+  border-radius: 0.5rem;
+}
+
+.dateRange {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dateItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.dateText {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5rem;
+  color: var(--color-gray-600);
+  text-align: center;
+}
+
+.dateSeparator {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5rem;
+  color: var(--color-gray-600);
+}
+
+.dateRangeSeparator {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5rem;
+  color: var(--color-gray-600);
+}
+
+.searchbar {
+  width: 40rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  background-color: var(--color-gray-50);
+  border-radius: 0.5rem;
+}
+
+.searchIcon {
+  fill: var(--color-gray-black);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background-color: transparent;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5rem;
+  color: var(--color-gray-black);
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--color-gray-500);
+}
+
+.productsList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.category {
+  width: 100%;
+  height: 6.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--color-gray-white);
+  border-radius: 1rem;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.categoryIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.categoryLabel {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5rem;
+  color: var(--color-gray-800);
+  text-align: center;
+}
+
+.cardArea {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem 1.5rem;
+}
+
+.card {
+  width: 18.5rem;
+  height: 26rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.cardImage {
+  width: 18.5rem;
+  height: 18.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.cardImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  object-fit: cover;
+}
+
+.bookmark {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.bookmarkIcon {
+  fill: var(--color-gray-white);
+}
+
+.bookmarkCount {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25rem;
+  color: var(--color-gray-white);
+}
+
+.cardContent {
+  width: 100%;
+  height: 6.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.cardInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.cardTitle {
+  width: 100%;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5rem;
+  color: var(--color-gray-800);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardDescription {
+  width: 100%;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  color: var(--color-gray-700);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardDetails {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.cardTags {
+  width: 100%;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.25rem;
+  color: var(--color-blue);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardFooter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profileImage {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profileName {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  line-height: 1.25rem;
+  color: var(--color-gray-700);
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.priceAmount {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5rem;
+  color: var(--color-gray-900);
+}
+
+.priceUnit {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5rem;
+  color: var(--color-gray-900);
+}

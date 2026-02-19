@@ -1,0 +1,38 @@
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title */
+.title {
+  font-size: var(--font-size-btn);
+  font-weight: var(--font-weight-semibold);
+  line-height: 24px;
+  color: var(--color-gray-black);
+  margin-bottom: 24px;
+}
+
+/* Content */
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input Group */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Button Wrapper */
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+

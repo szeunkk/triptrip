@@ -1,0 +1,66 @@
+아래의 조건을 모두 적용하여, 아래의 요구사항을 모두 구현할 것.
+구현 결과를 체크리스트로 반환할 것.
+
+==============================================
+
+조건-커서룰) 아래의 커서룰을 적용하여 작업하고, 이 작업이 끝나면 해당 rules 적용 결과를 체크리스트로 반환할 것.
+            - @01-common.mdc
+            - @02-wireframe.mdc
+            - @03-ui.mdc
+
+==============================================
+
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: du8hgct6)
+조건-피그마) 구현될 컴포넌트 노드ID: 285:31930
+
+
+조건-파일경로) 구현될 TSX 파일경로: src/components/features/products/products-list/best/index.tsx
+조건-파일경로) 구현될 CSS 파일경로: src/components/features/products/products-list/best/styles.module.css
+
+ ==============================================
+
+조건-공통목록) 사용할 색상 목록(global.css에 명시된 변수 토큰 활용)
+            - 비슷한 토큰 선택하여 사용(하드코딩 금지)
+
+조건-공통목록) 사용할 타이포그래피 목록(global.css에 명시된 변수 토큰 활용)
+            - 비슷한 토큰 선택하여 사용(하드코딩 금지)
+
+조건-공통목록) 구현에 사용되는 svg파일은 직접 읽거나 확인하지 않을 것.
+            - 프롬프트에서 제시한 크기 구현만 진행할 것.
+
+==============================================
+
+핵심요구사항) 완성된 컴포넌트를 페이지에서 import하여 연결시킬 것.
+                - 연결될 경로: src/app/products/page.tsx
+
+핵심요구사항) MCP를 연동하여 피그마의 디자인을 그대로 구현할 것.
+
+핵심요구사항) 게시글 상세는 아래의 조건으로 Mock 데이터를 만들어 적용할 것.
+            1. 아래의 지시를 반영하여 구현할 것.
+                1) title
+                    - 내용 텍스트: 피그마와 동일하게 구현할 것.
+
+                2) card area
+                    - 노드ID : 179:17172 참고하여 동일한 카드를 공통적으로 사용하여 유연하게 변경할 수 있도록 구현할 것.
+                    - card area 내 card 개수는 총 4개이며, right page icon button 을 클릭하면 다음 카드가 보이게끔 구현할 것.
+
+                3) right page icon button 
+                    - 아래의 svg 코드를 활용하여 구현할 것.
+                    <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_d_285_31935)">
+                    <rect x="25" y="25" width="40" height="40" rx="20" fill="white"/>
+                    <path d="M48.461 45.0041L40.3141 36.8572C40.0993 36.6424 39.9946 36.3866 40.0002 36.0899C40.0058 35.7932 40.116 35.5373 40.3309 35.3223C40.5458 35.1074 40.8015 35 41.0982 35C41.3949 35 41.6508 35.1074 41.8658 35.3223L50.1457 43.6189C50.3411 43.8145 50.4859 44.0336 50.5802 44.2762C50.6747 44.5188 50.7219 44.7615 50.7219 45.0041C50.7219 45.2467 50.6747 45.4893 50.5802 45.7319C50.4859 45.9746 50.3411 46.1937 50.1457 46.3892L41.8491 54.6859C41.6342 54.9007 41.3812 55.0054 41.0901 54.9998C40.7988 54.9942 40.5458 54.884 40.3309 54.6691C40.116 54.4542 40.0086 54.1985 40.0086 53.9018C40.0086 53.6051 40.116 53.3492 40.3309 53.1342L48.461 45.0041Z" fill="#1C1C1C"/>
+                    </g>
+                    <defs>
+                    <filter id="filter0_d_285_31935" x="0" y="0" width="90" height="90" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset/>
+                    <feGaussianBlur stdDeviation="12.5"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_285_31935"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_285_31935" result="shape"/>
+                    </filter>
+                    </defs>
+                    </svg>

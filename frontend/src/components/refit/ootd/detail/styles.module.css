@@ -1,0 +1,572 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 1092px;
+  font-family: 'SUIT Variable', sans-serif;
+}
+
+.backButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  height: 21px;
+  margin-bottom: 21px;
+}
+
+.backButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.backButton span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.15px;
+  color: #23345c;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 1092px;
+  height: 660px;
+  background: #ffffff;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.mainImageWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 654px;
+  height: 100%;
+  background: #000000;
+  position: relative;
+}
+
+.mainImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mainImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prevButton,
+.nextButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.prevButton:hover,
+.nextButton:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.prevButton {
+  left: 20px;
+}
+
+.nextButton {
+  right: 20px;
+}
+
+.prevButton svg,
+.nextButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.imageIndicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  font-family: 'SUIT Variable', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ffffff;
+  z-index: 10;
+}
+
+.rightSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 436px;
+  height: 100%;
+}
+
+.userSection {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10.5px;
+  padding: 14px;
+  width: 100%;
+  border-bottom: 1px solid rgba(28, 42, 74, 0.1);
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.avatar svg {
+  width: 17.5px;
+  height: 17.5px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: calc(100% - 45.5px);
+}
+
+.userText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+}
+
+.username {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #1c2a4a;
+  margin: 0;
+}
+
+.description {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #23345c;
+  margin: 0;
+}
+
+.date {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10.5px;
+  line-height: 14px;
+  letter-spacing: 0.092px;
+  color: #23345c;
+  margin: 0;
+}
+
+.commentsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+  gap: 14px;
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.commentItem {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10.5px;
+  width: 100%;
+}
+
+.commentAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  background: #f8f9fc;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.commentAvatar svg {
+  width: 14px;
+  height: 14px;
+}
+
+.commentContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: calc(100% - 38.5px);
+}
+
+.commentText {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+.commentUsername {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #1c2a4a;
+  flex-shrink: 0;
+}
+
+.commentMessage {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #23345c;
+}
+
+.commentMeta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10.5px;
+  width: 100%;
+}
+
+.commentTime {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10.5px;
+  line-height: 14px;
+  letter-spacing: 0.092px;
+  color: #23345c;
+}
+
+.commentRating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3.5px;
+}
+
+.commentRating svg {
+  width: 10.5px;
+  height: 10.5px;
+}
+
+.actionsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10.5px;
+  padding: 15px 14px;
+  width: 100%;
+  border-top: 1px solid rgba(28, 42, 74, 0.1);
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.actionButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 21px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.actionButton svg {
+  width: 21px;
+  height: 21px;
+}
+
+.likesCount {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.018px;
+  color: #1c2a4a;
+  margin: 0;
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 21px;
+  width: 504px;
+  background: #ffffff;
+  border-radius: 7px;
+  position: relative;
+}
+
+.closeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 17.5px;
+  height: 17.5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 21px;
+  right: 21px;
+}
+
+.closeButton svg {
+  width: 17.5px;
+  height: 17.5px;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  padding-top: 14px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+}
+
+.formGroup label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: #1c2a4a;
+}
+
+.required {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: #c6ff3e;
+}
+
+.formGroup input,
+.formGroup textarea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px 16px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #d7dce5;
+  border-radius: 8px;
+  font-family: 'SUIT Variable', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.97px;
+  letter-spacing: 0px;
+  color: #1c2a4a;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #ababab;
+}
+
+.formGroup textarea {
+  resize: none;
+  padding: 14px 16px;
+  height: 125.5px;
+}
+
+.ratingGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+}
+
+.ratingButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.ratingButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.formGroupFull {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.formGroupFull textarea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px 16px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #d7dce5;
+  border-radius: 8px;
+  font-family: 'SUIT Variable', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.97px;
+  letter-spacing: 0px;
+  color: #1c2a4a;
+  resize: none;
+  height: 125.5px;
+}
+
+.formGroupFull textarea::placeholder {
+  color: #ababab;
+}
+
+.modalActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.cancelButton,
+.submitButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  width: 224px;
+  height: 48px;
+  border-radius: 8px;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  cursor: pointer;
+  border: 1px solid #1c2a4a;
+}
+
+.cancelButton {
+  background: #ffffff;
+  color: #1c2a4a;
+}
+
+.submitButton {
+  background: #c7c7c7;
+  color: #e4e4e4;
+  border: none;
+  cursor: not-allowed;
+}
+
+.submitButton.active {
+  background: #1c2a4a;
+  color: #ffffff;
+  cursor: pointer;
+}

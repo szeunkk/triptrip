@@ -1,0 +1,27 @@
+.TravelWriteForm {
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+.DateGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.DateGroup div {
+  flex: 1 0 0;
+}
+
+.ButtonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* .ButtonGroup; */

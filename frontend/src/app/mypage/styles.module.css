@@ -1,0 +1,8 @@
+.mypage {
+  width: 80rem;
+  margin: 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+}

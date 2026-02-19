@@ -1,0 +1,74 @@
+.CommentField {
+  width: 80rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.CommentLabelEdit {
+  display: none;
+}
+
+.CommentLabel {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.CommentLabel span {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5rem;
+}
+
+.CommentRate {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.CommentWriterGroup {
+  width: 40rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.CommentWriterGroup div {
+  flex: 1 0 0;
+}
+
+.CommentWrite {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.CommentTextareaWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.CommentCount {
+  position: absolute;
+  top: 6.75rem;
+  right: 1rem;
+  color: #ababab;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5rem;
+  pointer-events: none;
+}
+
+.CommentButtonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 1rem;
+}

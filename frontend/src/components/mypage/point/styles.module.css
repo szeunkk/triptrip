@@ -1,0 +1,350 @@
+/* Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1280px;
+  gap: 24px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  height: 40px;
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: var(--color-gray-white);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-600);
+  min-width: 60px;
+}
+
+.tabActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: var(--color-gray-black);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-white);
+  min-width: 60px;
+}
+
+/* List Container */
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-gray-white);
+  border-radius: 16px;
+  padding: 24px 48px;
+  gap: 24px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.08);
+}
+
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+/* List Header */
+.listHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 52px;
+  padding: 16px 24px;
+}
+
+.listHeader > div {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+  display: flex;
+  align-items: center;
+}
+
+.headerDate {
+  width: 100px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.headerType {
+  width: 100px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.headerAmount {
+  flex: 1;
+  justify-content: center;
+}
+
+.headerBalance {
+  width: 100px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.headerPaymentId {
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.headerAmountCharge {
+  width: 100px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.headerProduct {
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.headerAmountPurchase {
+  width: 100px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.headerSeller {
+  width: 100px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.headerProductSale {
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.headerAmountSale {
+  width: 100px;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+/* List Body */
+.listBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.listRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 44px;
+  padding: 12px 24px;
+  border: 1px solid var(--color-gray-50);
+  border-radius: 8px;
+}
+
+.listRow > div {
+  font-size: var(--font-size-sm);
+}
+
+/* Cell Styles */
+.cellDate {
+  width: 100px;
+  flex-shrink: 0;
+  color: var(--color-gray-500);
+  font-weight: var(--font-weight-light);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cellType {
+  width: 100px;
+  flex-shrink: 0;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.typeCharge {
+  color: var(--color-blue);
+}
+
+.typePurchase {
+  color: var(--color-red);
+}
+
+.cellAmount {
+  flex: 1;
+  font-weight: var(--font-weight-medium);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.amountPositive {
+  color: var(--color-blue);
+}
+
+.amountNegative {
+  color: var(--color-red);
+}
+
+.cellBalance {
+  width: 100px;
+  flex-shrink: 0;
+  color: var(--color-gray-black);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cellPaymentId {
+  flex: 1;
+  color: var(--color-gray-900);
+  font-weight: var(--font-weight-medium);
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.cellAmountCharge {
+  width: 100px;
+  flex-shrink: 0;
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cellProduct {
+  flex: 1;
+  color: var(--color-gray-900);
+  font-weight: var(--font-weight-medium);
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.cellAmountPurchase {
+  width: 100px;
+  flex-shrink: 0;
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cellSeller {
+  width: 100px;
+  flex-shrink: 0;
+  color: var(--color-gray-800);
+  font-weight: var(--font-weight-light);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cellProductSale {
+  flex: 1;
+  color: var(--color-gray-900);
+  font-weight: var(--font-weight-medium);
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.cellAmountSale {
+  width: 100px;
+  flex-shrink: 0;
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.arrowButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.arrowButton:disabled {
+  cursor: not-allowed;
+}
+
+.paginationInner {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.pageButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-gray-600);
+}
+
+.pageButtonActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--color-gray-50);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-black);
+}

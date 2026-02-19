@@ -1,0 +1,4 @@
+.swiperPaginationBulletActive {
+  background: var(--color-gray-white);
+  opacity: 1;
+}

@@ -1,0 +1,20 @@
+.heroLayout {
+  min-width: 120rem;
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.heroImage {
+  /* max-width: 100%; */
+  /* max-width: 95rem; */
+  /* min-width: 23.8125rem; */
+  width: 100%;
+  min-height: 67.5rem;
+  max-height: 100vh;
+  /* height: 67.5rem; */
+  object-fit: cover;
+}

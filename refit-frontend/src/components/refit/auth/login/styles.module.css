@@ -1,0 +1,255 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 392px;
+  margin: 0 auto;
+  font-family: 'SUIT Variable', sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.logoWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  margin-bottom: 14px;
+}
+
+.logoIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  background-color: #c6ff3e;
+  border-radius: 7px;
+  margin-right: 7px;
+}
+
+.logoText {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 700;
+  font-size: 17.5px;
+  line-height: 24.5px;
+  letter-spacing: -0.435791015625px;
+  color: #1c2a4a;
+  text-align: center;
+}
+
+.brandText {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 28px;
+  letter-spacing: -0.35888671875px;
+  color: #1c2a4a;
+}
+
+.subtitle {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #23345c;
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 392px;
+  background-color: #ffffff;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 11px;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  padding: 21px;
+}
+
+.cardTitle {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: -0.150390625px;
+  color: #1c2a4a;
+  margin-bottom: 5px;
+}
+
+.cardDescription {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #23345c;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  padding: 0 21px 21px 21px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.label {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 400;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #1c2a4a;
+  margin-bottom: 3.5px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 31.5px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 100%;
+}
+
+.input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 400;
+  font-size: 12.25px;
+  line-height: 15.288px;
+  letter-spacing: -0.0179443359375px;
+  color: #23345c;
+  background-color: transparent;
+}
+
+.input::placeholder {
+  color: #23345c;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.checkboxWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  margin-right: 7px;
+  border: 1px solid rgba(28, 42, 74, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 500;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #1c2a4a;
+  cursor: pointer;
+}
+
+.linkButton {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 400;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #1c2a4a;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.loginButton {
+  width: 100%;
+  height: 31.5px;
+  background-color: #1c2a4a;
+  border: none;
+  border-radius: 5px;
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 500;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-bottom: 14px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.footerText {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 400;
+  font-size: 12.25px;
+  line-height: 17.5px;
+  letter-spacing: -0.0179443359375px;
+  color: #23345c;
+}
+
+.signupButton {
+  font-family: 'SUIT Variable', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.150390625px;
+  color: #1c2a4a;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+
+

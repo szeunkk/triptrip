@@ -1,0 +1,106 @@
+.searchbarGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchbar {
+  width: 40rem;
+  min-width: 11.25rem;
+  max-width: 40rem;
+  flex: 1 0 0;
+}
+
+.searchbarGroup > div {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-gray-50);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+
+  color: var(--color-gray-600);
+}
+
+.calendarIcon {
+  flex-shrink: 0;
+}
+
+.searchbarGroup div::placeholder {
+  color: var(--color-gray-500);
+  font-weight: var(--font-weight-regular);
+}
+
+.searchbarGroup div input[type="text"] {
+  width: 100%;
+  background: none;
+  outline: none;
+}
+
+.calendarGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+}
+
+.calendar {
+  width: 11ch;
+  height: 1.5rem;
+  position: relative;
+  background: none;
+  outline: none;
+
+  line-height: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+
+  color: var(--color-gray-600);
+}
+
+.calendar::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  background: transparent;
+  z-index: 1;
+}
+
+.calendar::-webkit-datetime-edit-text,
+.calendar::-webkit-datetime-edit-year-field,
+.calendar::-webkit-datetime-edit-month-field,
+.calendar::-webkit-datetime-edit-day-field {
+  display: none;
+}
+
+.calendar::after {
+  display: block;
+  content: attr(data-placeholder);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* text-align: center; */
+}
+
+/* 날짜 선택 여부 검증 */
+/* 바닥에 숨겨져있는 날짜(연도, 월, 일) 숨김 취소 */
+.calendar:valid::-webkit-datetime-edit-text,
+.calendar:valid::-webkit-datetime-edit-year-field,
+.calendar:valid::-webkit-datetime-edit-month-field,
+.calendar:valid::-webkit-datetime-edit-day-field {
+  display: inline;
+
+  margin: 0;
+  padding: 0;
+}
+/* 위에 덮여져있는 플레이스홀더 숨기기 */
+.calendar:valid::after {
+  display: none;
+}
